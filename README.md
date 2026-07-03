@@ -10,7 +10,9 @@ GitHub Pages で公開されます(push のたびに自動デプロイ):
 
 **https://playmark0227-svg.github.io/tunagaru/**
 
-> 初回のみ: リポジトリの **Settings → Pages → Source = GitHub Actions** に設定してください。
+> **初回のみ手動設定が必要です**(GitHub の仕様上、Pages の初回有効化はリポジトリ所有者しか行えません):
+> リポジトリの **Settings → Pages → Build and deployment → Source = 「Deploy from a branch」→ Branch = `gh-pages` / `(root)` → Save**。
+> 以降は push のたびに自動でビルド&公開されます。
 
 スマートフォンでは「ホーム画面に追加」でネイティブアプリのように使えます(PWA)。
 

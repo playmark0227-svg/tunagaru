@@ -77,10 +77,14 @@ settings/visual             # ビジュアル管理 (ノーコード編集対象
 
 ## GitHub Pages プレビュー (Phase 1)
 
-- `.github/workflows/deploy-pages.yml` が push のたびに自動ビルド & デプロイ
-- 公開URL: `https://<owner>.github.io/tunagaru/`
-- 初回のみ: リポジトリ Settings → Pages → Source を **GitHub Actions** に設定
-  (workflow の `configure-pages` が自動有効化を試みるが、権限で失敗した場合は手動で)
+- `.github/workflows/deploy-pages.yml` が push のたびに自動ビルドし、成果物 (`out/`) を
+  **`gh-pages` ブランチ**へ公開する (`peaceiris/actions-gh-pages`)。
+  非デフォルトブランチ (`claude/**`) からでも確実にデプロイできるブランチ方式を採用。
+- 公開URL: `https://<owner>.github.io/tunagaru/` (basePath = `/tunagaru`)
+- **初回のみ手動設定が必要**: リポジトリ Settings → Pages → Source =
+  「Deploy from a branch」→ Branch = `gh-pages` / `(root)` → Save。
+  (GitHub の仕様上、Pages の初回有効化は Actions のトークンでは行えず、
+  リポジトリ所有者の手動操作が必須。以降の再デプロイは全自動)
 
 ## コスト試算(目安)
 
