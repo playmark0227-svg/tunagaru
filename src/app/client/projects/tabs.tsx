@@ -121,7 +121,7 @@ export function ProjectTabs() {
 
       {/* 募集中タブ */}
       {tab === "open" && (
-        <div className="mt-4 space-y-3">
+        <div className="stagger mt-4 space-y-3">
           {openProjects.length === 0 ? (
             <EmptyState
               icon="briefcase"
@@ -146,7 +146,7 @@ export function ProjectTabs() {
 
       {/* 応募済みタブ */}
       {tab === "applied" && (
-        <div className="mt-4 space-y-3">
+        <div className="stagger mt-4 space-y-3">
           {myApplications.length === 0 ? (
             <EmptyState
               icon="briefcase"

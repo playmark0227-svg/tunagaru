@@ -56,7 +56,7 @@ export default function UserShopPage() {
       </header>
 
       <main className="px-4 pb-24 pt-4">
-        <div className="grid grid-cols-2 gap-3">
+        <div key={category} className="stagger grid grid-cols-2 gap-3">
           {filtered.map((p) => (
             <Link key={p.id} href={`/user/shop/${p.id}`} className="group">
               <div className="relative">

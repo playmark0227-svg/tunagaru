@@ -9,6 +9,7 @@
  */
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AnimatedValue } from "./animated-value";
 import { Icon, type IconName } from "./icons";
 
 /* ---------------------------------------------------------------- */
@@ -58,7 +59,7 @@ export function StatCard({
             {label}
           </p>
           <p className="font-display mt-1.5 text-2xl font-bold tracking-tight">
-            {value}
+            <AnimatedValue value={value} />
           </p>
           {sub && <p className="mt-1 text-[11px] text-ink/40">{sub}</p>}
         </div>

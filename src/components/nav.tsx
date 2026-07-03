@@ -49,10 +49,10 @@ export function BottomNav({
                   : "font-medium text-ink/40 hover:text-ink/70"
               }`}
             >
-              {/* アクティブの上部インジケータ */}
+              {/* アクティブの上部インジケータ (左から伸びる) */}
               <span
-                className={`absolute inset-x-6 top-0 h-0.5 transition-colors ${
-                  active ? "bg-aqua" : "bg-transparent"
+                className={`absolute inset-x-6 top-0 h-0.5 ${
+                  active ? "animate-grow-x bg-aqua" : "bg-transparent"
                 }`}
               />
               <Icon name={item.icon} className="h-5 w-5" />

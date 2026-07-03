@@ -63,7 +63,10 @@ export default function WorkerFeedPage() {
             aria-label="通知"
           >
             <Icon name="bell" className="h-5 w-5" />
-            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-rose-500" />
+            <span className="absolute right-1 top-1 flex h-2 w-2">
+              <span className="absolute h-full w-full animate-ping rounded-full bg-rose-400 opacity-60" />
+              <span className="relative h-2 w-2 rounded-full bg-rose-500" />
+            </span>
           </button>
         </div>
         {/* CategoryChips */}
@@ -89,6 +92,7 @@ export default function WorkerFeedPage() {
           こんにちは、{currentWorker.name}さん👋 新着の募集をチェックしましょう
         </p>
 
+        <div key={category} className="stagger space-y-4">
         {feed.map((p) => {
           const liked = likes[p.id] ?? false;
           const likeCount = p.likes + (liked ? 1 : 0);
@@ -130,7 +134,7 @@ export default function WorkerFeedPage() {
                 >
                   <Icon
                     name="heart"
-                    className={`h-5.5 w-5.5 ${liked ? "fill-rose-500" : ""}`}
+                    className={`h-5.5 w-5.5 transition-transform ${liked ? "animate-pop fill-rose-500" : ""}`}
                   />
                 </button>
                 <span className="-ml-1 text-xs font-semibold text-ink/55">
@@ -180,6 +184,7 @@ export default function WorkerFeedPage() {
           );
         })}
 
+        </div>
         {feed.length === 0 && (
           <p className="py-16 text-center text-sm text-ink/40">
             このカテゴリの募集は現在ありません

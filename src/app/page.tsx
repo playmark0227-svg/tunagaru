@@ -73,7 +73,7 @@ export default function EntrancePage() {
           <span className="h-px w-4 bg-ink/25" />
           SELECT ROLE — 体験するユーザー
         </p>
-        <div className="space-y-2.5">
+        <div className="stagger space-y-2.5">
           {roles.map((role) => (
             <Link
               key={role.href}

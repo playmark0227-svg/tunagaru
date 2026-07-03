@@ -128,6 +128,139 @@ body {
   border-width: 0 1.5px 1.5px 0;
 }
 
+/* ---------------------------------------------------------------- */
+/* モーションシステム                                                  */
+/* ---------------------------------------------------------------- */
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes underbar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 20px;
+  }
+}
+
+/* 画面遷移 (各セクションの template.tsx が使用) */
+.animate-page-in {
+  animation: page-in 0.26s ease;
+}
+.animate-fade-up {
+  animation: fade-up 0.4s cubic-bezier(0.22, 0.9, 0.3, 1) backwards;
+}
+.animate-pop {
+  animation: pop 0.35s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+.animate-msg-in {
+  animation: msg-in 0.3s cubic-bezier(0.22, 0.9, 0.3, 1) backwards;
+}
+.animate-grow-x {
+  transform-origin: left;
+  animation: grow-x 0.35s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+/* ページ内コンテンツの時間差フェードイン (main直下 / .stagger直下) */
+main > *,
+.stagger > * {
+  animation: fade-up 0.45s cubic-bezier(0.22, 0.9, 0.3, 1) backwards;
+}
+main > *:nth-child(1), .stagger > *:nth-child(1) { animation-delay: 0.04s; }
+main > *:nth-child(2), .stagger > *:nth-child(2) { animation-delay: 0.09s; }
+main > *:nth-child(3), .stagger > *:nth-child(3) { animation-delay: 0.14s; }
+main > *:nth-child(4), .stagger > *:nth-child(4) { animation-delay: 0.19s; }
+main > *:nth-child(5), .stagger > *:nth-child(5) { animation-delay: 0.24s; }
+main > *:nth-child(6), .stagger > *:nth-child(6) { animation-delay: 0.29s; }
+main > *:nth-child(7), .stagger > *:nth-child(7) { animation-delay: 0.34s; }
+main > *:nth-child(n + 8), .stagger > *:nth-child(n + 8) { animation-delay: 0.38s; }
+
+/* パネルのホバーを滑らかに */
+.sticker,
+.sticker-glow {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* 見出しの水色アンダーバーが左から伸びる */
+.zigzag-under::after {
+  animation: underbar 0.5s cubic-bezier(0.22, 0.9, 0.3, 1) 0.2s backwards;
+}
+
+/* HUDコーナーのゆっくりした明滅 */
+@keyframes hud-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.hud-corners::before,
+.hud-corners::after {
+  animation: hud-pulse 3.2s ease-in-out infinite;
+}
+
+/* モーション低減設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 :focus-visible {
   outline: 1.5px solid var(--color-aqua);
   outline-offset: 2px;

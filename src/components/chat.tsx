@@ -66,7 +66,7 @@ export function ChatRoom({
       {/* タスク化トースト */}
       {toast && (
         <div className="pointer-events-none absolute inset-x-0 top-3 z-30 flex justify-center">
-          <span className="rounded-sm bg-ink/90 px-4 py-2 text-xs font-semibold text-white shadow-lg">
+          <span className="animate-msg-in rounded-sm bg-ink/90 px-4 py-2 text-xs font-semibold text-white shadow-lg">
             {toast}
           </span>
         </div>
@@ -86,7 +86,7 @@ export function ChatRoom({
                 </div>
               )}
               <div
-                className={`flex items-end gap-2 ${m.isMe ? "justify-end" : "justify-start"}`}
+                className={`animate-msg-in flex items-end gap-2 ${m.isMe ? "justify-end" : "justify-start"}`}
               >
                 {m.isMe && (
                   <span className="mb-1 text-[10px] text-ink/40">
