@@ -38,6 +38,17 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="antialiased">
+        {/* 丸ゴシック (イラスト調)。React 19 が <head> へ自動ホイストする */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+        />
         <RegisterServiceWorker />
         {children}
       </body>

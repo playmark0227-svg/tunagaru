@@ -205,7 +205,7 @@ export default function CartPage() {
       </main>
 
       {/* 購入バー */}
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-stone-200 bg-white/95 p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t-2 border-dashed border-brand/15 bg-white/95 p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
         <div className="mx-auto flex max-w-md items-center gap-3">
           <div className="flex-1">
             <p className="text-[11px] text-stone-500">合計 (税込)</p>

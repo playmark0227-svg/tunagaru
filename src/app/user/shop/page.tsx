@@ -23,7 +23,7 @@ export default function UserShopPage() {
 
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-stone-200/70 bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <h1 className="flex-1 text-base font-bold">ストア</h1>
           <Link
@@ -46,7 +46,7 @@ export default function UserShopPage() {
               className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
                   ? "bg-brand text-white"
-                  : "bg-stone-100 text-stone-500"
+                  : "border-2 border-brand/15 bg-white text-stone-500"
               }`}
             >
               {cat}

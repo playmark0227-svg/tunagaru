@@ -3,6 +3,9 @@ import type { ReactNode } from "react";
 import { BottomNav, SidebarNav, type NavItem } from "@/components/nav";
 import { Icon } from "@/components/icons";
 
+// 静的エクスポート + サブパス配信のため <img> には basePath を手動付与
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 /**
  * マスター管理者(本部)画面の共通レイアウト
  * - PC (md以上): 左固定サイドバー
@@ -32,28 +35,16 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh">
       {/* PC: 左固定サイドバー */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-stone-200/70 bg-white md:flex">
-        <div className="flex items-center gap-2.5 px-5 pb-4 pt-6">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-500 shadow-sm">
-            <svg viewBox="0 0 512 512" className="h-5 w-5" aria-hidden="true">
-              <g
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="40"
-                strokeLinecap="round"
-              >
-                <circle cx="196" cy="256" r="110" />
-                <circle cx="316" cy="256" r="110" />
-              </g>
-            </svg>
-          </span>
-          <span className="min-w-0">
-            <span className="block truncate text-sm font-bold leading-tight">
-              つながるクラフト
-            </span>
-            <span className="block text-[11px] font-semibold text-indigo-500">
-              本部管理
-            </span>
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r-2 border-dashed border-brand/15 bg-white/70 backdrop-blur md:flex">
+        <div className="px-5 pb-3 pt-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${basePath}/logo.png`}
+            alt="つながるCraft"
+            className="h-8 w-auto"
+          />
+          <span className="mt-1.5 inline-block -rotate-1 rounded-lg bg-butter px-2 py-0.5 text-[11px] font-black text-brand">
+            本部管理
           </span>
         </div>
 
@@ -61,10 +52,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <SidebarNav items={sidebarItems} rootHref="/admin" />
         </div>
 
-        <div className="border-t border-stone-200/70 p-3">
+        <div className="border-t-2 border-dashed border-brand/15 p-3">
           <Link
             href="/"
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-700"
+            className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-bold text-stone-500 transition-colors hover:bg-brand-soft/50 hover:text-brand"
           >
             <Icon name="logout" className="h-5 w-5" />
             エントランスへ戻る

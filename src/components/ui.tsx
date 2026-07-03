@@ -1,13 +1,18 @@
 /**
  * 共通UIコンポーネント (サーバーコンポーネント対応・フックなし)
  * 3ロールすべての画面で使う。デザインの一貫性はここで担保する。
+ *
+ * デザイン言語「手しごとの絵本」:
+ * - .sticker: 縁取り+ずらし影のステッカー風カード
+ * - .blob / .blob-2: ぷにっとした有機的なアイコン形
+ * - 破線 (ステッチ) をロゴ由来のモチーフとして使用
  */
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Icon, type IconName } from "./icons";
 
 /* ---------------------------------------------------------------- */
-/* カード                                                            */
+/* カード (ステッカー風)                                              */
 /* ---------------------------------------------------------------- */
 export function Card({
   children,
@@ -17,9 +22,7 @@ export function Card({
   className?: string;
 }) {
   return (
-    <div
-      className={`rounded-2xl border border-stone-200/70 bg-white shadow-sm ${className}`}
-    >
+    <div className={`sticker overflow-hidden rounded-3xl ${className}`}>
       {children}
     </div>
   );
@@ -42,22 +45,22 @@ export function StatCard({
   tone?: "brand" | "blue" | "green" | "amber";
 }) {
   const tones = {
-    brand: "bg-brand-soft text-brand",
-    blue: "bg-sky-50 text-sky-600",
-    green: "bg-emerald-50 text-emerald-600",
-    amber: "bg-amber-50 text-amber-600",
+    brand: "bg-lilac text-brand",
+    blue: "bg-skypale text-sky-700",
+    green: "bg-mint text-emerald-700",
+    amber: "bg-butter text-amber-700",
   } as const;
   return (
     <Card className="p-4">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="text-xs font-medium text-stone-500">{label}</p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">{value}</p>
+          <p className="text-xs font-bold text-stone-500">{label}</p>
+          <p className="mt-1 text-2xl font-black tracking-tight">{value}</p>
           {sub && <p className="mt-1 text-xs text-stone-400">{sub}</p>}
         </div>
         {icon && (
           <span
-            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${tones[tone]}`}
+            className={`blob flex h-10 w-10 shrink-0 rotate-3 items-center justify-center ${tones[tone]}`}
           >
             <Icon name={icon} className="h-5 w-5" />
           </span>
@@ -68,7 +71,7 @@ export function StatCard({
 }
 
 /* ---------------------------------------------------------------- */
-/* セクション見出し                                                    */
+/* セクション見出し (ステッチ下線)                                     */
 /* ---------------------------------------------------------------- */
 export function SectionTitle({
   title,
@@ -78,12 +81,14 @@ export function SectionTitle({
   action?: { href: string; label: string };
 }) {
   return (
-    <div className="mb-2 flex items-center justify-between">
-      <h2 className="text-sm font-bold text-stone-700">{title}</h2>
+    <div className="mb-2.5 flex items-end justify-between">
+      <h2 className="stitch-under text-sm font-black tracking-wide text-brand">
+        {title}
+      </h2>
       {action && (
         <Link
           href={action.href}
-          className="flex items-center gap-0.5 text-xs font-medium text-brand"
+          className="flex items-center gap-0.5 pb-1 text-xs font-bold text-brand/70 hover:text-brand"
         >
           {action.label}
           <Icon name="chevron-right" className="h-3.5 w-3.5" />
@@ -113,17 +118,17 @@ export function Badge({
   tone?: BadgeTone;
 }) {
   const tones: Record<BadgeTone, string> = {
-    gray: "bg-stone-100 text-stone-600",
-    green: "bg-emerald-50 text-emerald-700",
-    amber: "bg-amber-50 text-amber-700",
-    red: "bg-rose-50 text-rose-700",
-    blue: "bg-sky-50 text-sky-700",
-    violet: "bg-violet-50 text-violet-700",
-    brand: "bg-brand-soft text-brand-dark",
+    gray: "bg-stone-100 text-stone-600 border-stone-300/70",
+    green: "bg-mint text-emerald-800 border-emerald-300/60",
+    amber: "bg-butter text-amber-800 border-amber-300/70",
+    red: "bg-peach text-rose-800 border-rose-300/60",
+    blue: "bg-skypale text-sky-800 border-sky-300/60",
+    violet: "bg-lilac text-violet-800 border-violet-300/60",
+    brand: "bg-brand-soft text-brand border-brand/25",
   };
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${tones[tone]}`}
+      className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-bold ${tones[tone]}`}
     >
       {children}
     </span>
@@ -131,7 +136,7 @@ export function Badge({
 }
 
 /* ---------------------------------------------------------------- */
-/* アバター (イニシャル表示)                                            */
+/* アバター (イニシャル表示・ブロブ形)                                  */
 /* ---------------------------------------------------------------- */
 export function Avatar({
   name,
@@ -149,7 +154,7 @@ export function Avatar({
   } as const;
   return (
     <span
-      className={`flex shrink-0 items-center justify-center rounded-full font-bold text-white ${color} ${sizes[size]}`}
+      className={`blob-2 flex shrink-0 items-center justify-center font-black text-white ring-2 ring-white/80 ${color} ${sizes[size]}`}
     >
       {name.charAt(0)}
     </span>
@@ -169,18 +174,20 @@ export function PageHeader({
   action?: ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b border-stone-200/70 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
       <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
         {backHref && (
           <Link
             href={backHref}
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-brand/60 hover:bg-brand-soft"
             aria-label="戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
           </Link>
         )}
-        <h1 className="flex-1 truncate text-base font-bold">{title}</h1>
+        <h1 className="flex-1 truncate text-base font-black tracking-wide text-brand">
+          {title}
+        </h1>
         {action}
       </div>
     </header>
@@ -202,7 +209,7 @@ export function ListRow({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50 active:bg-stone-100 ${className}`}
+      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-brand-soft/40 active:bg-brand-soft ${className}`}
     >
       {children}
       <Icon name="chevron-right" className="h-4 w-4 shrink-0 text-stone-300" />
@@ -224,17 +231,17 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center gap-2 py-12 text-center">
-      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 text-stone-400">
+      <span className="blob flex h-14 w-14 -rotate-3 items-center justify-center bg-butter text-amber-600">
         <Icon name={icon} className="h-6 w-6" />
       </span>
-      <p className="text-sm font-semibold text-stone-600">{title}</p>
+      <p className="text-sm font-bold text-stone-600">{title}</p>
       {description && <p className="text-xs text-stone-400">{description}</p>}
     </div>
   );
 }
 
 /* ---------------------------------------------------------------- */
-/* 進捗ステップ (注文パイプライン等)                                     */
+/* 進捗ステップ (注文パイプライン等・ステッチ接続線)                      */
 /* ---------------------------------------------------------------- */
 export function ProgressSteps({
   steps,
@@ -251,21 +258,37 @@ export function ProgressSteps({
           <li key={step} className="flex flex-1 flex-col items-center gap-1">
             <div className="flex w-full items-center">
               <div
-                className={`h-0.5 flex-1 ${i === 0 ? "invisible" : done ? "bg-brand" : "bg-stone-200"}`}
+                className={`flex-1 border-t-2 border-dashed ${
+                  i === 0
+                    ? "border-transparent"
+                    : done
+                      ? "border-brand/60"
+                      : "border-stone-300/70"
+                }`}
               />
               <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
-                  done ? "bg-brand text-white" : "bg-stone-200 text-stone-400"
+                className={`blob flex h-7 w-7 shrink-0 items-center justify-center text-[10px] font-black ${
+                  done
+                    ? "bg-brand text-white"
+                    : "border-2 border-dashed border-stone-300 bg-white text-stone-400"
                 }`}
               >
                 {done ? <Icon name="check" className="h-3.5 w-3.5" /> : i + 1}
               </span>
               <div
-                className={`h-0.5 flex-1 ${i === steps.length - 1 ? "invisible" : i < currentIndex ? "bg-brand" : "bg-stone-200"}`}
+                className={`flex-1 border-t-2 border-dashed ${
+                  i === steps.length - 1
+                    ? "border-transparent"
+                    : i < currentIndex
+                      ? "border-brand/60"
+                      : "border-stone-300/70"
+                }`}
               />
             </div>
             <span
-              className={`text-center text-[10px] leading-tight ${done ? "font-semibold text-brand-dark" : "text-stone-400"}`}
+              className={`text-center text-[10px] leading-tight ${
+                done ? "font-black text-brand" : "font-bold text-stone-400"
+              }`}
             >
               {step}
             </span>
@@ -291,15 +314,15 @@ export function ProductThumb({
   className?: string;
 }) {
   const sizes = {
-    sm: "h-14 w-14 text-2xl rounded-xl",
-    md: "h-20 w-20 text-4xl rounded-2xl",
-    lg: "h-40 w-full text-6xl rounded-2xl",
+    sm: "h-14 w-14 text-2xl rounded-2xl",
+    md: "h-20 w-20 text-4xl rounded-3xl",
+    lg: "h-40 w-full text-6xl rounded-3xl",
   } as const;
   return (
     <div
-      className={`flex shrink-0 items-center justify-center bg-gradient-to-br ${gradient} ${sizes[size]} ${className}`}
+      className={`flex shrink-0 items-center justify-center border-2 border-white/70 bg-gradient-to-br shadow-[3px_3px_0_rgba(40,47,90,0.07)] ${gradient} ${sizes[size]} ${className}`}
     >
-      <span>{emoji}</span>
+      <span className="drop-shadow-sm">{emoji}</span>
     </div>
   );
 }

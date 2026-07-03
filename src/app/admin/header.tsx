@@ -17,7 +17,7 @@ export function AdminHeader({
   action?: ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b border-stone-200/70 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
       <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4 md:h-14 md:max-w-4xl md:px-8">
         {backHref && (
           <Link
@@ -28,7 +28,9 @@ export function AdminHeader({
             <Icon name="arrow-left" className="h-5 w-5" />
           </Link>
         )}
-        <h1 className="flex-1 truncate text-base font-bold">{title}</h1>
+        <h1 className="flex-1 truncate text-base font-black tracking-wide text-brand">
+          {title}
+        </h1>
         {action}
       </div>
     </header>
