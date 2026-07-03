@@ -47,7 +47,7 @@ export default function WorkerFeedPage() {
   return (
     <>
       {/* FeedHeader */}
-      <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-ink/12 bg-cream/95 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -72,10 +72,10 @@ export default function WorkerFeedPage() {
             <button
               key={cat}
               onClick={() => setCategory(cat)}
-              className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${
+              className={`shrink-0 rounded-sm px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "border-2 border-ink bg-aqua glow-aqua font-black text-ink"
-                  : "border-2 border-ink/30 bg-white text-ink/50"
+                  ? "border border-ink/12 bg-aqua glow-aqua font-black text-ink"
+                  : "border border-ink/15 bg-white text-ink/50"
               }`}
             >
               {cat}
@@ -111,7 +111,7 @@ export default function WorkerFeedPage() {
                   className={`relative flex h-44 items-center justify-center bg-gradient-to-br ${p.gradient}`}
                 >
                   <span className="text-6xl">{p.emoji}</span>
-                  <span className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-brand shadow-sm">
+                  <span className="absolute bottom-3 right-3 rounded-sm border border-ink/10 bg-white/95 px-2.5 py-1 text-xs font-bold text-brand shadow-sm">
                     報酬 {formatYen(p.budget)}
                   </span>
                 </div>
@@ -153,7 +153,7 @@ export default function WorkerFeedPage() {
                 <div className="flex-1" />
                 <Link
                   href={`/worker/projects/${p.id}`}
-                  className="rounded-full bg-brand px-5 py-2 text-xs font-bold text-white transition-colors active:bg-brand-dark"
+                  className="rounded-sm bg-brand px-5 py-2 text-xs font-bold text-white transition-colors active:bg-brand-dark"
                 >
                   詳しく見る
                 </Link>

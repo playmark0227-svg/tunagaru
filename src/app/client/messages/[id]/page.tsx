@@ -26,7 +26,7 @@ export default async function ClientChatPage({
     // BottomNav (高さ約3.5rem) に入力欄が隠れないよう pb-14 を確保
     <div className="flex h-dvh flex-col pb-14">
       {/* トークヘッダー */}
-      <header className="z-20 shrink-0 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
+      <header className="z-20 shrink-0 border-b border-ink/12 bg-cream/95 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <Link
             href="/client/messages"

@@ -2,8 +2,8 @@
 
 /**
  * ナビゲーション (クライアントコンポーネント)
- * - BottomNav: モバイル下部タブ — コミックのコマ風 (インクの太線) + イエローのアクティブ表示
- * - SidebarNav: 本部管理画面のPCサイドバー — コミックパネル風のアクティブ表示
+ * - BottomNav: モバイル下部タブ — 細枠 + 水色のアクティブ表示 (上部インジケータ)
+ * - SidebarNav: 本部管理画面のPCサイドバー — 左に水色のアクティブバー
  */
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -35,7 +35,7 @@ export function BottomNav({
 }) {
   const pathname = usePathname();
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 border-t-[2.5px] border-ink bg-white pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-ink/12 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur">
       <div className="mx-auto flex max-w-md">
         {items.map((item) => {
           const active = isActive(pathname, item.href, rootHref);
@@ -43,19 +43,19 @@ export function BottomNav({
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] transition-colors ${
+              className={`relative flex flex-1 flex-col items-center gap-1 py-2.5 text-[10px] transition-colors ${
                 active
-                  ? "font-black text-ink"
-                  : "font-bold text-ink/35 hover:text-ink/60"
+                  ? "font-bold text-aqua"
+                  : "font-medium text-ink/40 hover:text-ink/70"
               }`}
             >
+              {/* アクティブの上部インジケータ */}
               <span
-                className={`flex h-7 w-11 items-center justify-center rounded-full transition-all ${
-                  active ? "border-2 border-ink bg-aqua glow-aqua" : ""
+                className={`absolute inset-x-6 top-0 h-0.5 transition-colors ${
+                  active ? "bg-aqua" : "bg-transparent"
                 }`}
-              >
-                <Icon name={item.icon} className="h-5 w-5" />
-              </span>
+              />
+              <Icon name={item.icon} className="h-5 w-5" />
               {item.label}
             </Link>
           );
@@ -75,20 +75,23 @@ export function SidebarNav({
 }) {
   const pathname = usePathname();
   return (
-    <nav className="flex flex-col gap-1.5 p-3">
+    <nav className="flex flex-col gap-0.5 p-3">
       {items.map((item) => {
         const active = isActive(pathname, item.href, rootHref);
         return (
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all ${
+            className={`flex items-center gap-3 rounded-sm border-l-2 px-3 py-2.5 text-[13px] transition-all ${
               active
-                ? "sticker sticker-glow -rotate-1 !bg-aqua font-black text-ink"
-                : "font-bold text-ink/50 hover:bg-butter/30 hover:text-ink"
+                ? "border-aqua bg-aqua-soft/60 font-bold text-ink"
+                : "border-transparent font-medium text-ink/50 hover:bg-ink/[0.03] hover:text-ink"
             }`}
           >
-            <Icon name={item.icon} className="h-5 w-5" />
+            <Icon
+              name={item.icon}
+              className={`h-5 w-5 ${active ? "text-aqua" : ""}`}
+            />
             {item.label}
           </Link>
         );

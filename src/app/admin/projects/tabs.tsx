@@ -37,14 +37,14 @@ export function ProjectTabs() {
   return (
     <div className="space-y-4">
       {/* タブ */}
-      <div className="flex rounded-2xl border border-stone-200/70 bg-white p-1 shadow-sm">
+      <div className="flex rounded-none border border-stone-200/70 bg-white p-1 shadow-sm">
         {tabs.map((t) => {
           const count = projects.filter((p) => p.status === t).length;
           return (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`flex-1 rounded-xl py-2 text-xs font-bold transition-colors ${
+              className={`flex-1 rounded-sm py-2 text-xs font-bold transition-colors ${
                 tab === t
                   ? "bg-indigo-500 text-white shadow-sm"
                   : "text-stone-500 hover:text-stone-700"
@@ -99,7 +99,7 @@ export function ProjectTabs() {
                     </span>
                   </div>
                   {assigned && (
-                    <p className="mt-2 rounded-xl bg-stone-50 px-3 py-1.5 text-xs text-stone-500">
+                    <p className="mt-2 rounded-sm bg-stone-50 px-3 py-1.5 text-xs text-stone-500">
                       担当: {assigned.name} ({assigned.ownerName} 様)
                     </p>
                   )}

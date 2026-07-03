@@ -44,14 +44,14 @@ export default function UserHomePage() {
         <div className="grid grid-cols-2 gap-2 p-3">
           <Link
             href="/user/messages/th4"
-            className="flex items-center justify-center gap-1.5 rounded-xl bg-brand-soft py-2.5 text-sm font-bold text-brand-dark transition-colors active:bg-brand-soft/70"
+            className="flex items-center justify-center gap-1.5 rounded-sm bg-brand-soft py-2.5 text-sm font-bold text-brand-dark transition-colors active:bg-brand-soft/70"
           >
             <Icon name="chat" className="h-4 w-4" />
             先生に相談
           </Link>
           <Link
             href="/user/shop"
-            className="flex items-center justify-center gap-1.5 rounded-xl bg-stone-100 py-2.5 text-sm font-bold text-stone-600 transition-colors active:bg-stone-200"
+            className="flex items-center justify-center gap-1.5 rounded-sm bg-stone-100 py-2.5 text-sm font-bold text-stone-600 transition-colors active:bg-stone-200"
           >
             <Icon name="store" className="h-4 w-4" />
             商品を見る
@@ -62,7 +62,7 @@ export default function UserHomePage() {
       {/* キャンペーンバナー */}
       <Link
         href="/user/messages/th8"
-        className="flex items-center gap-2 rounded-2xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800 ring-1 ring-amber-200"
+        className="flex items-center gap-2 rounded-none bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800 ring-1 ring-amber-200"
       >
         <span className="text-lg">🍂</span>
         <span className="flex-1">{visualSettings.campaignBanner}</span>
@@ -75,7 +75,7 @@ export default function UserHomePage() {
         <div className="space-y-2">
           {newsPosts.map((post) => (
             <Card key={post.id} className="flex gap-3 p-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-xl">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-brand-soft text-xl">
                 {post.emoji}
               </span>
               <div className="min-w-0 flex-1">

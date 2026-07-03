@@ -1,39 +1,35 @@
 @import "tailwindcss";
 
 /*
- * デザインテーマ: 「コミックストリップ × 未来」(スヌーピー風の絵柄 + 水色の近未来アクセント)
- * - 手書きマーカー風フォント (Yusei Magic)
- * - コミックのコマのような白いカード: 太いインク縁取り + ベタの落ち影
- * - ジグザグ (コミックの定番柄) を水色の見出し下線・区切りに
- * - 背景は設計図 (ブループリント) 風の薄い水色グリッド
- * - アクセントは水色 (アクア) + ネオン風の淡い光彩
+ * デザインテーマ: 「ブループリント」(シャープ・ミニマル・近未来)
+ * - 細いヘアライン枠 + 角張ったフォルム (直角基調)
+ * - クリーンな角ゴシック (Zen Kaku Gothic New) + 数字は Space Grotesk
+ * - 水色 (アクア) を線・小面積アクセントに。淡いブループリントグリッド背景
  */
 
 @theme {
-  /* インク (ロゴのネイビーを濃くした描線色) */
-  --color-ink: #262b47;
+  --color-ink: #1c2233;
   --color-brand: #282f5a;
   --color-brand-dark: #1d2342;
-  --color-brand-soft: #e9ecf7;
+  --color-brand-soft: #eef1f7;
 
-  /* 紙 (わずかに青みのあるホワイト) */
-  --color-cream: #f9fbfc;
+  /* 紙 (ごく淡い青みのオフホワイト) */
+  --color-cream: #f6f8fa;
 
   /* アクセント: 水色 (アクア) */
-  --color-aqua: #4fd1f0;
-  --color-aqua-soft: #e0f6fd;
+  --color-aqua: #17b6d4;
+  --color-aqua-soft: #e5f6fb;
 
-  /* コミックの差し色 */
-  --color-butter: #ffd94d; /* イエロー (サブ) */
-  --color-poppy: #ef6351; /* 犬小屋レッド */
-  --color-peach: #ffd9c4;
-  --color-mint: #cdead9;
-  --color-skypale: #cfe4f7;
-  --color-lilac: #e3daf6;
+  /* サブ差し色 (バッジ等) */
+  --color-butter: #f7d774;
+  --color-peach: #f6c5b3;
+  --color-mint: #bfe3cf;
+  --color-skypale: #c6e2f4;
+  --color-lilac: #d8d3ef;
 
-  --font-sans: "Yusei Magic", "Zen Maru Gothic", "Hiragino Maru Gothic ProN",
-    "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo",
-    system-ui, sans-serif;
+  --font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Zen Kaku Gothic New", system-ui, sans-serif;
 }
 
 html {
@@ -42,105 +38,122 @@ html {
 
 body {
   background-color: var(--color-cream);
-  /* 設計図 (ブループリント) 風の薄い水色グリッド */
+  /* ブループリント風のごく淡い方眼 */
   background-image:
-    linear-gradient(rgba(79, 209, 240, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 209, 240, 0.09) 1px, transparent 1px);
-  background-size: 26px 26px;
+    linear-gradient(rgba(28, 34, 51, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 34, 51, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: var(--color-ink);
   font-family: var(--font-sans);
-  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+/* 数字・ラテン文字を等幅感のあるディスプレイ書体に */
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.01em;
 }
 
 /* ---------------------------------------------------------------- */
-/* コミック風ユーティリティ                                            */
+/* シャープなパネル (旧 .sticker を置換 — 細枠・直角・薄影)             */
 /* ---------------------------------------------------------------- */
-
-/* コミックのコマ: インク縁取り + ベタの落ち影 */
-.sticker {
+.sticker,
+.panel {
   background-color: #ffffff;
-  border: 2.5px solid var(--color-ink);
-  box-shadow: 3.5px 3.5px 0 var(--color-ink);
+  border: 1px solid rgba(28, 34, 51, 0.12);
+  box-shadow: 0 1px 2px rgba(28, 34, 51, 0.04);
 }
 
-/* 押し込みボタン (押すと影が消えて沈む) */
+/* アクセントパネル: 細い水色枠 + ごく淡いグロー */
+.sticker-glow,
+.panel-aqua {
+  background-color: #ffffff;
+  border: 1px solid rgba(23, 182, 212, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(23, 182, 212, 0.12),
+    0 2px 10px rgba(23, 182, 212, 0.1);
+}
+
+/* 押下フィードバック (控えめ) */
 .comic-press {
   transition:
-    transform 0.06s ease,
-    box-shadow 0.06s ease;
+    transform 0.08s ease,
+    box-shadow 0.08s ease;
 }
 .comic-press:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--color-ink) !important;
+  transform: translateY(1px);
 }
 
-/* コミック円 (アイコン・アバターの器) */
+/* アイコンタイル / アバターの器: 細枠・角丸ごく僅か */
 .comic-circle {
-  border: 2.5px solid var(--color-ink);
-  border-radius: 9999px;
+  border: 1px solid rgba(28, 34, 51, 0.16);
+  border-radius: 3px;
 }
 
-/* ジグザグ下線 (コミックの定番柄・水色) */
-.zigzag-under {
-  padding-bottom: 8px;
-  background-image:
-    linear-gradient(135deg, var(--color-aqua) 25%, transparent 25%),
-    linear-gradient(225deg, var(--color-aqua) 25%, transparent 25%);
-  background-size: 10px 5px;
-  background-repeat: repeat-x;
-  background-position: left bottom;
-}
-
-/* コミックのコマ + 水色ネオンの光彩 (未来感のあるハイライト用) */
-.sticker-glow {
-  border-color: #2fb9de;
-  box-shadow:
-    3.5px 3.5px 0 var(--color-ink),
-    0 0 18px rgba(79, 209, 240, 0.45);
-}
-
-/* 水色ネオンの光彩のみ (小さなアクティブ要素用) */
+/* 小さな水色グロー */
 .glow-aqua {
-  box-shadow: 0 0 12px rgba(79, 209, 240, 0.55);
+  box-shadow: 0 0 0 1px rgba(23, 182, 212, 0.25);
 }
 
-/* 旧テーマ互換 (使用箇所が残っていても破綻しないように) */
-.blob {
-  border-radius: 9999px;
-  border: 2.5px solid var(--color-ink);
-}
-.blob-2 {
-  border-radius: 9999px;
-  border: 2px solid var(--color-ink);
-}
+/* 見出しの短い水色アンダーバー (旧 zigzag/stitch を置換) */
+.zigzag-under,
 .stitch-under {
-  padding-bottom: 8px;
-  background-image:
-    linear-gradient(135deg, currentColor 25%, transparent 25%),
-    linear-gradient(225deg, currentColor 25%, transparent 25%);
-  background-size: 10px 5px;
-  background-repeat: repeat-x;
-  background-position: left bottom;
+  position: relative;
+  padding-bottom: 7px;
+}
+.zigzag-under::after,
+.stitch-under::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 2px;
+  background: var(--color-aqua);
 }
 
-/* フォーカスリングも手描き風に */
+/* HUD風のコーナーティック (装飾) */
+.hud-corners {
+  position: relative;
+}
+.hud-corners::before,
+.hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-aqua);
+  border-style: solid;
+}
+.hud-corners::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1.5px 0 0 1.5px;
+}
+.hud-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
 :focus-visible {
-  outline: 2.5px dashed var(--color-ink);
-  outline-offset: 3px;
+  outline: 1.5px solid var(--color-aqua);
+  outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--color-butter);
+  background: var(--color-aqua-soft);
 }
 
-/* スクロールバーを控えめに (モバイルアプリ風) */
+/* スクロールバーを控えめに */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d6d3d1;
-  border-radius: 3px;
+  background: #d3dae0;
+  border-radius: 0;
 }
 
 /* 横スクロールのカルーセル用 */

@@ -224,7 +224,7 @@ export default function ClientShopPage() {
       {/* 発注バー (BottomNavの上に固定表示) */}
       {totalQty > 0 && (
         <div className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-20 px-4 pb-2">
-          <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-stone-200 bg-white p-3 shadow-lg">
+          <div className="mx-auto flex max-w-md items-center gap-3 rounded-none border border-stone-200 bg-white p-3 shadow-lg">
             <div className="flex-1">
               <p className="text-[11px] text-stone-500">{totalQty}点の商品</p>
               <p className="text-lg font-bold text-brand">

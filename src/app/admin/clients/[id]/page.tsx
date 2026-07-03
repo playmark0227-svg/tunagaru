@@ -110,7 +110,7 @@ export default async function AdminClientDetailPage({
           {/* チャット導線 */}
           <Link
             href={threadId ? `/admin/messages/${threadId}` : "/admin/messages"}
-            className="mt-4 flex items-center justify-center gap-2 rounded-2xl bg-indigo-500 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
+            className="mt-4 flex items-center justify-center gap-2 rounded-none bg-indigo-500 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
           >
             <Icon name="chat" className="h-4.5 w-4.5" />
             チャットで連絡する
@@ -215,7 +215,7 @@ export default async function AdminClientDetailPage({
                   href="/admin/orders"
                   className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-500">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-stone-100 text-stone-500">
                     <Icon name="package" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">

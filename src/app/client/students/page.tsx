@@ -29,9 +29,9 @@ export default function ClientStudentsPage() {
         {/* 一斉メッセージ導線 */}
         <Link
           href="/client/messages/th8"
-          className="flex items-center gap-3 rounded-2xl bg-brand p-4 text-white shadow-lg shadow-brand/30 transition-colors active:bg-brand-dark"
+          className="flex items-center gap-3 rounded-none bg-brand p-4 text-white shadow-lg shadow-brand/30 transition-colors active:bg-brand-dark"
         >
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/20">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-white/20">
             <Icon name="megaphone" className="h-5 w-5" />
           </span>
           <span className="min-w-0 flex-1">

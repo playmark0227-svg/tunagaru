@@ -99,12 +99,12 @@ export function ChatRoom({
                       {m.senderName}
                     </p>
                   )}
-                  {/* コミックのフキダシ風 */}
+                  {/* フキダシ (角形・細枠) */}
                   <div
-                    className={`whitespace-pre-wrap border-2 border-ink px-3.5 py-2 text-sm leading-relaxed text-ink shadow-[2.5px_2.5px_0_#262b47] ${
+                    className={`whitespace-pre-wrap border px-3.5 py-2 text-sm leading-relaxed text-ink ${
                       m.isMe
-                        ? "rounded-[1.1rem_1.1rem_0.25rem_1.1rem] bg-aqua-soft"
-                        : "rounded-[1.1rem_1.1rem_1.1rem_0.25rem] bg-white"
+                        ? "rounded-[6px_6px_1px_6px] border-aqua/40 bg-aqua-soft"
+                        : "rounded-[6px_6px_6px_1px] border-ink/12 bg-white"
                     }`}
                   >
                     {m.body}
@@ -143,7 +143,7 @@ export function ChatRoom({
         <div ref={bottomRef} />
       </div>
 
-      <div className="sticky bottom-0 border-t-[2.5px] border-ink bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)]">
+      <div className="sticky bottom-0 border-t border-ink/12 bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)]">
         <div className="mx-auto flex max-w-md items-end gap-2">
           <textarea
             value={draft}
@@ -156,12 +156,12 @@ export function ChatRoom({
             }}
             rows={1}
             placeholder="メッセージを入力"
-            className="max-h-24 flex-1 resize-none rounded-2xl border-2 border-ink bg-cream px-4 py-2.5 text-sm outline-none focus:bg-white"
+            className="max-h-24 flex-1 resize-none rounded-sm border border-ink/15 bg-cream px-4 py-2.5 text-sm outline-none focus:border-aqua focus:bg-white"
           />
           <button
             onClick={send}
             disabled={!draft.trim()}
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-opacity ${accentClass} ${
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm text-white transition-opacity ${accentClass} ${
               draft.trim() ? "" : "opacity-40"
             }`}
             aria-label="送信"

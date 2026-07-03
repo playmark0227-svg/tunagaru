@@ -23,7 +23,7 @@ export default function UserShopPage() {
 
   return (
     <>
-      <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-ink/12 bg-cream/95 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <h1 className="flex-1 text-base font-bold">ストア</h1>
           <Link
@@ -43,10 +43,10 @@ export default function UserShopPage() {
             <button
               key={cat}
               onClick={() => setCategory(cat)}
-              className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${
+              className={`shrink-0 rounded-sm px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "border-2 border-ink bg-aqua glow-aqua font-black text-ink"
-                  : "border-2 border-ink/30 bg-white text-ink/50"
+                  ? "border border-ink/12 bg-aqua glow-aqua font-black text-ink"
+                  : "border border-ink/15 bg-white text-ink/50"
               }`}
             >
               {cat}

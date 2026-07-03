@@ -29,7 +29,7 @@ export default async function UserChatPage({
   return (
     // BottomNav (高さ約3.5rem) に入力欄が隠れないよう pb-14 を確保
     <div className="flex h-dvh flex-col pb-14">
-      <header className="z-20 shrink-0 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
+      <header className="z-20 shrink-0 border-b border-ink/12 bg-cream/95 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <Link
             href="/user/messages"

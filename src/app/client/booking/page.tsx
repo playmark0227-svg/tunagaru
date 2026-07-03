@@ -73,7 +73,7 @@ export default function ClientBookingPage() {
             </div>
             <div className="px-4 py-3">
               <p className="text-xs text-stone-500">Zoomリンク</p>
-              <p className="mt-1 break-all rounded-xl bg-stone-50 px-3 py-2 font-mono text-xs text-brand-dark">
+              <p className="mt-1 break-all rounded-sm bg-stone-50 px-3 py-2 font-mono text-xs text-brand-dark">
                 {zoomUrl}
               </p>
             </div>
@@ -180,7 +180,7 @@ export default function ClientBookingPage() {
                 onChange={(e) => setPurpose(e.target.value)}
                 rows={3}
                 placeholder="例: LP構成案のすり合わせをしたいです"
-                className="mt-2 w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 text-sm outline-none focus:border-brand focus:bg-white"
+                className="mt-2 w-full resize-none rounded-sm border border-stone-200 bg-stone-50 px-3 py-2.5 text-sm outline-none focus:border-brand focus:bg-white"
               />
               {selected && (
                 <p className="mt-2 text-xs text-stone-500">

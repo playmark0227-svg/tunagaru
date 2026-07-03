@@ -57,7 +57,7 @@ export function VisualEditor() {
                 setHeroTitle(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
@@ -72,7 +72,7 @@ export function VisualEditor() {
                 setHeroSubtitle(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
@@ -87,7 +87,7 @@ export function VisualEditor() {
                 setCampaignBanner(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
             <p className="mt-1 text-[11px] text-stone-400">
               空欄にするとバナーは表示されません
@@ -116,7 +116,7 @@ export function VisualEditor() {
                   setBrandColor(e.target.value);
                   setPhase("editing");
                 }}
-                className="w-28 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+                className="w-28 rounded-sm border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-indigo-400 focus:bg-white"
               />
             </div>
           </div>
@@ -133,7 +133,7 @@ export function VisualEditor() {
                     key={p.id}
                     type="button"
                     onClick={() => toggleFeatured(p.id)}
-                    className={`flex w-full items-center gap-3 rounded-xl border p-2.5 text-left transition-colors ${
+                    className={`flex w-full items-center gap-3 rounded-sm border p-2.5 text-left transition-colors ${
                       checked
                         ? "border-indigo-400 bg-indigo-50/60"
                         : "border-stone-200 bg-white hover:bg-stone-50"
@@ -170,7 +170,7 @@ export function VisualEditor() {
           <button
             onClick={save}
             disabled={phase === "saving"}
-            className={`flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
+            className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
               phase === "saving"
                 ? "cursor-wait bg-indigo-300"
                 : "bg-indigo-500 hover:bg-indigo-600"
@@ -189,7 +189,7 @@ export function VisualEditor() {
             )}
           </button>
           {phase === "saved" && (
-            <p className="flex items-center gap-1.5 rounded-xl bg-emerald-50 px-3 py-2.5 text-xs font-semibold text-emerald-700">
+            <p className="flex items-center gap-1.5 rounded-sm bg-emerald-50 px-3 py-2.5 text-xs font-semibold text-emerald-700">
               <Icon name="check" className="h-4 w-4 shrink-0" />
               公開しました!エンドユーザーのホーム画面に反映されています
             </p>
@@ -237,7 +237,7 @@ export function VisualEditor() {
                 おすすめ商品
               </p>
               {featured.length === 0 ? (
-                <p className="mt-2 rounded-xl bg-white px-3 py-4 text-center text-[10px] text-stone-400">
+                <p className="mt-2 rounded-sm bg-white px-3 py-4 text-center text-[10px] text-stone-400">
                   おすすめ商品が未選択です
                 </p>
               ) : (
@@ -245,7 +245,7 @@ export function VisualEditor() {
                   {featured.map((p) => (
                     <div
                       key={p.id}
-                      className="flex items-center gap-2.5 rounded-xl border border-stone-200/70 bg-white p-2 shadow-sm"
+                      className="flex items-center gap-2.5 rounded-sm border border-stone-200/70 bg-white p-2 shadow-sm"
                     >
                       <ProductThumb
                         emoji={p.emoji}
@@ -275,7 +275,7 @@ export function VisualEditor() {
               )}
 
               {/* 体験レッスンバナー */}
-              <div className="mt-3 rounded-xl bg-gradient-to-br from-orange-100 to-rose-100 px-3 py-3">
+              <div className="mt-3 rounded-sm bg-gradient-to-br from-orange-100 to-rose-100 px-3 py-3">
                 <p className="text-[10px] font-bold text-stone-700">
                   🌸 体験レッスン受付中
                 </p>

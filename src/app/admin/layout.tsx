@@ -35,7 +35,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh">
       {/* PC: 左固定サイドバー */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r-[2.5px] border-ink bg-white backdrop-blur md:flex">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-ink/12 bg-white backdrop-blur md:flex">
         <div className="px-5 pb-3 pt-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             alt="つながるCraft"
             className="h-8 w-auto"
           />
-          <span className="mt-1.5 inline-block -rotate-1 rounded-lg border-2 border-ink bg-aqua px-2 py-0.5 text-[11px] font-black text-ink">
+          <span className="mt-2 inline-block rounded-sm border border-aqua/50 bg-aqua-soft px-2 py-0.5 text-[10px] font-bold tracking-[0.15em] text-aqua">
             本部管理
           </span>
         </div>
@@ -52,10 +52,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <SidebarNav items={sidebarItems} rootHref="/admin" />
         </div>
 
-        <div className="border-t-[2.5px] border-ink p-3">
+        <div className="border-t border-ink/12 p-3">
           <Link
             href="/"
-            className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-bold text-stone-500 transition-colors hover:bg-brand-soft/50 hover:text-brand"
+            className="flex items-center gap-3 rounded-none px-3 py-2.5 text-sm font-bold text-stone-500 transition-colors hover:bg-brand-soft/50 hover:text-brand"
           >
             <Icon name="logout" className="h-5 w-5" />
             エントランスへ戻る

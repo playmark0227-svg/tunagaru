@@ -52,7 +52,7 @@ export function ClientList() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="教室名・代表者名・業種で検索"
-          className="w-full rounded-2xl border border-stone-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none focus:border-indigo-400"
+          className="w-full rounded-none border border-stone-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none focus:border-indigo-400"
         />
       </div>
 

@@ -99,14 +99,14 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/admin/projects/new"
-            className="sticker comic-press sticker-glow flex items-center justify-center gap-2 rounded-2xl !bg-aqua px-4 py-3.5 text-sm font-black text-ink"
+            className="comic-press flex items-center justify-center gap-2 rounded-sm border border-aqua bg-aqua px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#12a0bb]"
           >
             <Icon name="plus" className="h-4.5 w-4.5" />
             案件を作成
           </Link>
           <Link
             href="/admin/announcements"
-            className="sticker comic-press flex items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-black text-ink"
+            className="comic-press flex items-center justify-center gap-2 rounded-sm border border-ink/15 bg-white px-4 py-3 text-sm font-bold text-ink transition-colors hover:border-aqua hover:text-aqua"
           >
             <Icon name="megaphone" className="h-4.5 w-4.5" />
             一斉通知を送る
@@ -119,7 +119,7 @@ export default function AdminDashboardPage() {
             <h2 className="flex items-center gap-1.5 text-sm font-bold text-stone-700">
               <span>🤖</span> AIアシスタント — 朝のダイジェスト
             </h2>
-            <span className="rounded-full border-2 border-ink bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
+            <span className="rounded-full border border-ink/12 bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
               Phase 3 プレビュー
             </span>
           </div>
@@ -169,7 +169,7 @@ export default function AdminDashboardPage() {
                   href="/admin/orders"
                   className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-amber-50 text-amber-600">
                     <Icon name="package" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
                   href={`/admin/projects/${t.projectId}`}
                   className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
                     <Icon name="clipboard" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -216,7 +216,7 @@ export default function AdminDashboardPage() {
                   href={`/admin/projects/${t.projectId}`}
                   className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-sky-50 text-sky-600">
                     <Icon name="pencil" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -281,7 +281,7 @@ export default function AdminDashboardPage() {
           <Card className="divide-y divide-stone-100">
             {bookedSlots.map((s, i) => (
               <div key={s.id} className="flex items-center gap-3 px-4 py-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-500">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-violet-50 text-violet-500">
                   <Icon name="video" className="h-5 w-5" />
                 </span>
                 <span className="min-w-0 flex-1">

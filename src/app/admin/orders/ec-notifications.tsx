@@ -22,14 +22,14 @@ export function EcNotificationsPanel() {
         <h2 className="flex items-center gap-1.5 text-sm font-bold text-stone-700">
           <span>🛍️</span> 外部EC連携 (BASE)
         </h2>
-        <span className="rounded-full border-2 border-ink bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
+        <span className="rounded-full border border-ink/12 bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
           Phase 3 プレビュー
         </span>
       </div>
       <Card className="sticker-glow divide-y divide-stone-100">
         {ecNotifications.map((n) => (
           <div key={n.id} className="flex items-center gap-3 px-4 py-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-base font-bold text-emerald-600">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-emerald-50 text-base font-bold text-emerald-600">
               B
             </span>
             <div className="min-w-0 flex-1">

@@ -66,8 +66,8 @@ export function NewProjectForm() {
           </p>
         </div>
         {sendPush && (
-          <div className="flex w-full items-center gap-3 rounded-2xl bg-indigo-50 p-3 text-left">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-500 text-white">
+          <div className="flex w-full items-center gap-3 rounded-none bg-indigo-50 p-3 text-left">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-500 text-white">
               <Icon name="bell" className="h-5 w-5" />
             </span>
             <p className="text-xs leading-relaxed text-indigo-700">
@@ -80,13 +80,13 @@ export function NewProjectForm() {
         <div className="flex w-full flex-col gap-2 pt-2">
           <Link
             href="/admin/projects"
-            className="rounded-2xl bg-indigo-500 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-indigo-600"
+            className="rounded-none bg-indigo-500 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-indigo-600"
           >
             案件管理へ戻る
           </Link>
           <button
             onClick={reset}
-            className="rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-50"
+            className="rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-50"
           >
             続けて作成する
           </button>
@@ -108,7 +108,7 @@ export function NewProjectForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="例: 秋の体験レッスンLPキャンペーン"
-            className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
           />
         </div>
 
@@ -145,7 +145,7 @@ export function NewProjectForm() {
               onChange={(e) => setBudget(e.target.value)}
               min={0}
               step={1000}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
           <div>
@@ -156,7 +156,7 @@ export function NewProjectForm() {
               type="date"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
         </div>
@@ -170,14 +170,14 @@ export function NewProjectForm() {
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
             placeholder="対象・内容・納品物・条件などを記入してください"
-            className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
+            className="w-full resize-none rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
           />
         </div>
       </Card>
 
       {/* プッシュ通知トグル */}
       <Card className="flex items-center gap-3 p-4">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
           <Icon name="bell" className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
@@ -206,7 +206,7 @@ export function NewProjectForm() {
       <button
         onClick={publish}
         disabled={!canSubmit || phase === "sending"}
-        className={`flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-bold text-white shadow-sm transition-colors ${
+        className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3.5 text-sm font-bold text-white shadow-sm transition-colors ${
           canSubmit && phase !== "sending"
             ? "bg-indigo-500 hover:bg-indigo-600"
             : "cursor-not-allowed bg-stone-300"

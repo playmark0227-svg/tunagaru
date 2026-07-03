@@ -31,7 +31,7 @@ export function ApplyButton({
   // すでに採用済み
   if (appliedStatus === "accepted") {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-center">
+      <div className="rounded-none border border-emerald-200 bg-emerald-50 p-4 text-center">
         <p className="text-sm font-bold text-emerald-700">
           🎉 この案件に採用されました
         </p>
@@ -52,7 +52,7 @@ export function ApplyButton({
   // 応募済み (連絡待ち)
   if (appliedStatus === "applied") {
     return (
-      <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-center">
+      <div className="rounded-none border border-sky-200 bg-sky-50 p-4 text-center">
         <div className="flex items-center justify-center gap-2">
           <Badge tone="blue">応募中</Badge>
           <p className="text-sm font-bold text-sky-700">
@@ -76,7 +76,7 @@ export function ApplyButton({
   // 募集終了
   if (!isOpen) {
     return (
-      <div className="rounded-2xl border border-stone-200 bg-stone-100 p-4 text-center">
+      <div className="rounded-none border border-stone-200 bg-stone-100 p-4 text-center">
         <p className="text-sm font-bold text-stone-500">
           この案件の募集は終了しました
         </p>
@@ -90,7 +90,7 @@ export function ApplyButton({
   // 応募完了
   if (phase === "done") {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-center">
+      <div className="rounded-none border border-emerald-200 bg-emerald-50 p-5 text-center">
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white">
           <Icon name="check" className="h-6 w-6" />
         </span>
@@ -114,7 +114,7 @@ export function ApplyButton({
   // 確認 / 送信中
   if (phase === "confirm" || phase === "sending") {
     return (
-      <div className="rounded-2xl border border-stone-200 bg-white p-4 text-center shadow-sm">
+      <div className="rounded-none border border-stone-200 bg-white p-4 text-center shadow-sm">
         <p className="text-sm font-bold">この案件に応募しますか?</p>
         <p className="mt-1 text-xs text-stone-500">
           応募後のキャンセルはチャットからいつでも可能です。

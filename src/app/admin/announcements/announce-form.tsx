@@ -88,7 +88,7 @@ export function AnnounceForm() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="例: 新商品入荷のお知らせ"
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
@@ -101,13 +101,13 @@ export function AnnounceForm() {
               onChange={(e) => setBody(e.target.value)}
               rows={5}
               placeholder="お知らせの内容を入力してください"
-              className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full resize-none rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
           {/* プッシュトグル */}
-          <div className="flex items-center gap-3 rounded-xl bg-stone-50 p-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500">
+          <div className="flex items-center gap-3 rounded-sm bg-stone-50 p-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
               <Icon name="bell" className="h-5 w-5" />
             </span>
             <div className="min-w-0 flex-1">
@@ -136,7 +136,7 @@ export function AnnounceForm() {
           <button
             onClick={send}
             disabled={!canSubmit || sending}
-            className={`flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
+            className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
               canSubmit && !sending
                 ? "bg-indigo-500 hover:bg-indigo-600"
                 : "cursor-not-allowed bg-stone-300"
@@ -156,7 +156,7 @@ export function AnnounceForm() {
           </button>
 
           {successMessage && (
-            <p className="flex items-center gap-1.5 rounded-xl bg-emerald-50 px-3 py-2.5 text-xs font-semibold text-emerald-700">
+            <p className="flex items-center gap-1.5 rounded-sm bg-emerald-50 px-3 py-2.5 text-xs font-semibold text-emerald-700">
               <Icon name="check" className="h-4 w-4 shrink-0" />
               {successMessage}
             </p>

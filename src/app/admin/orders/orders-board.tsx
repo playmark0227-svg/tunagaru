@@ -120,7 +120,7 @@ export function OrdersBoard() {
               </p>
 
               {/* 明細 */}
-              <div className="mt-3 space-y-1 rounded-xl bg-stone-50 px-3 py-2.5 text-xs">
+              <div className="mt-3 space-y-1 rounded-sm bg-stone-50 px-3 py-2.5 text-xs">
                 {o.items.map((item) => (
                   <div
                     key={item.productId}
@@ -155,7 +155,7 @@ export function OrdersBoard() {
                 <button
                   onClick={() => advance(o.id)}
                   disabled={isPending}
-                  className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-colors ${
+                  className={`mt-3 flex w-full items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-xs font-bold text-white transition-colors ${
                     isPending
                       ? "cursor-wait bg-indigo-300"
                       : "bg-indigo-500 hover:bg-indigo-600"
@@ -177,7 +177,7 @@ export function OrdersBoard() {
                   )}
                 </button>
               ) : (
-                <p className="mt-3 flex items-center justify-center gap-1.5 rounded-xl bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-700">
+                <p className="mt-3 flex items-center justify-center gap-1.5 rounded-sm bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-700">
                   <Icon name="check" className="h-4 w-4" />
                   お取引完了 — お客様に完了通知を送信済みです
                 </p>

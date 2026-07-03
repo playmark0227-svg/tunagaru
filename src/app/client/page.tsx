@@ -81,9 +81,9 @@ export default function ClientHomePage() {
             <Link
               key={action.href}
               href={action.href}
-              className="flex flex-col items-center gap-1.5 rounded-2xl border border-stone-200/70 bg-white p-3 shadow-sm transition-colors active:bg-stone-50"
+              className="flex flex-col items-center gap-1.5 rounded-none border border-stone-200/70 bg-white p-3 shadow-sm transition-colors active:bg-stone-50"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+              <span className="flex h-10 w-10 items-center justify-center rounded-none bg-brand-soft text-brand">
                 <Icon name={action.icon} className="h-5 w-5" />
               </span>
               <span className="text-xs font-bold">{action.label}</span>
@@ -98,7 +98,7 @@ export default function ClientHomePage() {
           <div className="space-y-2">
             {announcements.slice(0, 2).map((a) => (
               <Card key={a.id} className="flex gap-3 p-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-lg">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-brand-soft text-lg">
                   📢
                 </span>
                 <div className="min-w-0 flex-1">
