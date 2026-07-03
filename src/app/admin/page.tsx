@@ -99,16 +99,16 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/admin/projects/new"
-            className="flex items-center justify-center gap-2 rounded-2xl bg-indigo-500 px-4 py-3.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
+            className="sticker comic-press flex items-center justify-center gap-2 rounded-2xl !bg-butter px-4 py-3.5 text-sm font-black text-ink"
           >
             <Icon name="plus" className="h-4.5 w-4.5" />
             案件を作成
           </Link>
           <Link
             href="/admin/announcements"
-            className="flex items-center justify-center gap-2 rounded-2xl border border-stone-200/70 bg-white px-4 py-3.5 text-sm font-bold text-stone-700 shadow-sm transition-colors hover:bg-stone-50"
+            className="sticker comic-press flex items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-black text-ink"
           >
-            <Icon name="megaphone" className="h-4.5 w-4.5 text-indigo-500" />
+            <Icon name="megaphone" className="h-4.5 w-4.5" />
             一斉通知を送る
           </Link>
         </div>

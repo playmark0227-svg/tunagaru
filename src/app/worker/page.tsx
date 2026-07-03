@@ -47,7 +47,7 @@ export default function WorkerFeedPage() {
   return (
     <>
       {/* FeedHeader */}
-      <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -74,8 +74,8 @@ export default function WorkerFeedPage() {
               onClick={() => setCategory(cat)}
               className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "bg-brand text-white"
-                  : "border-2 border-brand/15 bg-white text-stone-500"
+                  ? "border-2 border-ink bg-butter font-black text-ink"
+                  : "border-2 border-ink/30 bg-white text-ink/50"
               }`}
             >
               {cat}

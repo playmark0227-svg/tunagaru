@@ -32,7 +32,7 @@ export default async function AdminChatPage({
   return (
     <div className="mx-auto flex h-dvh max-w-md flex-col pb-14 md:max-w-2xl md:pb-0">
       {/* トークヘッダー */}
-      <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
         <div className="flex h-12 items-center gap-2 px-4 md:h-14">
           <Link
             href="/admin/messages"

@@ -13,7 +13,7 @@ export function AddToCartButton({ disabled }: { disabled?: boolean }) {
   const [added, setAdded] = useState(false);
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 border-t-2 border-dashed border-brand/15 bg-white/95 p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
+    <div className="fixed inset-x-0 bottom-0 z-20 border-t-[2.5px] border-ink bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
       <div className="mx-auto max-w-md">
         {added ? (
           <div className="space-y-2">

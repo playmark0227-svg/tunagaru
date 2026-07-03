@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="antialiased">
-        {/* 丸ゴシック (イラスト調)。React 19 が <head> へ自動ホイストする */}
+        {/* 手書きマーカー風フォント (コミック調)。React 19 が <head> へ自動ホイストする */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -47,7 +47,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@700;900&display=swap"
         />
         <RegisterServiceWorker />
         {children}

@@ -35,7 +35,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh">
       {/* PC: 左固定サイドバー */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r-2 border-dashed border-brand/15 bg-white/70 backdrop-blur md:flex">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r-[2.5px] border-ink bg-white backdrop-blur md:flex">
         <div className="px-5 pb-3 pt-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -52,7 +52,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <SidebarNav items={sidebarItems} rootHref="/admin" />
         </div>
 
-        <div className="border-t-2 border-dashed border-brand/15 p-3">
+        <div className="border-t-[2.5px] border-ink p-3">
           <Link
             href="/"
             className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-bold text-stone-500 transition-colors hover:bg-brand-soft/50 hover:text-brand"

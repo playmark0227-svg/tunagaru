@@ -99,11 +99,12 @@ export function ChatRoom({
                       {m.senderName}
                     </p>
                   )}
+                  {/* コミックのフキダシ風 */}
                   <div
-                    className={`whitespace-pre-wrap px-3.5 py-2 text-sm leading-relaxed ${
+                    className={`whitespace-pre-wrap border-2 border-ink px-3.5 py-2 text-sm leading-relaxed text-ink shadow-[2.5px_2.5px_0_#262b47] ${
                       m.isMe
-                        ? `${accentClass} rounded-[1.3rem_1.3rem_0.35rem_1.3rem] text-white shadow-[2px_2px_0_rgba(40,47,90,0.15)]`
-                        : "rounded-[1.3rem_1.3rem_1.3rem_0.35rem] border-2 border-brand/10 bg-white text-stone-800 shadow-[2px_2px_0_rgba(40,47,90,0.05)]"
+                        ? "rounded-[1.1rem_1.1rem_0.25rem_1.1rem] bg-butter"
+                        : "rounded-[1.1rem_1.1rem_1.1rem_0.25rem] bg-white"
                     }`}
                   >
                     {m.body}
@@ -142,7 +143,7 @@ export function ChatRoom({
         <div ref={bottomRef} />
       </div>
 
-      <div className="sticky bottom-0 border-t-2 border-dashed border-brand/15 bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)]">
+      <div className="sticky bottom-0 border-t-[2.5px] border-ink bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)]">
         <div className="mx-auto flex max-w-md items-end gap-2">
           <textarea
             value={draft}
@@ -155,7 +156,7 @@ export function ChatRoom({
             }}
             rows={1}
             placeholder="メッセージを入力"
-            className="max-h-24 flex-1 resize-none rounded-3xl border-2 border-brand/15 bg-cream/60 px-4 py-2.5 text-sm outline-none focus:border-brand/40 focus:bg-white"
+            className="max-h-24 flex-1 resize-none rounded-2xl border-2 border-ink bg-cream px-4 py-2.5 text-sm outline-none focus:bg-white"
           />
           <button
             onClick={send}

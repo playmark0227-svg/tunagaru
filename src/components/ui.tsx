@@ -2,17 +2,17 @@
  * 共通UIコンポーネント (サーバーコンポーネント対応・フックなし)
  * 3ロールすべての画面で使う。デザインの一貫性はここで担保する。
  *
- * デザイン言語「手しごとの絵本」:
- * - .sticker: 縁取り+ずらし影のステッカー風カード
- * - .blob / .blob-2: ぷにっとした有機的なアイコン形
- * - 破線 (ステッチ) をロゴ由来のモチーフとして使用
+ * デザイン言語「コミックストリップ」(スヌーピー風):
+ * - .sticker: 太いインク縁取り + ベタ落ち影のコミックのコマ
+ * - .comic-circle: インク縁取りの円 (アイコン・アバター)
+ * - .zigzag-under: ジグザグ下線 (コミックの定番柄)
  */
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Icon, type IconName } from "./icons";
 
 /* ---------------------------------------------------------------- */
-/* カード (ステッカー風)                                              */
+/* カード (コミックのコマ)                                             */
 /* ---------------------------------------------------------------- */
 export function Card({
   children,
@@ -22,7 +22,7 @@ export function Card({
   className?: string;
 }) {
   return (
-    <div className={`sticker overflow-hidden rounded-3xl ${className}`}>
+    <div className={`sticker overflow-hidden rounded-2xl ${className}`}>
       {children}
     </div>
   );
@@ -45,10 +45,10 @@ export function StatCard({
   tone?: "brand" | "blue" | "green" | "amber";
 }) {
   const tones = {
-    brand: "bg-lilac text-brand",
-    blue: "bg-skypale text-sky-700",
-    green: "bg-mint text-emerald-700",
-    amber: "bg-butter text-amber-700",
+    brand: "bg-lilac",
+    blue: "bg-skypale",
+    green: "bg-mint",
+    amber: "bg-butter",
   } as const;
   return (
     <Card className="p-4">
@@ -60,7 +60,7 @@ export function StatCard({
         </div>
         {icon && (
           <span
-            className={`blob flex h-10 w-10 shrink-0 rotate-3 items-center justify-center ${tones[tone]}`}
+            className={`comic-circle flex h-10 w-10 shrink-0 rotate-3 items-center justify-center text-ink ${tones[tone]}`}
           >
             <Icon name={icon} className="h-5 w-5" />
           </span>
@@ -71,7 +71,7 @@ export function StatCard({
 }
 
 /* ---------------------------------------------------------------- */
-/* セクション見出し (ステッチ下線)                                     */
+/* セクション見出し (ジグザグ下線)                                     */
 /* ---------------------------------------------------------------- */
 export function SectionTitle({
   title,
@@ -82,13 +82,13 @@ export function SectionTitle({
 }) {
   return (
     <div className="mb-2.5 flex items-end justify-between">
-      <h2 className="stitch-under text-sm font-black tracking-wide text-brand">
+      <h2 className="zigzag-under text-sm font-black tracking-wide text-ink">
         {title}
       </h2>
       {action && (
         <Link
           href={action.href}
-          className="flex items-center gap-0.5 pb-1 text-xs font-bold text-brand/70 hover:text-brand"
+          className="flex items-center gap-0.5 pb-1 text-xs font-bold text-ink/60 hover:text-ink"
         >
           {action.label}
           <Icon name="chevron-right" className="h-3.5 w-3.5" />
@@ -118,17 +118,17 @@ export function Badge({
   tone?: BadgeTone;
 }) {
   const tones: Record<BadgeTone, string> = {
-    gray: "bg-stone-100 text-stone-600 border-stone-300/70",
-    green: "bg-mint text-emerald-800 border-emerald-300/60",
-    amber: "bg-butter text-amber-800 border-amber-300/70",
-    red: "bg-peach text-rose-800 border-rose-300/60",
-    blue: "bg-skypale text-sky-800 border-sky-300/60",
-    violet: "bg-lilac text-violet-800 border-violet-300/60",
-    brand: "bg-brand-soft text-brand border-brand/25",
+    gray: "bg-white",
+    green: "bg-mint",
+    amber: "bg-butter",
+    red: "bg-peach",
+    blue: "bg-skypale",
+    violet: "bg-lilac",
+    brand: "bg-brand-soft",
   };
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-bold ${tones[tone]}`}
+      className={`inline-flex items-center rounded-full border-2 border-ink px-2 py-0.5 text-[11px] font-bold text-ink ${tones[tone]}`}
     >
       {children}
     </span>
@@ -136,7 +136,7 @@ export function Badge({
 }
 
 /* ---------------------------------------------------------------- */
-/* アバター (イニシャル表示・ブロブ形)                                  */
+/* アバター (イニシャル表示・コミック円)                                */
 /* ---------------------------------------------------------------- */
 export function Avatar({
   name,
@@ -154,7 +154,7 @@ export function Avatar({
   } as const;
   return (
     <span
-      className={`blob-2 flex shrink-0 items-center justify-center font-black text-white ring-2 ring-white/80 ${color} ${sizes[size]}`}
+      className={`comic-circle flex shrink-0 items-center justify-center font-black text-white ${color} ${sizes[size]}`}
     >
       {name.charAt(0)}
     </span>
@@ -174,18 +174,18 @@ export function PageHeader({
   action?: ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
       <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
         {backHref && (
           <Link
             href={backHref}
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-brand/60 hover:bg-brand-soft"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-ink/60 hover:bg-brand-soft"
             aria-label="戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
           </Link>
         )}
-        <h1 className="flex-1 truncate text-base font-black tracking-wide text-brand">
+        <h1 className="flex-1 truncate text-base font-black tracking-wide text-ink">
           {title}
         </h1>
         {action}
@@ -209,10 +209,10 @@ export function ListRow({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-brand-soft/40 active:bg-brand-soft ${className}`}
+      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-butter/30 active:bg-butter/50 ${className}`}
     >
       {children}
-      <Icon name="chevron-right" className="h-4 w-4 shrink-0 text-stone-300" />
+      <Icon name="chevron-right" className="h-4 w-4 shrink-0 text-ink/30" />
     </Link>
   );
 }
@@ -231,7 +231,7 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center gap-2 py-12 text-center">
-      <span className="blob flex h-14 w-14 -rotate-3 items-center justify-center bg-butter text-amber-600">
+      <span className="comic-circle flex h-14 w-14 -rotate-3 items-center justify-center bg-butter text-ink">
         <Icon name={icon} className="h-6 w-6" />
       </span>
       <p className="text-sm font-bold text-stone-600">{title}</p>
@@ -241,7 +241,7 @@ export function EmptyState({
 }
 
 /* ---------------------------------------------------------------- */
-/* 進捗ステップ (注文パイプライン等・ステッチ接続線)                      */
+/* 進捗ステップ (注文パイプライン等)                                     */
 /* ---------------------------------------------------------------- */
 export function ProgressSteps({
   steps,
@@ -262,15 +262,13 @@ export function ProgressSteps({
                   i === 0
                     ? "border-transparent"
                     : done
-                      ? "border-brand/60"
-                      : "border-stone-300/70"
+                      ? "border-ink"
+                      : "border-ink/25"
                 }`}
               />
               <span
-                className={`blob flex h-7 w-7 shrink-0 items-center justify-center text-[10px] font-black ${
-                  done
-                    ? "bg-brand text-white"
-                    : "border-2 border-dashed border-stone-300 bg-white text-stone-400"
+                className={`comic-circle flex h-7 w-7 shrink-0 items-center justify-center text-[10px] font-black ${
+                  done ? "bg-butter text-ink" : "bg-white text-ink/40"
                 }`}
               >
                 {done ? <Icon name="check" className="h-3.5 w-3.5" /> : i + 1}
@@ -280,14 +278,14 @@ export function ProgressSteps({
                   i === steps.length - 1
                     ? "border-transparent"
                     : i < currentIndex
-                      ? "border-brand/60"
-                      : "border-stone-300/70"
+                      ? "border-ink"
+                      : "border-ink/25"
                 }`}
               />
             </div>
             <span
               className={`text-center text-[10px] leading-tight ${
-                done ? "font-black text-brand" : "font-bold text-stone-400"
+                done ? "font-black text-ink" : "font-bold text-ink/40"
               }`}
             >
               {step}
@@ -314,13 +312,13 @@ export function ProductThumb({
   className?: string;
 }) {
   const sizes = {
-    sm: "h-14 w-14 text-2xl rounded-2xl",
-    md: "h-20 w-20 text-4xl rounded-3xl",
-    lg: "h-40 w-full text-6xl rounded-3xl",
+    sm: "h-14 w-14 text-2xl rounded-xl",
+    md: "h-20 w-20 text-4xl rounded-2xl",
+    lg: "h-40 w-full text-6xl rounded-2xl",
   } as const;
   return (
     <div
-      className={`flex shrink-0 items-center justify-center border-2 border-white/70 bg-gradient-to-br shadow-[3px_3px_0_rgba(40,47,90,0.07)] ${gradient} ${sizes[size]} ${className}`}
+      className={`flex shrink-0 items-center justify-center border-[2.5px] border-ink bg-gradient-to-br shadow-[3px_3px_0_#262b47] ${gradient} ${sizes[size]} ${className}`}
     >
       <span className="drop-shadow-sm">{emoji}</span>
     </div>

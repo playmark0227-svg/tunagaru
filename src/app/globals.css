@@ -1,31 +1,32 @@
 @import "tailwindcss";
 
 /*
- * デザインテーマ: 「手しごとの絵本」
- * - クラフト紙のようなドット柄クリーム背景
- * - 丸ゴシック (Zen Maru Gothic) でイラストチックに
- * - ステッカー風カード (縁取り + ずらし影)、ぷにっとしたブロブ形
- * - ロゴのステッチ (破線) をモチーフとして全体に展開
+ * デザインテーマ: 「コミックストリップ」(スヌーピー風の絵柄)
+ * - 手書きマーカー風フォント (Yusei Magic)
+ * - コミックのコマのような白いカード: 太いインク縁取り + ベタの落ち影
+ * - ジグザグ (コミックの定番柄) を見出し下線・区切りに
+ * - 白い紙 + インク紺 + イエロー/レッドの差し色
  */
 
 @theme {
-  /* ブランドカラー: ロゴ (public/logo.png) のネイビー */
+  /* インク (ロゴのネイビーを濃くした描線色) */
+  --color-ink: #262b47;
   --color-brand: #282f5a;
   --color-brand-dark: #1d2342;
   --color-brand-soft: #e9ecf7;
 
-  /* クラフト紙 & インク */
-  --color-cream: #fbf6ea;
-  --color-ink: #33302c;
+  /* コミックの紙 */
+  --color-cream: #fdfaf1;
 
-  /* パステルアクセント (イラストの彩り) */
+  /* コミックの差し色 */
+  --color-butter: #ffd94d; /* チャーリーイエロー */
+  --color-poppy: #ef6351; /* 犬小屋レッド */
   --color-peach: #ffd9c4;
-  --color-butter: #ffe9a8;
   --color-mint: #cdead9;
   --color-skypale: #cfe4f7;
   --color-lilac: #e3daf6;
 
-  --font-sans: "Zen Maru Gothic", "Hiragino Maru Gothic ProN",
+  --font-sans: "Yusei Magic", "Zen Maru Gothic", "Hiragino Maru Gothic ProN",
     "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo",
     system-ui, sans-serif;
 }
@@ -36,53 +37,72 @@ html {
 
 body {
   background-color: var(--color-cream);
-  /* クラフト紙のドット柄 */
-  background-image: radial-gradient(
-    rgba(40, 47, 90, 0.055) 1.2px,
-    transparent 1.3px
-  );
-  background-size: 22px 22px;
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 /* ---------------------------------------------------------------- */
-/* 手描き風ユーティリティ                                              */
+/* コミック風ユーティリティ                                            */
 /* ---------------------------------------------------------------- */
 
-/* ステッカー風カード: 縁取り + ずらし影 */
+/* コミックのコマ: インク縁取り + ベタの落ち影 */
 .sticker {
   background-color: #ffffff;
-  border: 2px solid rgba(40, 47, 90, 0.16);
-  box-shadow: 4px 4px 0 rgba(40, 47, 90, 0.08);
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 3.5px 3.5px 0 var(--color-ink);
 }
 
-/* ぷにっとした有機的なブロブ形 (2種を交互に使うと手描き感が出る) */
-.blob {
-  border-radius: 46% 54% 55% 45% / 55% 46% 54% 45%;
+/* 押し込みボタン (押すと影が消えて沈む) */
+.comic-press {
+  transition:
+    transform 0.06s ease,
+    box-shadow 0.06s ease;
 }
-.blob-2 {
-  border-radius: 55% 45% 48% 52% / 46% 56% 44% 54%;
+.comic-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--color-ink) !important;
 }
 
-/* ステッチ (破線) の下線 — 見出しに */
-.stitch-under {
-  background-image: linear-gradient(
-    to right,
-    rgba(40, 47, 90, 0.35) 55%,
-    transparent 45%
-  );
-  background-size: 12px 2px;
+/* コミック円 (アイコン・アバターの器) */
+.comic-circle {
+  border: 2.5px solid var(--color-ink);
+  border-radius: 9999px;
+}
+
+/* ジグザグ下線 (チャーリー・ブラウンのあの柄) */
+.zigzag-under {
+  padding-bottom: 8px;
+  background-image:
+    linear-gradient(135deg, currentColor 25%, transparent 25%),
+    linear-gradient(225deg, currentColor 25%, transparent 25%);
+  background-size: 10px 5px;
   background-repeat: repeat-x;
   background-position: left bottom;
-  padding-bottom: 6px;
+}
+
+/* 旧テーマ互換 (使用箇所が残っていても破綻しないように) */
+.blob {
+  border-radius: 9999px;
+  border: 2.5px solid var(--color-ink);
+}
+.blob-2 {
+  border-radius: 9999px;
+  border: 2px solid var(--color-ink);
+}
+.stitch-under {
+  padding-bottom: 8px;
+  background-image:
+    linear-gradient(135deg, currentColor 25%, transparent 25%),
+    linear-gradient(225deg, currentColor 25%, transparent 25%);
+  background-size: 10px 5px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
 }
 
 /* フォーカスリングも手描き風に */
 :focus-visible {
-  outline: 2px dashed var(--color-brand);
+  outline: 2.5px dashed var(--color-ink);
   outline-offset: 3px;
 }
 

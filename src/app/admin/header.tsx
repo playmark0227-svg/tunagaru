@@ -17,7 +17,7 @@ export function AdminHeader({
   action?: ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b-2 border-dashed border-brand/15 bg-cream/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur">
       <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4 md:h-14 md:max-w-4xl md:px-8">
         {backHref && (
           <Link
