@@ -1,0 +1,27 @@
+{
+  "name": "tsunagaru-craft-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "繋がるクラフト・プラットフォーム — 顧客管理・メッセージ・案件管理・物販(B2B2C)を集約したPWAプロトタイプ",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "firebase": "^11.6.0",
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "stripe": "^18.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.8.0"
+  }
+}

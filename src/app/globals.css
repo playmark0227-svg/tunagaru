@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* ブランドカラー: 温かみのあるテラコッタ (クラフト・手仕事の世界観) */
+  --color-brand: #d9634a;
+  --color-brand-dark: #b84a33;
+  --color-brand-soft: #fdf0ec;
+  --color-cream: #faf7f2;
+  --color-ink: #292524;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+    "Yu Gothic", "Meiryo", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* スクロールバーを控えめに (モバイルアプリ風) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 3px;
+}
+
+/* 横スクロールのカルーセル用 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
