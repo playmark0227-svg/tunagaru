@@ -103,7 +103,7 @@ export function ChatRoom({
                   <div
                     className={`whitespace-pre-wrap border-2 border-ink px-3.5 py-2 text-sm leading-relaxed text-ink shadow-[2.5px_2.5px_0_#262b47] ${
                       m.isMe
-                        ? "rounded-[1.1rem_1.1rem_0.25rem_1.1rem] bg-butter"
+                        ? "rounded-[1.1rem_1.1rem_0.25rem_1.1rem] bg-aqua-soft"
                         : "rounded-[1.1rem_1.1rem_1.1rem_0.25rem] bg-white"
                     }`}
                   >

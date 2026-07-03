@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             alt="つながるCraft"
             className="h-8 w-auto"
           />
-          <span className="mt-1.5 inline-block -rotate-1 rounded-lg bg-butter px-2 py-0.5 text-[11px] font-black text-brand">
+          <span className="mt-1.5 inline-block -rotate-1 rounded-lg border-2 border-ink bg-aqua px-2 py-0.5 text-[11px] font-black text-ink">
             本部管理
           </span>
         </div>

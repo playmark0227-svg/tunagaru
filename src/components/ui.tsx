@@ -209,7 +209,7 @@ export function ListRow({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-butter/30 active:bg-butter/50 ${className}`}
+      className={`flex items-center gap-3 px-4 py-3 transition-colors hover:bg-aqua-soft/70 active:bg-aqua-soft ${className}`}
     >
       {children}
       <Icon name="chevron-right" className="h-4 w-4 shrink-0 text-ink/30" />
@@ -231,7 +231,7 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center gap-2 py-12 text-center">
-      <span className="comic-circle flex h-14 w-14 -rotate-3 items-center justify-center bg-butter text-ink">
+      <span className="comic-circle flex h-14 w-14 -rotate-3 items-center justify-center bg-aqua-soft text-ink">
         <Icon name={icon} className="h-6 w-6" />
       </span>
       <p className="text-sm font-bold text-stone-600">{title}</p>
@@ -268,7 +268,7 @@ export function ProgressSteps({
               />
               <span
                 className={`comic-circle flex h-7 w-7 shrink-0 items-center justify-center text-[10px] font-black ${
-                  done ? "bg-butter text-ink" : "bg-white text-ink/40"
+                  done ? "bg-aqua text-ink" : "bg-white text-ink/40"
                 }`}
               >
                 {done ? <Icon name="check" className="h-3.5 w-3.5" /> : i + 1}

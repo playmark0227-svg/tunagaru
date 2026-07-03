@@ -82,12 +82,12 @@ export default function EntrancePage() {
           alt="つながるCraft"
           className="h-14 w-auto"
         />
-        <ZigzagDivider className="w-40" />
+        <ZigzagDivider className="w-40 text-aqua" />
         <p className="text-center text-sm font-bold leading-relaxed text-ink/70">
           顧客管理・メッセージ・案件・物販をひとつに。
           <br />
           あなたの
-          <span className="mx-1 inline-block -rotate-1 rounded-lg border-2 border-ink bg-butter px-1.5 font-black text-ink">
+          <span className="mx-1 inline-block -rotate-1 rounded-lg border-2 border-ink bg-aqua px-1.5 font-black text-ink">
             デジタル系 総合相談窓口
           </span>
         </p>
@@ -132,9 +132,9 @@ export default function EntrancePage() {
 
       <footer className="mt-auto pt-10">
         <div className="mb-4 flex items-center justify-center gap-3">
-          <DoodleSparkles className="h-6 w-6 text-butter" />
+          <DoodleSparkles className="h-6 w-6 text-aqua" />
           <DoodleBone className="h-4 w-7" />
-          <DoodleSparkles className="h-6 w-6 -scale-x-100 text-butter" />
+          <DoodleSparkles className="h-6 w-6 -scale-x-100 text-aqua" />
         </div>
         <p className="text-center text-[11px] font-bold leading-relaxed text-ink/45">
           プロトタイプ版 — 画面と操作感を検証するためのモックアップです。

@@ -74,7 +74,7 @@ export default function WorkerFeedPage() {
               onClick={() => setCategory(cat)}
               className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "border-2 border-ink bg-butter font-black text-ink"
+                  ? "border-2 border-ink bg-aqua glow-aqua font-black text-ink"
                   : "border-2 border-ink/30 bg-white text-ink/50"
               }`}
             >

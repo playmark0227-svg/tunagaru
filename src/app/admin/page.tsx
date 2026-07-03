@@ -99,7 +99,7 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/admin/projects/new"
-            className="sticker comic-press flex items-center justify-center gap-2 rounded-2xl !bg-butter px-4 py-3.5 text-sm font-black text-ink"
+            className="sticker comic-press sticker-glow flex items-center justify-center gap-2 rounded-2xl !bg-aqua px-4 py-3.5 text-sm font-black text-ink"
           >
             <Icon name="plus" className="h-4.5 w-4.5" />
             案件を作成
@@ -119,11 +119,11 @@ export default function AdminDashboardPage() {
             <h2 className="flex items-center gap-1.5 text-sm font-bold text-stone-700">
               <span>🤖</span> AIアシスタント — 朝のダイジェスト
             </h2>
-            <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-bold text-violet-700">
+            <span className="rounded-full border-2 border-ink bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
               Phase 3 プレビュー
             </span>
           </div>
-          <Card className="divide-y divide-stone-100 border-violet-200">
+          <Card className="sticker-glow divide-y divide-stone-100">
             {aiMorningDigest.map((item) => (
               <Link
                 key={item.id}

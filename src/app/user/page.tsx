@@ -21,7 +21,7 @@ export default function UserHomePage() {
     <main className="space-y-5 px-4 pb-24 pt-4">
       {/* 教室(先生)カード */}
       <Card className="overflow-hidden">
-        <div className="bg-gradient-to-br from-brand to-brand-dark p-4 text-white">
+        <div className="bg-gradient-to-br from-brand via-brand-dark to-sky-500 p-4 text-white">
           <div className="flex items-center gap-3">
             <Avatar
               name={currentClient.name}

@@ -51,7 +51,7 @@ export function BottomNav({
             >
               <span
                 className={`flex h-7 w-11 items-center justify-center rounded-full transition-all ${
-                  active ? "border-2 border-ink bg-butter" : ""
+                  active ? "border-2 border-ink bg-aqua glow-aqua" : ""
                 }`}
               >
                 <Icon name={item.icon} className="h-5 w-5" />
@@ -84,7 +84,7 @@ export function SidebarNav({
             href={item.href}
             className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all ${
               active
-                ? "sticker -rotate-1 !bg-butter font-black text-ink"
+                ? "sticker sticker-glow -rotate-1 !bg-aqua font-black text-ink"
                 : "font-bold text-ink/50 hover:bg-butter/30 hover:text-ink"
             }`}
           >

@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 /*
- * デザインテーマ: 「コミックストリップ」(スヌーピー風の絵柄)
+ * デザインテーマ: 「コミックストリップ × 未来」(スヌーピー風の絵柄 + 水色の近未来アクセント)
  * - 手書きマーカー風フォント (Yusei Magic)
  * - コミックのコマのような白いカード: 太いインク縁取り + ベタの落ち影
- * - ジグザグ (コミックの定番柄) を見出し下線・区切りに
- * - 白い紙 + インク紺 + イエロー/レッドの差し色
+ * - ジグザグ (コミックの定番柄) を水色の見出し下線・区切りに
+ * - 背景は設計図 (ブループリント) 風の薄い水色グリッド
+ * - アクセントは水色 (アクア) + ネオン風の淡い光彩
  */
 
 @theme {
@@ -15,11 +16,15 @@
   --color-brand-dark: #1d2342;
   --color-brand-soft: #e9ecf7;
 
-  /* コミックの紙 */
-  --color-cream: #fdfaf1;
+  /* 紙 (わずかに青みのあるホワイト) */
+  --color-cream: #f9fbfc;
+
+  /* アクセント: 水色 (アクア) */
+  --color-aqua: #4fd1f0;
+  --color-aqua-soft: #e0f6fd;
 
   /* コミックの差し色 */
-  --color-butter: #ffd94d; /* チャーリーイエロー */
+  --color-butter: #ffd94d; /* イエロー (サブ) */
   --color-poppy: #ef6351; /* 犬小屋レッド */
   --color-peach: #ffd9c4;
   --color-mint: #cdead9;
@@ -37,6 +42,11 @@ html {
 
 body {
   background-color: var(--color-cream);
+  /* 設計図 (ブループリント) 風の薄い水色グリッド */
+  background-image:
+    linear-gradient(rgba(79, 209, 240, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 209, 240, 0.09) 1px, transparent 1px);
+  background-size: 26px 26px;
   color: var(--color-ink);
   font-family: var(--font-sans);
   letter-spacing: 0.02em;
@@ -70,15 +80,28 @@ body {
   border-radius: 9999px;
 }
 
-/* ジグザグ下線 (チャーリー・ブラウンのあの柄) */
+/* ジグザグ下線 (コミックの定番柄・水色) */
 .zigzag-under {
   padding-bottom: 8px;
   background-image:
-    linear-gradient(135deg, currentColor 25%, transparent 25%),
-    linear-gradient(225deg, currentColor 25%, transparent 25%);
+    linear-gradient(135deg, var(--color-aqua) 25%, transparent 25%),
+    linear-gradient(225deg, var(--color-aqua) 25%, transparent 25%);
   background-size: 10px 5px;
   background-repeat: repeat-x;
   background-position: left bottom;
+}
+
+/* コミックのコマ + 水色ネオンの光彩 (未来感のあるハイライト用) */
+.sticker-glow {
+  border-color: #2fb9de;
+  box-shadow:
+    3.5px 3.5px 0 var(--color-ink),
+    0 0 18px rgba(79, 209, 240, 0.45);
+}
+
+/* 水色ネオンの光彩のみ (小さなアクティブ要素用) */
+.glow-aqua {
+  box-shadow: 0 0 12px rgba(79, 209, 240, 0.55);
 }
 
 /* 旧テーマ互換 (使用箇所が残っていても破綻しないように) */
