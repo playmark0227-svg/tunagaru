@@ -69,17 +69,17 @@ export function OrdersBoard() {
       <div className="grid grid-cols-4 gap-2">
         {counts.map(({ status, count }) => (
           <Card key={status} className="px-2 py-2.5 text-center">
-            <p className="text-lg font-bold leading-none text-indigo-600">
+            <p className="text-lg font-bold leading-none text-aqua">
               {count}
             </p>
-            <p className="mt-1 text-[10px] font-medium leading-tight text-stone-500">
+            <p className="mt-1 text-[10px] font-medium leading-tight text-ink/55">
               {ORDER_STATUS_LABELS[status]}
             </p>
           </Card>
         ))}
       </div>
 
-      <p className="text-xs leading-relaxed text-stone-400">
+      <p className="text-xs leading-relaxed text-ink/40">
         エンドユーザーの注文はクライアント経由で本部へ自動発注されます。
         入金確認後に「発注処理」→ 出荷後に「発送済み」へ更新してください。
       </p>
@@ -94,7 +94,7 @@ export function OrdersBoard() {
             <Card key={o.id} className="p-4">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold">#{o.id}</span>
-                <span className="text-xs text-stone-400">
+                <span className="text-xs text-ink/40">
                   {md(o.orderedAt)} 受付
                 </span>
                 <span className="ml-auto">
@@ -104,39 +104,39 @@ export function OrdersBoard() {
                 </span>
               </div>
 
-              <p className="mt-1.5 text-xs text-stone-500">
+              <p className="mt-1.5 text-xs text-ink/55">
                 {o.endUserName ? (
                   <>
-                    <span className="font-semibold text-stone-700">
+                    <span className="font-semibold text-ink/80">
                       {o.endUserName} 様
                     </span>
                     <span> ({o.clientName} 経由)</span>
                   </>
                 ) : (
-                  <span className="font-semibold text-stone-700">
+                  <span className="font-semibold text-ink/80">
                     {o.clientName} — 教室仕入れ (卸)
                   </span>
                 )}
               </p>
 
               {/* 明細 */}
-              <div className="mt-3 space-y-1 rounded-sm bg-stone-50 px-3 py-2.5 text-xs">
+              <div className="mt-3 space-y-1 rounded-sm bg-cream px-3 py-2.5 text-xs">
                 {o.items.map((item) => (
                   <div
                     key={item.productId}
                     className="flex items-center justify-between gap-2"
                   >
-                    <span className="min-w-0 truncate text-stone-600">
+                    <span className="min-w-0 truncate text-ink/70">
                       {item.productName} × {item.quantity}
                     </span>
-                    <span className="shrink-0 text-stone-500">
+                    <span className="shrink-0 text-ink/55">
                       {formatYen(item.unitPrice * item.quantity)}
                     </span>
                   </div>
                 ))}
-                <div className="flex items-center justify-between border-t border-stone-200/70 pt-1.5">
-                  <span className="font-bold text-stone-700">合計</span>
-                  <span className="text-sm font-bold text-stone-800">
+                <div className="flex items-center justify-between border-t border-ink/10 pt-1.5">
+                  <span className="font-bold text-ink/80">合計</span>
+                  <span className="text-sm font-bold text-ink">
                     {formatYen(o.total)}
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export function OrdersBoard() {
                   className={`mt-3 flex w-full items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-xs font-bold text-white transition-colors ${
                     isPending
                       ? "cursor-wait bg-indigo-300"
-                      : "bg-indigo-500 hover:bg-indigo-600"
+                      : "bg-aqua hover:bg-indigo-600"
                   }`}
                 >
                   {isPending ? (

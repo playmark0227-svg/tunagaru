@@ -97,22 +97,22 @@ export default async function AdminProjectDetailPage({
           <h2 className="mt-2 text-lg font-bold leading-snug">
             {project.title}
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
+          <p className="mt-2 text-sm leading-relaxed text-ink/70">
             {project.description}
           </p>
           <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-            <div className="rounded-xl bg-stone-50 px-2 py-2.5">
-              <p className="text-[10px] font-medium text-stone-400">報酬・費用</p>
+            <div className="rounded-sm bg-cream px-2 py-2.5">
+              <p className="text-[10px] font-medium text-ink/40">報酬・費用</p>
               <p className="mt-0.5 text-sm font-bold">
                 {formatYen(project.budget)}
               </p>
             </div>
-            <div className="rounded-xl bg-stone-50 px-2 py-2.5">
-              <p className="text-[10px] font-medium text-stone-400">応募締切</p>
+            <div className="rounded-sm bg-cream px-2 py-2.5">
+              <p className="text-[10px] font-medium text-ink/40">応募締切</p>
               <p className="mt-0.5 text-sm font-bold">{ymd(project.deadline)}</p>
             </div>
-            <div className="rounded-xl bg-stone-50 px-2 py-2.5">
-              <p className="text-[10px] font-medium text-stone-400">公開日</p>
+            <div className="rounded-sm bg-cream px-2 py-2.5">
+              <p className="text-[10px] font-medium text-ink/40">公開日</p>
               <p className="mt-0.5 text-sm font-bold">{ymd(project.createdAt)}</p>
             </div>
           </div>
@@ -147,10 +147,10 @@ export default async function AdminProjectDetailPage({
                 />
               </Card>
             ) : (
-              <Card className="divide-y divide-stone-100">
+              <Card className="divide-y divide-ink/8">
                 {relatedTasks.map((t) => (
                   <div key={t.id} className="flex items-start gap-3 px-4 py-3">
-                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-500">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-aqua-soft text-aqua">
                       <Icon
                         name={
                           t.kind === "Zoom予約"
@@ -168,11 +168,11 @@ export default async function AdminProjectDetailPage({
                       <p className="text-sm font-semibold leading-snug">
                         {t.title}
                       </p>
-                      <p className="mt-0.5 text-xs text-stone-400">
+                      <p className="mt-0.5 text-xs text-ink/40">
                         {t.kind}・担当: {t.assignee}・期限 {ymd(t.dueDate)}
                       </p>
                       {t.note && (
-                        <p className="mt-1 rounded-lg bg-stone-50 px-2.5 py-1.5 text-xs leading-relaxed text-stone-500">
+                        <p className="mt-1 rounded-sm bg-cream px-2.5 py-1.5 text-xs leading-relaxed text-ink/55">
                           {t.note}
                         </p>
                       )}

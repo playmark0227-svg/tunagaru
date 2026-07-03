@@ -29,7 +29,7 @@ const menuItems: {
   {
     href: "/admin/announcements",
     icon: "megaphone",
-    iconClass: "bg-indigo-50 text-indigo-500",
+    iconClass: "bg-aqua-soft text-aqua",
     label: "一斉通知",
     description: "プッシュ通知の配信と履歴",
   },
@@ -50,27 +50,27 @@ export default function AdminMenuPage() {
       <main className="mx-auto max-w-md space-y-6 px-4 pb-24 pt-4 md:max-w-4xl md:px-8 md:pb-12 md:pt-6">
         {/* アカウント */}
         <Card className="flex items-center gap-3 p-4">
-          <Avatar name="繋がるクラフト 本部" color="bg-indigo-500" size="lg" />
+          <Avatar name="繋がるクラフト 本部" color="bg-aqua" size="lg" />
           <div className="min-w-0 flex-1">
             <p className="font-bold">繋がるクラフト 本部</p>
-            <p className="text-xs text-stone-400">マスター管理者アカウント</p>
+            <p className="text-xs text-ink/40">マスター管理者アカウント</p>
           </div>
         </Card>
 
         {/* 管理メニュー */}
         <section>
           <SectionTitle title="管理メニュー" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {menuItems.map((item) => (
               <ListRow key={item.href} href={item.href}>
                 <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.iconClass}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm ${item.iconClass}`}
                 >
                   <Icon name={item.icon} className="h-5 w-5" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm font-bold">{item.label}</span>
-                  <span className="block truncate text-xs text-stone-400">
+                  <span className="block truncate text-xs text-ink/40">
                     {item.description}
                   </span>
                 </span>
@@ -81,16 +81,16 @@ export default function AdminMenuPage() {
 
         {/* エントランスへ戻る */}
         <section>
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             <ListRow href="/">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-500">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-ink/5 text-ink/55">
                 <Icon name="logout" className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-bold">
                   エントランスへ戻る
                 </span>
-                <span className="block truncate text-xs text-stone-400">
+                <span className="block truncate text-xs text-ink/40">
                   ロール選択画面に戻ります
                 </span>
               </span>
@@ -98,7 +98,7 @@ export default function AdminMenuPage() {
           </Card>
         </section>
 
-        <p className="text-center text-[11px] leading-relaxed text-stone-400">
+        <p className="text-center text-[11px] leading-relaxed text-ink/40">
           つながるクラフト 本部管理 — プロトタイプ版
         </p>
       </main>

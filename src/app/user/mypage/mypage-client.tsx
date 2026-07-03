@@ -10,12 +10,12 @@ export function PushToggle() {
   return (
     <Card className="p-4">
       <div className="flex items-center gap-3">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-brand-soft text-brand">
           <Icon name="bell" className="h-5 w-5" />
         </span>
         <div className="flex-1">
           <p className="text-sm font-bold">プッシュ通知</p>
-          <p className="text-[11px] text-stone-500">
+          <p className="text-[11px] text-ink/55">
             先生からのお知らせや発送通知を受け取る
           </p>
         </div>
@@ -24,19 +24,19 @@ export function PushToggle() {
           role="switch"
           aria-checked={on}
           aria-label="プッシュ通知の切り替え"
-          className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-            on ? "bg-brand" : "bg-stone-300"
+          className={`relative h-7 w-12 shrink-0 rounded-sm transition-colors ${
+            on ? "bg-brand" : "bg-ink/20"
           }`}
         >
           <span
-            className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform ${
+            className={`absolute top-0.5 h-6 w-6 rounded-[2px] bg-white shadow transition-transform ${
               on ? "translate-x-5" : "translate-x-0.5"
             }`}
           />
         </button>
       </div>
       {on && (
-        <p className="mt-3 rounded-xl bg-emerald-50 px-3 py-2 text-[11px] text-emerald-700">
+        <p className="mt-3 rounded-sm bg-emerald-50 px-3 py-2 text-[11px] text-emerald-700">
           ✓ この端末に通知が届きます(デモ)。本実装では Firebase Cloud Messaging
           で配信されます。
         </p>
@@ -64,7 +64,7 @@ const faqs = [
 export function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <Card className="divide-y divide-stone-100">
+    <Card className="divide-y divide-ink/8">
       {faqs.map((faq, i) => (
         <div key={i}>
           <button
@@ -74,13 +74,13 @@ export function FaqAccordion() {
             <span className="flex-1 text-sm font-semibold">{faq.q}</span>
             <Icon
               name="chevron-right"
-              className={`h-4 w-4 shrink-0 text-stone-400 transition-transform ${
+              className={`h-4 w-4 shrink-0 text-ink/40 transition-transform ${
                 open === i ? "rotate-90" : ""
               }`}
             />
           </button>
           {open === i && (
-            <p className="px-4 pb-4 text-xs leading-relaxed text-stone-500">
+            <p className="px-4 pb-4 text-xs leading-relaxed text-ink/55">
               {faq.a}
             </p>
           )}

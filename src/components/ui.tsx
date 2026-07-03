@@ -144,7 +144,7 @@ export function Badge({
 /* ---------------------------------------------------------------- */
 export function Avatar({
   name,
-  color = "bg-stone-400",
+  color = "bg-ink/30",
   size = "md",
 }: {
   name: string;

@@ -28,18 +28,18 @@ export default function UserOrdersPage() {
               <Card key={order.id} className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[11px] text-stone-400">
+                    <p className="text-[11px] text-ink/40">
                       注文番号 {order.id}
                     </p>
-                    <p className="text-xs text-stone-500">{order.orderedAt}</p>
+                    <p className="text-xs text-ink/55">{order.orderedAt}</p>
                   </div>
-                  <span className="rounded-full bg-brand-soft px-2.5 py-1 text-[11px] font-bold text-brand-dark">
+                  <span className="rounded-sm bg-brand-soft px-2.5 py-1 text-[11px] font-bold text-brand-dark">
                     {ORDER_STATUS_LABELS[order.status]}
                   </span>
                 </div>
 
                 {/* 商品 */}
-                <ul className="mt-3 space-y-1.5 border-y border-stone-100 py-3">
+                <ul className="mt-3 space-y-1.5 border-y border-ink/8 py-3">
                   {order.items.map((item) => (
                     <li
                       key={item.productId}
@@ -47,11 +47,11 @@ export default function UserOrdersPage() {
                     >
                       <span className="min-w-0 truncate">
                         {item.productName}
-                        <span className="ml-1 text-xs text-stone-400">
+                        <span className="ml-1 text-xs text-ink/40">
                           ×{item.quantity}
                         </span>
                       </span>
-                      <span className="shrink-0 text-stone-600">
+                      <span className="shrink-0 text-ink/70">
                         {formatYen(item.unitPrice * item.quantity)}
                       </span>
                     </li>
@@ -59,7 +59,7 @@ export default function UserOrdersPage() {
                 </ul>
 
                 <div className="flex items-center justify-between py-3">
-                  <span className="text-xs font-semibold text-stone-500">
+                  <span className="text-xs font-semibold text-ink/55">
                     合計 (税込)
                   </span>
                   <span className="text-base font-bold text-brand">

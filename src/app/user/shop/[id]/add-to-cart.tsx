@@ -24,13 +24,13 @@ export function AddToCartButton({ disabled }: { disabled?: boolean }) {
             <div className="flex gap-2">
               <button
                 onClick={() => setAdded(false)}
-                className="flex-1 rounded-full border border-stone-300 py-3 text-sm font-bold text-stone-600"
+                className="flex-1 rounded-sm border border-ink/20 py-3 text-sm font-bold text-ink/70"
               >
                 買い物を続ける
               </button>
               <Link
                 href="/user/cart"
-                className="flex-1 rounded-full bg-brand py-3 text-center text-sm font-bold text-white active:bg-brand-dark"
+                className="flex-1 rounded-sm bg-brand py-3 text-center text-sm font-bold text-white active:bg-brand-dark"
               >
                 カートを見る
               </Link>
@@ -40,7 +40,7 @@ export function AddToCartButton({ disabled }: { disabled?: boolean }) {
           <button
             onClick={() => setAdded(true)}
             disabled={disabled}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-brand py-3.5 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-40"
+            className="flex w-full items-center justify-center gap-2 rounded-sm bg-brand py-3.5 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-40"
           >
             <Icon name="cart" className="h-5 w-5" />
             {disabled ? "在庫切れ" : "カートに入れる"}

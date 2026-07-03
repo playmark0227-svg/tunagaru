@@ -66,7 +66,7 @@ export function ChatRoom({
       {/* タスク化トースト */}
       {toast && (
         <div className="pointer-events-none absolute inset-x-0 top-3 z-30 flex justify-center">
-          <span className="rounded-full bg-stone-800/90 px-4 py-2 text-xs font-semibold text-white shadow-lg">
+          <span className="rounded-sm bg-ink/90 px-4 py-2 text-xs font-semibold text-white shadow-lg">
             {toast}
           </span>
         </div>
@@ -80,7 +80,7 @@ export function ChatRoom({
             <div key={m.id}>
               {m.dateLabel && (
                 <div className="my-3 flex justify-center">
-                  <span className="rounded-full bg-stone-200/70 px-3 py-0.5 text-[10px] font-medium text-stone-500">
+                  <span className="rounded-sm bg-ink/8 px-3 py-0.5 text-[10px] font-medium text-ink/55">
                     {m.dateLabel}
                   </span>
                 </div>
@@ -89,13 +89,13 @@ export function ChatRoom({
                 className={`flex items-end gap-2 ${m.isMe ? "justify-end" : "justify-start"}`}
               >
                 {m.isMe && (
-                  <span className="mb-1 text-[10px] text-stone-400">
+                  <span className="mb-1 text-[10px] text-ink/40">
                     {m.sentAt}
                   </span>
                 )}
                 <div className={`max-w-[75%] ${m.isMe ? "order-2" : ""}`}>
                   {showName && (
-                    <p className="mb-0.5 ml-1 text-[10px] text-stone-400">
+                    <p className="mb-0.5 ml-1 text-[10px] text-ink/40">
                       {m.senderName}
                     </p>
                   )}
@@ -123,15 +123,15 @@ export function ChatRoom({
                       disabled={taskified[m.id]}
                       aria-label="このメッセージをタスク化"
                       title="タスク化"
-                      className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors ${
+                      className={`flex h-6 w-6 items-center justify-center rounded-sm transition-colors ${
                         taskified[m.id]
                           ? "text-emerald-500"
-                          : "text-stone-300 hover:bg-brand-soft hover:text-brand"
+                          : "text-ink/25 hover:bg-brand-soft hover:text-brand"
                       }`}
                     >
                       <Icon name="clipboard" className="h-3.5 w-3.5" />
                     </button>
-                    <span className="text-[10px] text-stone-400">
+                    <span className="text-[10px] text-ink/40">
                       {m.sentAt}
                     </span>
                   </div>

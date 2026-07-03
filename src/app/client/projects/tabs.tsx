@@ -50,7 +50,7 @@ function ProjectCard({
     <Card>
       <Link
         href={`/client/projects/${project.id}`}
-        className="block p-4 transition-colors active:bg-stone-50"
+        className="block p-4 transition-colors active:bg-cream"
       >
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge tone={CATEGORY_TONES[project.category]}>
@@ -59,17 +59,17 @@ function ProjectCard({
           {footer}
         </div>
         <p className="mt-2 text-sm font-bold leading-snug">{project.title}</p>
-        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
           {project.description}
         </p>
         <div className="mt-3 flex items-end justify-between">
           <div>
-            <p className="text-[10px] text-stone-400">報酬(税込)</p>
+            <p className="text-[10px] text-ink/40">報酬(税込)</p>
             <p className="text-base font-bold text-brand">
               {formatYen(project.budget)}
             </p>
           </div>
-          <p className="text-xs text-stone-500">
+          <p className="text-xs text-ink/55">
             締切 {shortDate(project.deadline)}
             {daysUntil(project.deadline) >= 0 && (
               <span className="ml-1 font-semibold text-brand-dark">
@@ -98,7 +98,7 @@ export function ProjectTabs() {
   return (
     <div>
       {/* タブ切替 */}
-      <div className="flex rounded-full bg-stone-200/60 p-1">
+      <div className="flex rounded-sm bg-ink/8 p-1">
         {(
           [
             { key: "open", label: `募集中 (${openProjects.length})` },
@@ -108,10 +108,10 @@ export function ProjectTabs() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`flex-1 rounded-full py-2 text-sm font-semibold transition-colors ${
+            className={`flex-1 rounded-sm py-2 text-sm font-semibold transition-colors ${
               tab === t.key
                 ? "bg-white text-brand-dark shadow-sm"
-                : "text-stone-500"
+                : "text-ink/55"
             }`}
           >
             {t.label}

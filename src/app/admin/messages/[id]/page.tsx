@@ -36,7 +36,7 @@ export default async function AdminChatPage({
         <div className="flex h-12 items-center gap-2 px-4 md:h-14">
           <Link
             href="/admin/messages"
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
             aria-label="チャット一覧へ戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
@@ -46,14 +46,14 @@ export default async function AdminChatPage({
             <h1 className="truncate text-sm font-bold leading-tight">
               {thread.title}
             </h1>
-            <p className="text-[10px] text-stone-400">
+            <p className="text-[10px] text-ink/40">
               {thread.kind === "group"
                 ? `グループ・${thread.memberCount}名`
                 : "クライアント"}
             </p>
           </div>
           <span
-            className="flex h-8 w-8 items-center justify-center rounded-full text-stone-400"
+            className="flex h-8 w-8 items-center justify-center rounded-sm text-ink/40"
             title="Zoom打ち合わせ (本実装で対応)"
           >
             <Icon name="video" className="h-5 w-5" />
@@ -67,7 +67,7 @@ export default async function AdminChatPage({
           threadId={id}
           initialMessages={messages}
           myName={MY_NAME}
-          accentClass="bg-indigo-500"
+          accentClass="bg-aqua"
         />
       </div>
     </div>

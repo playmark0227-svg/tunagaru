@@ -45,14 +45,14 @@ export function ClientList() {
       <div className="relative">
         <Icon
           name="search"
-          className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-stone-400"
+          className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-ink/40"
         />
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="教室名・代表者名・業種で検索"
-          className="w-full rounded-none border border-stone-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none focus:border-indigo-400"
+          className="w-full rounded-none border border-ink/12 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none focus:border-indigo-400"
         />
       </div>
 
@@ -62,10 +62,10 @@ export function ClientList() {
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
-            className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
+            className={`shrink-0 rounded-sm px-4 py-1.5 text-xs font-semibold transition-colors ${
               filter === f.value
-                ? "bg-indigo-500 text-white"
-                : "border border-stone-200 bg-white text-stone-500 hover:bg-stone-50"
+                ? "bg-aqua text-white"
+                : "border border-ink/12 bg-white text-ink/55 hover:bg-cream"
             }`}
           >
             {f.label}
@@ -73,7 +73,7 @@ export function ClientList() {
         ))}
       </div>
 
-      <p className="text-xs text-stone-400">
+      <p className="text-xs text-ink/40">
         {clients.length}社中 {filtered.length}社を表示
       </p>
 
@@ -93,13 +93,13 @@ export function ClientList() {
                   <Avatar name={c.name} color={c.avatarColor} size="md" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-bold">{c.name}</p>
-                    <p className="truncate text-xs text-stone-500">
+                    <p className="truncate text-xs text-ink/55">
                       {c.ownerName}・{c.category}
                     </p>
                   </div>
                   <Icon
                     name="chevron-right"
-                    className="h-4 w-4 shrink-0 text-stone-300"
+                    className="h-4 w-4 shrink-0 text-ink/25"
                   />
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -107,7 +107,7 @@ export function ClientList() {
                     {CLIENT_STATUS_LABELS[c.status]}
                   </Badge>
                   <Badge tone="violet">{c.plan}プラン</Badge>
-                  <span className="ml-auto flex items-center gap-1 text-xs text-stone-500">
+                  <span className="ml-auto flex items-center gap-1 text-xs text-ink/55">
                     <Icon name="users" className="h-3.5 w-3.5" />
                     生徒 {c.studentCount}名
                   </span>

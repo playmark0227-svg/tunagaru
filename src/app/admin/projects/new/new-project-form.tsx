@@ -56,18 +56,18 @@ export function NewProjectForm() {
   if (phase === "done") {
     return (
       <Card className="flex flex-col items-center gap-4 p-8 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
+        <span className="flex h-16 w-16 items-center justify-center rounded-sm bg-emerald-50 text-emerald-500">
           <Icon name="check" className="h-8 w-8" />
         </span>
         <div>
           <p className="text-lg font-bold">案件を発行しました 🎉</p>
-          <p className="mt-1 text-sm text-stone-500">
+          <p className="mt-1 text-sm text-ink/55">
             「{title}」が募集中の案件として公開されました。
           </p>
         </div>
         {sendPush && (
-          <div className="flex w-full items-center gap-3 rounded-none bg-indigo-50 p-3 text-left">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-500 text-white">
+          <div className="flex w-full items-center gap-3 rounded-none bg-aqua-soft p-3 text-left">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-aqua text-white">
               <Icon name="bell" className="h-5 w-5" />
             </span>
             <p className="text-xs leading-relaxed text-indigo-700">
@@ -80,13 +80,13 @@ export function NewProjectForm() {
         <div className="flex w-full flex-col gap-2 pt-2">
           <Link
             href="/admin/projects"
-            className="rounded-none bg-indigo-500 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-indigo-600"
+            className="rounded-none bg-aqua px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-indigo-600"
           >
             案件管理へ戻る
           </Link>
           <button
             onClick={reset}
-            className="rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-50"
+            className="rounded-none border border-ink/12 bg-white px-4 py-3 text-sm font-bold text-ink/70 transition-colors hover:bg-cream"
           >
             続けて作成する
           </button>
@@ -100,7 +100,7 @@ export function NewProjectForm() {
     <div className="space-y-4">
       <Card className="space-y-4 p-5">
         <div>
-          <label className="mb-1 block text-xs font-bold text-stone-600">
+          <label className="mb-1 block text-xs font-bold text-ink/70">
             案件タイトル <span className="text-brand">*</span>
           </label>
           <input
@@ -108,12 +108,12 @@ export function NewProjectForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="例: 秋の体験レッスンLPキャンペーン"
-            className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
           />
         </div>
 
         <div>
-          <label className="mb-1 block text-xs font-bold text-stone-600">
+          <label className="mb-1 block text-xs font-bold text-ink/70">
             カテゴリ
           </label>
           <div className="flex flex-wrap gap-2">
@@ -122,10 +122,10 @@ export function NewProjectForm() {
                 key={c}
                 type="button"
                 onClick={() => setCategory(c)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                className={`rounded-sm px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                   category === c
-                    ? "bg-indigo-500 text-white"
-                    : "border border-stone-200 bg-white text-stone-500 hover:bg-stone-50"
+                    ? "bg-aqua text-white"
+                    : "border border-ink/12 bg-white text-ink/55 hover:bg-cream"
                 }`}
               >
                 {c}
@@ -136,7 +136,7 @@ export function NewProjectForm() {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               報酬・費用 (円)
             </label>
             <input
@@ -145,24 +145,24 @@ export function NewProjectForm() {
               onChange={(e) => setBudget(e.target.value)}
               min={0}
               step={1000}
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               応募締切
             </label>
             <input
               type="date"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
         </div>
 
         <div>
-          <label className="mb-1 block text-xs font-bold text-stone-600">
+          <label className="mb-1 block text-xs font-bold text-ink/70">
             案件の説明 <span className="text-brand">*</span>
           </label>
           <textarea
@@ -170,19 +170,19 @@ export function NewProjectForm() {
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
             placeholder="対象・内容・納品物・条件などを記入してください"
-            className="w-full resize-none rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
+            className="w-full resize-none rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
           />
         </div>
       </Card>
 
       {/* プッシュ通知トグル */}
       <Card className="flex items-center gap-3 p-4">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-aqua-soft text-aqua">
           <Icon name="bell" className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-bold">公開時にプッシュ通知を送る</p>
-          <p className="text-xs text-stone-400">
+          <p className="text-xs text-ink/40">
             全クライアントに新着案件をお知らせします
           </p>
         </div>
@@ -191,12 +191,12 @@ export function NewProjectForm() {
           role="switch"
           aria-checked={sendPush}
           onClick={() => setSendPush((v) => !v)}
-          className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-            sendPush ? "bg-indigo-500" : "bg-stone-300"
+          className={`relative h-7 w-12 shrink-0 rounded-sm transition-colors ${
+            sendPush ? "bg-aqua" : "bg-ink/20"
           }`}
         >
           <span
-            className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all ${
+            className={`absolute top-0.5 h-6 w-6 rounded-[2px] bg-white shadow transition-all ${
               sendPush ? "left-[22px]" : "left-0.5"
             }`}
           />
@@ -208,8 +208,8 @@ export function NewProjectForm() {
         disabled={!canSubmit || phase === "sending"}
         className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3.5 text-sm font-bold text-white shadow-sm transition-colors ${
           canSubmit && phase !== "sending"
-            ? "bg-indigo-500 hover:bg-indigo-600"
-            : "cursor-not-allowed bg-stone-300"
+            ? "bg-aqua hover:bg-indigo-600"
+            : "cursor-not-allowed bg-ink/20"
         }`}
       >
         {phase === "sending" ? (
@@ -224,7 +224,7 @@ export function NewProjectForm() {
           </>
         )}
       </button>
-      <p className="text-center text-[11px] text-stone-400">
+      <p className="text-center text-[11px] text-ink/40">
         ※ プロトタイプのため実際のデータは保存されません
       </p>
     </div>

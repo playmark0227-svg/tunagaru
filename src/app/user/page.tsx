@@ -51,7 +51,7 @@ export default function UserHomePage() {
           </Link>
           <Link
             href="/user/shop"
-            className="flex items-center justify-center gap-1.5 rounded-sm bg-stone-100 py-2.5 text-sm font-bold text-stone-600 transition-colors active:bg-stone-200"
+            className="flex items-center justify-center gap-1.5 rounded-sm bg-ink/5 py-2.5 text-sm font-bold text-ink/70 transition-colors active:bg-stone-200"
           >
             <Icon name="store" className="h-4 w-4" />
             商品を見る
@@ -80,10 +80,10 @@ export default function UserHomePage() {
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold leading-snug">{post.title}</p>
-                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
                   {post.body}
                 </p>
-                <p className="mt-1.5 text-[10px] text-stone-400">
+                <p className="mt-1.5 text-[10px] text-ink/40">
                   {post.postedAt}
                 </p>
               </div>
@@ -127,7 +127,7 @@ export default function UserHomePage() {
             <p className="text-sm font-bold text-brand-dark">
               体験レッスンに参加しませんか?
             </p>
-            <p className="mt-0.5 text-xs text-stone-500">
+            <p className="mt-0.5 text-xs text-ink/55">
               先生にメッセージで気軽にご相談ください
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function UserHomePage() {
       </Link>
 
       {featured.length > 0 && (
-        <p className="pt-2 text-center text-[10px] text-stone-400">
+        <p className="pt-2 text-center text-[10px] text-ink/40">
           ご注文は {currentClient.ownerName}先生の教室を通じて本部から発送されます
         </p>
       )}

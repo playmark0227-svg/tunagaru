@@ -35,7 +35,7 @@ export default async function WorkerProjectDetailPage({
           className={`relative flex h-48 items-center justify-center bg-gradient-to-br ${project.gradient}`}
         >
           <span className="text-7xl">{project.emoji}</span>
-          <span className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-brand shadow-sm">
+          <span className="absolute bottom-3 right-3 rounded-sm border border-ink/10 bg-white/95 px-3 py-1 text-xs font-bold text-brand shadow-sm">
             報酬 {formatYen(project.budget)}
           </span>
         </div>
@@ -62,27 +62,27 @@ export default async function WorkerProjectDetailPage({
             <Avatar name="繋がるクラフト" color="bg-brand" size="sm" />
             <div className="flex-1">
               <p className="text-xs font-bold">繋がるクラフト 本部</p>
-              <p className="text-[10px] text-stone-400">
+              <p className="text-[10px] text-ink/40">
                 {project.createdAt} 投稿
               </p>
             </div>
           </Card>
 
           <Card className="p-4">
-            <p className="text-xs font-bold text-stone-500">募集内容</p>
-            <p className="mt-2 text-sm leading-relaxed text-stone-700">
+            <p className="text-xs font-bold text-ink/55">募集内容</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink/80">
               {project.description}
             </p>
-            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-stone-100 pt-3">
+            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-ink/8 pt-3">
               <div>
-                <p className="text-[10px] text-stone-400">報酬</p>
+                <p className="text-[10px] text-ink/40">報酬</p>
                 <p className="text-base font-bold text-brand">
                   {formatYen(project.budget)}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-stone-400">応募締切</p>
-                <p className="text-base font-bold text-stone-700">
+                <p className="text-[10px] text-ink/40">応募締切</p>
+                <p className="text-base font-bold text-ink/80">
                   {project.deadline}
                 </p>
               </div>
@@ -92,11 +92,11 @@ export default async function WorkerProjectDetailPage({
           {/* 自分の担当タスク (アサイン済み案件の場合) */}
           {myTasks.length > 0 && (
             <Card className="p-4">
-              <p className="flex items-center gap-1.5 text-xs font-bold text-stone-500">
+              <p className="flex items-center gap-1.5 text-xs font-bold text-ink/55">
                 <Icon name="clipboard" className="h-4 w-4" />
                 この案件のあなたのタスク
               </p>
-              <ul className="mt-2 divide-y divide-stone-100">
+              <ul className="mt-2 divide-y divide-ink/8">
                 {myTasks.map((t) => (
                   <li key={t.id} className="flex items-center gap-2 py-2.5">
                     <span className="min-w-0 flex-1 text-sm">{t.title}</span>
@@ -122,7 +122,7 @@ export default async function WorkerProjectDetailPage({
           {isRecruiting && (
             <Card className="flex gap-3 border-brand/20 bg-brand-soft/50 p-4">
               <span className="text-xl">💡</span>
-              <p className="text-xs leading-relaxed text-stone-600">
+              <p className="text-xs leading-relaxed text-ink/70">
                 応募後、本部との専用チャットグループが作成され、
                 やり取り・素材共有・タスク管理がこのアプリ内で完結します。
               </p>

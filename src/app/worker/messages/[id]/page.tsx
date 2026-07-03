@@ -33,7 +33,7 @@ export default async function WorkerChatPage({
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <Link
             href="/worker/messages"
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
             aria-label="チャット一覧へ戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
@@ -45,7 +45,7 @@ export default async function WorkerChatPage({
               {thread.category && <Badge tone="violet">{thread.category}</Badge>}
             </div>
             {thread.kind === "group" && thread.memberCount && (
-              <p className="text-[10px] text-stone-400">
+              <p className="text-[10px] text-ink/40">
                 メンバー {thread.memberCount}人
               </p>
             )}
@@ -53,7 +53,7 @@ export default async function WorkerChatPage({
           {thread.projectId && (
             <Link
               href={`/worker/projects/${thread.projectId}`}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+              className="flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
               aria-label="案件詳細を見る"
             >
               <Icon name="briefcase" className="h-4.5 w-4.5" />

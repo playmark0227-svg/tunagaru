@@ -29,7 +29,7 @@ export default function ClientStudentsPage() {
         {/* 一斉メッセージ導線 */}
         <Link
           href="/client/messages/th8"
-          className="flex items-center gap-3 rounded-none bg-brand p-4 text-white shadow-lg shadow-brand/30 transition-colors active:bg-brand-dark"
+          className="flex items-center gap-3 rounded-none bg-brand p-4 text-white transition-colors active:bg-brand-dark"
         >
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-white/20">
             <Icon name="megaphone" className="h-5 w-5" />
@@ -65,20 +65,20 @@ export default function ClientStudentsPage() {
         {/* 生徒一覧 */}
         <section>
           <SectionTitle title="生徒一覧" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {endUsers.map((u) => (
               <ListRow key={u.id} href={`/client/students/${u.id}`}>
                 <Avatar name={u.name} color={u.avatarColor} />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-bold">{u.name}</p>
-                  <p className="mt-0.5 text-xs text-stone-500">
+                  <p className="mt-0.5 text-xs text-ink/55">
                     最終注文{" "}
                     {u.lastOrderAt ? shortDate(u.lastOrderAt) : "まだなし"}
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
                   <p className="text-sm font-bold">{formatYen(u.totalSpent)}</p>
-                  <p className="text-[10px] text-stone-400">累計購入額</p>
+                  <p className="text-[10px] text-ink/40">累計購入額</p>
                 </div>
               </ListRow>
             ))}

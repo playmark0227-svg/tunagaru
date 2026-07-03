@@ -45,7 +45,7 @@ export default function AdminDashboardPage() {
         action={
           <Link
             href="/admin/announcements"
-            className="relative flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="relative flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
             aria-label="お知らせ"
           >
             <Icon name="bell" className="h-5 w-5" />
@@ -58,7 +58,7 @@ export default function AdminDashboardPage() {
         {/* あいさつ */}
         <div>
           <p className="text-lg font-bold">おつかれさまです 👋</p>
-          <p className="mt-0.5 text-xs text-stone-500">
+          <p className="mt-0.5 text-xs text-ink/55">
             2026年7月3日(金) — 本日のプラットフォーム状況です
           </p>
         </div>
@@ -116,22 +116,22 @@ export default function AdminDashboardPage() {
         {/* AIアシスタント: 朝のダイジェスト (Phase 3 プレビュー) */}
         <section>
           <div className="mb-2 flex items-center justify-between">
-            <h2 className="flex items-center gap-1.5 text-sm font-bold text-stone-700">
+            <h2 className="flex items-center gap-1.5 text-sm font-bold text-ink/80">
               <span>🤖</span> AIアシスタント — 朝のダイジェスト
             </h2>
-            <span className="rounded-full border border-ink/12 bg-aqua-soft px-2 py-0.5 text-[10px] font-black text-ink">
+            <span className="rounded-full border border-ink/12 bg-aqua-soft px-2 py-0.5 text-[10px] font-bold text-ink">
               Phase 3 プレビュー
             </span>
           </div>
-          <Card className="sticker-glow divide-y divide-stone-100">
+          <Card className="sticker-glow divide-y divide-ink/8">
             {aiMorningDigest.map((item) => (
               <Link
                 key={item.id}
                 href={item.href ?? "/admin"}
-                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
               >
                 <span
-                  className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                  className={`shrink-0 rounded-sm px-2 py-0.5 text-[10px] font-bold ${
                     item.kind === "期限超過"
                       ? "bg-rose-50 text-rose-600"
                       : item.kind === "返信待ち"
@@ -148,11 +148,11 @@ export default function AdminDashboardPage() {
                 </span>
                 <Icon
                   name="chevron-right"
-                  className="h-4 w-4 shrink-0 text-stone-300"
+                  className="h-4 w-4 shrink-0 text-ink/25"
                 />
               </Link>
             ))}
-            <p className="px-4 py-2.5 text-[11px] leading-relaxed text-stone-400">
+            <p className="px-4 py-2.5 text-[11px] leading-relaxed text-ink/40">
               全チャット・タスクをAIが毎朝チェックし、見落としをレポートします (デモ表示)
             </p>
           </Card>
@@ -162,12 +162,12 @@ export default function AdminDashboardPage() {
           {/* 対応が必要なこと */}
           <section>
             <SectionTitle title={`対応が必要なこと (${needsAction})`} />
-            <Card className="divide-y divide-stone-100">
+            <Card className="divide-y divide-ink/8">
               {pendingOrders.map((o) => (
                 <Link
                   key={o.id}
                   href="/admin/orders"
-                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-amber-50 text-amber-600">
                     <Icon name="package" className="h-5 w-5" />
@@ -176,14 +176,14 @@ export default function AdminDashboardPage() {
                     <span className="block truncate text-sm font-semibold">
                       新規注文 #{o.id} — 発注処理をお願いします
                     </span>
-                    <span className="block text-xs text-stone-400">
+                    <span className="block text-xs text-ink/40">
                       {o.endUserName ?? o.clientName} 様・{formatYen(o.total)}・
                       {md(o.orderedAt)} 受付
                     </span>
                   </span>
                   <Icon
                     name="chevron-right"
-                    className="h-4 w-4 shrink-0 text-stone-300"
+                    className="h-4 w-4 shrink-0 text-ink/25"
                   />
                 </Link>
               ))}
@@ -191,22 +191,22 @@ export default function AdminDashboardPage() {
                 <Link
                   key={t.id}
                   href={`/admin/projects/${t.projectId}`}
-                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-aqua-soft text-aqua">
                     <Icon name="clipboard" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-semibold">
                       確認待ち: {t.title}
                     </span>
-                    <span className="block text-xs text-stone-400">
+                    <span className="block text-xs text-ink/40">
                       {t.assignee} 様より提出・期限 {md(t.dueDate)}
                     </span>
                   </span>
                   <Icon
                     name="chevron-right"
-                    className="h-4 w-4 shrink-0 text-stone-300"
+                    className="h-4 w-4 shrink-0 text-ink/25"
                   />
                 </Link>
               ))}
@@ -214,7 +214,7 @@ export default function AdminDashboardPage() {
                 <Link
                   key={t.id}
                   href={`/admin/projects/${t.projectId}`}
-                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-sky-50 text-sky-600">
                     <Icon name="pencil" className="h-5 w-5" />
@@ -223,14 +223,14 @@ export default function AdminDashboardPage() {
                     <span className="block truncate text-sm font-semibold">
                       本部タスク: {t.title}
                     </span>
-                    <span className="block text-xs text-stone-400">
+                    <span className="block text-xs text-ink/40">
                       期限 {md(t.dueDate)}
                       {t.note ? `・${t.note}` : ""}
                     </span>
                   </span>
                   <Icon
                     name="chevron-right"
-                    className="h-4 w-4 shrink-0 text-stone-300"
+                    className="h-4 w-4 shrink-0 text-ink/25"
                   />
                 </Link>
               ))}
@@ -243,28 +243,28 @@ export default function AdminDashboardPage() {
               title="最近のチャット"
               action={{ href: "/admin/messages", label: "すべて見る" }}
             />
-            <Card className="divide-y divide-stone-100">
+            <Card className="divide-y divide-ink/8">
               {hqThreads.slice(0, 4).map((t) => (
                 <Link
                   key={t.id}
                   href={`/admin/messages/${t.id}`}
-                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                 >
                   <Avatar name={t.title} color={t.avatarColor} size="sm" />
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-semibold">
                       {t.title}
                     </span>
-                    <span className="block truncate text-xs text-stone-400">
+                    <span className="block truncate text-xs text-ink/40">
                       {t.lastMessage}
                     </span>
                   </span>
                   <span className="flex shrink-0 flex-col items-end gap-1">
-                    <span className="text-[10px] text-stone-400">
+                    <span className="text-[10px] text-ink/40">
                       {t.lastMessageAt}
                     </span>
                     {t.unreadCount > 0 && (
-                      <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-indigo-500 px-1.5 text-[10px] font-bold text-white">
+                      <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-aqua px-1.5 text-[10px] font-bold text-white">
                         {t.unreadCount}
                       </span>
                     )}
@@ -278,7 +278,7 @@ export default function AdminDashboardPage() {
         {/* 直近の予約 */}
         <section>
           <SectionTitle title="直近のZoom予約" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {bookedSlots.map((s, i) => (
               <div key={s.id} className="flex items-center gap-3 px-4 py-3">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-violet-50 text-violet-500">
@@ -288,11 +288,11 @@ export default function AdminDashboardPage() {
                   <span className="block text-sm font-semibold">
                     {s.dayLabel} {s.time}〜
                   </span>
-                  <span className="block truncate text-xs text-stone-400">
+                  <span className="block truncate text-xs text-ink/40">
                     {bookedWith[i % bookedWith.length]}・Zoom打ち合わせ
                   </span>
                 </span>
-                <span className="shrink-0 rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-semibold text-stone-500">
+                <span className="shrink-0 rounded-sm bg-ink/5 px-2 py-0.5 text-[10px] font-semibold text-ink/55">
                   確定済み
                 </span>
               </div>

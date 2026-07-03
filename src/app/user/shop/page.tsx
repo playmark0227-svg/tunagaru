@@ -28,11 +28,11 @@ export default function UserShopPage() {
           <h1 className="flex-1 text-base font-bold">ストア</h1>
           <Link
             href="/user/cart"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full text-stone-600 hover:bg-stone-100"
+            className="relative flex h-9 w-9 items-center justify-center rounded-sm text-ink/70 hover:bg-ink/5"
             aria-label="カートを見る"
           >
             <Icon name="cart" className="h-5 w-5" />
-            <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[10px] font-bold text-white">
+            <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-sm bg-brand px-1 text-[10px] font-bold text-white">
               3
             </span>
           </Link>
@@ -45,7 +45,7 @@ export default function UserShopPage() {
               onClick={() => setCategory(cat)}
               className={`shrink-0 rounded-sm px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "border border-ink/12 bg-aqua glow-aqua font-black text-ink"
+                  ? "border border-aqua bg-aqua text-white"
                   : "border border-ink/15 bg-white text-ink/50"
               }`}
             >
@@ -83,7 +83,7 @@ export default function UserShopPage() {
         </div>
 
         {filtered.length === 0 && (
-          <p className="py-16 text-center text-sm text-stone-400">
+          <p className="py-16 text-center text-sm text-ink/40">
             該当する商品がありません
           </p>
         )}

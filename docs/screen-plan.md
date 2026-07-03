@@ -141,9 +141,12 @@ TasksPage (案件種別ごとに整理)
 4. **Zoom予約**: クライアントが `/client/booking` で本部の空き枠(Google Calendar)から選択 → カレンダー登録 & Zoomリンク発行 → 双方に通知。
 5. **EC売上→発送 (Phase 3)**: BASEの売上webhook → `/admin/orders` の EC通知パネルに集約 → ワンタップで発送タスク作成 (`source: "ec"`)。
 
-## デザイン原則
+## デザイン原則 — 「ブループリント」
 
-- ブランドカラー: ロゴのネイビー `#282f5a`(`bg-brand` / `text-brand` / `bg-brand-soft`)。背景は `--color-cream`。ロゴは `public/logo.png`。
-- 角丸大きめ(`rounded-2xl`)・カード基調・影は控えめ。絵文字をアイキャッチに活用。
-- 本部画面のアクセントはインディゴ、作業者フィードはバイオレット系バッジ。
+- **角張った直角基調 + 細いヘアライン枠 (1px)**。カード・バッジ・ボタン・入力欄はすべて角形 (`rounded-none`〜`rounded-sm`)。
+- **アクセントは水色 `#17b6d4` (`--color-aqua`)** を線・小面積で効かせる: アクティブタブのインジケータ、見出しのアンダーバー、Phase 3 要素の細枠グロー (`.sticker-glow`)。
+- ベース: ロゴのネイビー `#282f5a` (`bg-brand`) + インク `#1c2233`。グレーはすべて `text-ink/40〜80` の透明度スケールで統一。
+- 背景は淡いブループリント方眼 (`--color-cream` + 極薄グリッド)。
+- フォント: 角ゴシック **Zen Kaku Gothic New** / 数字・金額は **Space Grotesk** (`.font-display`)。
+- 影は `shadow-sm` まで。装飾はHUDコーナー (`.hud-corners`) など線的な要素のみ。
 - タップ領域は44px以上。下部タブは `safe-area-inset-bottom` に対応。

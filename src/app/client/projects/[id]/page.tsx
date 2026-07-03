@@ -83,21 +83,21 @@ export default async function ClientProjectDetailPage({
           <h2 className="mt-3 text-lg font-bold leading-snug">
             {project.title}
           </h2>
-          <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-stone-600">
+          <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-ink/70">
             {project.description}
           </p>
         </Card>
 
         {/* 条件 */}
-        <Card className="divide-y divide-stone-100">
+        <Card className="divide-y divide-ink/8">
           <div className="flex items-center justify-between px-4 py-3">
-            <span className="text-xs text-stone-500">報酬(税込)</span>
+            <span className="text-xs text-ink/55">報酬(税込)</span>
             <span className="text-lg font-bold text-brand">
               {formatYen(project.budget)}
             </span>
           </div>
           <div className="flex items-center justify-between px-4 py-3">
-            <span className="text-xs text-stone-500">応募締切</span>
+            <span className="text-xs text-ink/55">応募締切</span>
             <span className="text-sm font-semibold">
               {shortDate(project.deadline)}
               {project.status === "open" &&
@@ -109,13 +109,13 @@ export default async function ClientProjectDetailPage({
             </span>
           </div>
           <div className="flex items-center justify-between px-4 py-3">
-            <span className="text-xs text-stone-500">応募状況</span>
+            <span className="text-xs text-ink/55">応募状況</span>
             <span className="text-sm font-semibold">
               {project.applicantIds.length}教室が応募中
             </span>
           </div>
           <div className="flex items-center justify-between px-4 py-3">
-            <span className="text-xs text-stone-500">掲載日</span>
+            <span className="text-xs text-ink/55">掲載日</span>
             <span className="text-sm font-semibold">
               {shortDate(project.createdAt)}
             </span>
@@ -131,7 +131,7 @@ export default async function ClientProjectDetailPage({
                 steps={["応募する", "本部から連絡", "採用・開始"]}
                 currentIndex={stepIndex}
               />
-              <p className="mt-3 text-center text-[11px] leading-relaxed text-stone-400">
+              <p className="mt-3 text-center text-[11px] leading-relaxed text-ink/40">
                 応募後、通常1〜2営業日以内に本部からチャットでご連絡します。
               </p>
             </Card>

@@ -56,18 +56,16 @@ body {
 }
 
 /* ---------------------------------------------------------------- */
-/* シャープなパネル (旧 .sticker を置換 — 細枠・直角・薄影)             */
+/* シャープなパネル (細枠・直角・薄影)                                  */
 /* ---------------------------------------------------------------- */
-.sticker,
-.panel {
+.sticker {
   background-color: #ffffff;
   border: 1px solid rgba(28, 34, 51, 0.12);
   box-shadow: 0 1px 2px rgba(28, 34, 51, 0.04);
 }
 
 /* アクセントパネル: 細い水色枠 + ごく淡いグロー */
-.sticker-glow,
-.panel-aqua {
+.sticker-glow {
   background-color: #ffffff;
   border: 1px solid rgba(23, 182, 212, 0.55);
   box-shadow:
@@ -91,19 +89,12 @@ body {
   border-radius: 3px;
 }
 
-/* 小さな水色グロー */
-.glow-aqua {
-  box-shadow: 0 0 0 1px rgba(23, 182, 212, 0.25);
-}
-
-/* 見出しの短い水色アンダーバー (旧 zigzag/stitch を置換) */
-.zigzag-under,
-.stitch-under {
+/* 見出しの短い水色アンダーバー */
+.zigzag-under {
   position: relative;
   padding-bottom: 7px;
 }
-.zigzag-under::after,
-.stitch-under::after {
+.zigzag-under::after {
   content: "";
   position: absolute;
   left: 0;

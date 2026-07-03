@@ -11,14 +11,14 @@ function ThreadRow({ t }: { t: ChatThread }) {
   return (
     <Link
       href={`/admin/messages/${t.id}`}
-      className="flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-stone-50 active:bg-stone-100"
+      className="flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-cream active:bg-ink/5"
     >
       <Avatar name={t.title} color={t.avatarColor} size="md" />
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
           <span className="truncate text-sm font-bold">{t.title}</span>
           {t.kind === "group" && (
-            <span className="shrink-0 rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold text-stone-500">
+            <span className="shrink-0 rounded-sm bg-ink/5 px-1.5 py-0.5 text-[10px] font-semibold text-ink/55">
               {t.memberCount}名
             </span>
           )}
@@ -28,8 +28,8 @@ function ThreadRow({ t }: { t: ChatThread }) {
           <span
             className={`min-w-0 truncate text-xs ${
               t.unreadCount > 0
-                ? "font-semibold text-stone-600"
-                : "text-stone-400"
+                ? "font-semibold text-ink/70"
+                : "text-ink/40"
             }`}
           >
             {t.lastMessage}
@@ -37,9 +37,9 @@ function ThreadRow({ t }: { t: ChatThread }) {
         </span>
       </span>
       <span className="flex shrink-0 flex-col items-end gap-1">
-        <span className="text-[10px] text-stone-400">{t.lastMessageAt}</span>
+        <span className="text-[10px] text-ink/40">{t.lastMessageAt}</span>
         {t.unreadCount > 0 ? (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-indigo-500 px-1.5 text-[10px] font-bold text-white">
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-aqua px-1.5 text-[10px] font-bold text-white">
             {t.unreadCount}
           </span>
         ) : (
@@ -66,7 +66,7 @@ export default function AdminMessagesPage() {
         title="チャット"
         action={
           unreadTotal > 0 ? (
-            <span className="rounded-full bg-indigo-50 px-2.5 py-1 text-[11px] font-bold text-indigo-600">
+            <span className="rounded-sm bg-aqua-soft px-2.5 py-1 text-[11px] font-bold text-aqua">
               未読 {unreadTotal}件
             </span>
           ) : undefined
@@ -77,12 +77,12 @@ export default function AdminMessagesPage() {
         {/* 案件ごとの専用グループ */}
         <section>
           <SectionTitle title="案件グループ" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {projectGroups.map((t) => (
               <ThreadRow key={t.id} t={t} />
             ))}
           </Card>
-          <p className="mt-2 px-2 text-[11px] leading-relaxed text-stone-400">
+          <p className="mt-2 px-2 text-[11px] leading-relaxed text-ink/40">
             案件ごと(HP修正/動画制作/…)にグループを分離し、関係者だけでやり取りします🗂️
           </p>
         </section>
@@ -90,7 +90,7 @@ export default function AdminMessagesPage() {
         {/* クライアント個別 */}
         <section>
           <SectionTitle title="クライアント" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {clientThreadList.map((t) => (
               <ThreadRow key={t.id} t={t} />
             ))}

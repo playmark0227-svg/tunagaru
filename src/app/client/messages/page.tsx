@@ -21,7 +21,7 @@ function ThreadRow({
   return (
     <Link
       href={`/client/messages/${thread.id}`}
-      className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50 active:bg-stone-100"
+      className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream active:bg-ink/5"
     >
       <Avatar name={thread.title} color={thread.avatarColor} />
       <div className="min-w-0 flex-1">
@@ -29,24 +29,24 @@ function ThreadRow({
           <p className="truncate text-sm font-bold">{thread.title}</p>
           {pinned && <Badge tone="brand">本部</Badge>}
           {thread.kind === "group" && thread.memberCount && (
-            <span className="shrink-0 text-[10px] text-stone-400">
+            <span className="shrink-0 text-[10px] text-ink/40">
               ({thread.memberCount})
             </span>
           )}
         </div>
         <div className="mt-0.5 flex items-center gap-1.5">
           {thread.category && <Badge tone="violet">{thread.category}</Badge>}
-          <p className="min-w-0 truncate text-xs text-stone-500">
+          <p className="min-w-0 truncate text-xs text-ink/55">
             {thread.lastMessage}
           </p>
         </div>
       </div>
       <div className="flex shrink-0 flex-col items-end gap-1">
-        <span className="text-[10px] text-stone-400">
+        <span className="text-[10px] text-ink/40">
           {thread.lastMessageAt}
         </span>
         {thread.unreadCount > 0 ? (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand px-1.5 text-[10px] font-bold text-white">
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-brand px-1.5 text-[10px] font-bold text-white">
             {thread.unreadCount}
           </span>
         ) : (
@@ -82,12 +82,12 @@ export default function ClientMessagesPage() {
         {projectGroups.length > 0 && (
           <section>
             <SectionTitle title="案件グループ" />
-            <Card className="divide-y divide-stone-100">
+            <Card className="divide-y divide-ink/8">
               {projectGroups.map((t) => (
                 <ThreadRow key={t.id} thread={t} />
               ))}
             </Card>
-            <p className="mt-2 px-2 text-[11px] leading-relaxed text-stone-400">
+            <p className="mt-2 px-2 text-[11px] leading-relaxed text-ink/40">
               「HP修正」「動画制作」など案件ごとにグループが分かれているので、話題が混ざりません🗂️
             </p>
           </section>
@@ -96,14 +96,14 @@ export default function ClientMessagesPage() {
         {/* 生徒とのトーク */}
         <section>
           <SectionTitle title="生徒とのトーク" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {otherThreads.map((t) => (
               <ThreadRow key={t.id} thread={t} />
             ))}
           </Card>
         </section>
 
-        <p className="px-2 text-center text-[11px] leading-relaxed text-stone-400">
+        <p className="px-2 text-center text-[11px] leading-relaxed text-ink/40">
           本部への相談は上の「本部」スレッドからいつでもどうぞ🌿
         </p>
       </main>

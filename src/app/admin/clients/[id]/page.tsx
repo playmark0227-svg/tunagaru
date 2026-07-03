@@ -95,7 +95,7 @@ export default async function AdminClientDetailPage({
             <Avatar name={client.name} color={client.avatarColor} size="lg" />
             <div className="min-w-0 flex-1">
               <p className="text-lg font-bold leading-tight">{client.name}</p>
-              <p className="mt-0.5 text-sm text-stone-500">
+              <p className="mt-0.5 text-sm text-ink/55">
                 {client.ownerName} 様・{client.category}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -110,7 +110,7 @@ export default async function AdminClientDetailPage({
           {/* チャット導線 */}
           <Link
             href={threadId ? `/admin/messages/${threadId}` : "/admin/messages"}
-            className="mt-4 flex items-center justify-center gap-2 rounded-none bg-indigo-500 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
+            className="mt-4 flex items-center justify-center gap-2 rounded-none bg-aqua px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
           >
             <Icon name="chat" className="h-4.5 w-4.5" />
             チャットで連絡する
@@ -121,33 +121,33 @@ export default async function AdminClientDetailPage({
           {/* 契約情報 */}
           <section>
             <SectionTitle title="契約情報" />
-            <Card className="divide-y divide-stone-100 text-sm">
+            <Card className="divide-y divide-ink/8 text-sm">
               <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-stone-500">契約プラン</span>
+                <span className="text-ink/55">契約プラン</span>
                 <span className="font-semibold">{client.plan}</span>
               </div>
               <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-stone-500">契約状態</span>
+                <span className="text-ink/55">契約状態</span>
                 <Badge tone={statusTone[client.status]}>
                   {CLIENT_STATUS_LABELS[client.status]}
                 </Badge>
               </div>
               <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-stone-500">生徒数</span>
+                <span className="text-ink/55">生徒数</span>
                 <span className="font-semibold">{client.studentCount}名</span>
               </div>
               <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-stone-500">利用開始日</span>
+                <span className="text-ink/55">利用開始日</span>
                 <span className="font-semibold">{ymd(client.joinedAt)}</span>
               </div>
               <div className="flex items-center justify-between gap-3 px-4 py-3">
-                <span className="shrink-0 text-stone-500">保守サイト</span>
+                <span className="shrink-0 text-ink/55">保守サイト</span>
                 {client.siteUrl ? (
-                  <span className="truncate text-xs font-medium text-indigo-500">
+                  <span className="truncate text-xs font-medium text-aqua">
                     {client.siteUrl}
                   </span>
                 ) : (
-                  <span className="text-xs text-stone-400">なし</span>
+                  <span className="text-xs text-ink/40">なし</span>
                 )}
               </div>
             </Card>
@@ -167,18 +167,18 @@ export default async function AdminClientDetailPage({
                 />
               </Card>
             ) : (
-              <Card className="divide-y divide-stone-100">
+              <Card className="divide-y divide-ink/8">
                 {clientApplications.map((a) => (
                   <Link
                     key={a.id}
                     href={`/admin/projects/${a.projectId}`}
-                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                   >
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-semibold">
                         {a.project?.title ?? "案件"}
                       </span>
-                      <span className="block text-xs text-stone-400">
+                      <span className="block text-xs text-ink/40">
                         {ymd(a.appliedAt)} 応募
                         {a.note ? `・${a.note}` : ""}
                       </span>
@@ -188,7 +188,7 @@ export default async function AdminClientDetailPage({
                     </Badge>
                     <Icon
                       name="chevron-right"
-                      className="h-4 w-4 shrink-0 text-stone-300"
+                      className="h-4 w-4 shrink-0 text-ink/25"
                     />
                   </Link>
                 ))}
@@ -208,14 +208,14 @@ export default async function AdminClientDetailPage({
               <EmptyState icon="package" title="注文はまだありません" />
             </Card>
           ) : (
-            <Card className="divide-y divide-stone-100">
+            <Card className="divide-y divide-ink/8">
               {clientOrders.map((o) => (
                 <Link
                   key={o.id}
                   href="/admin/orders"
-                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-cream"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-stone-100 text-stone-500">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-ink/5 text-ink/55">
                     <Icon name="package" className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -223,7 +223,7 @@ export default async function AdminClientDetailPage({
                       #{o.id}{" "}
                       {o.endUserName ? `${o.endUserName} 様` : "教室仕入れ"}
                     </span>
-                    <span className="block text-xs text-stone-400">
+                    <span className="block text-xs text-ink/40">
                       {ymd(o.orderedAt)}・{o.items.length}点・
                       {formatYen(o.total)}
                     </span>

@@ -58,7 +58,7 @@ export function AnnounceForm() {
         <SectionTitle title="新しいお知らせを配信" />
         <Card className="space-y-4 p-5">
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               配信先
             </label>
             <div className="flex flex-wrap gap-2">
@@ -67,10 +67,10 @@ export function AnnounceForm() {
                   key={t}
                   type="button"
                   onClick={() => setTarget(t)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`rounded-sm px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                     target === t
-                      ? "bg-indigo-500 text-white"
-                      : "border border-stone-200 bg-white text-stone-500 hover:bg-stone-50"
+                      ? "bg-aqua text-white"
+                      : "border border-ink/12 bg-white text-ink/55 hover:bg-cream"
                   }`}
                 >
                   {t}
@@ -80,7 +80,7 @@ export function AnnounceForm() {
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               タイトル <span className="text-brand">*</span>
             </label>
             <input
@@ -88,12 +88,12 @@ export function AnnounceForm() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="例: 新商品入荷のお知らせ"
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               本文 <span className="text-brand">*</span>
             </label>
             <textarea
@@ -101,18 +101,18 @@ export function AnnounceForm() {
               onChange={(e) => setBody(e.target.value)}
               rows={5}
               placeholder="お知らせの内容を入力してください"
-              className="w-full resize-none rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full resize-none rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm leading-relaxed outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
           {/* プッシュトグル */}
-          <div className="flex items-center gap-3 rounded-sm bg-stone-50 p-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-indigo-50 text-indigo-500">
+          <div className="flex items-center gap-3 rounded-sm bg-cream p-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-aqua-soft text-aqua">
               <Icon name="bell" className="h-5 w-5" />
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-xs font-bold">プッシュ通知も送る</p>
-              <p className="text-[11px] text-stone-400">
+              <p className="text-[11px] text-ink/40">
                 スマホに直接お知らせが届きます
               </p>
             </div>
@@ -121,12 +121,12 @@ export function AnnounceForm() {
               role="switch"
               aria-checked={sendPush}
               onClick={() => setSendPush((v) => !v)}
-              className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-                sendPush ? "bg-indigo-500" : "bg-stone-300"
+              className={`relative h-7 w-12 shrink-0 rounded-sm transition-colors ${
+                sendPush ? "bg-aqua" : "bg-ink/20"
               }`}
             >
               <span
-                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all ${
+                className={`absolute top-0.5 h-6 w-6 rounded-[2px] bg-white shadow transition-all ${
                   sendPush ? "left-[22px]" : "left-0.5"
                 }`}
               />
@@ -138,8 +138,8 @@ export function AnnounceForm() {
             disabled={!canSubmit || sending}
             className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
               canSubmit && !sending
-                ? "bg-indigo-500 hover:bg-indigo-600"
-                : "cursor-not-allowed bg-stone-300"
+                ? "bg-aqua hover:bg-indigo-600"
+                : "cursor-not-allowed bg-ink/20"
             }`}
           >
             {sending ? (
@@ -177,12 +177,12 @@ export function AnnounceForm() {
                 ) : (
                   <Badge tone="gray">アプリ内のみ</Badge>
                 )}
-                <span className="ml-auto shrink-0 text-[10px] text-stone-400">
+                <span className="ml-auto shrink-0 text-[10px] text-ink/40">
                   {a.sentAt}
                 </span>
               </div>
               <p className="mt-2 text-sm font-bold leading-snug">{a.title}</p>
-              <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+              <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
                 {a.body}
               </p>
             </Card>

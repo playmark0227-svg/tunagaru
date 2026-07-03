@@ -51,7 +51,7 @@ export default function ClientMenuPage() {
           />
           <div className="min-w-0 flex-1">
             <p className="text-base font-bold">{currentClient.ownerName}</p>
-            <p className="mt-0.5 truncate text-xs text-stone-500">
+            <p className="mt-0.5 truncate text-xs text-ink/55">
               {currentClient.name}|{currentClient.category}
             </p>
             <div className="mt-1.5">
@@ -63,15 +63,15 @@ export default function ClientMenuPage() {
         {/* メニュー */}
         <section>
           <SectionTitle title="教室の運営" />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {menuItems.map((item) => (
               <ListRow key={item.href} href={item.href}>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-brand-soft text-brand">
                   <Icon name={item.icon} className="h-5 w-5" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm font-bold">{item.label}</span>
-                  <span className="mt-0.5 block text-xs text-stone-400">
+                  <span className="mt-0.5 block text-xs text-ink/40">
                     {item.sub}
                   </span>
                 </span>
@@ -79,12 +79,12 @@ export default function ClientMenuPage() {
             ))}
             {/* プロフィール行 (表示のみ) */}
             <div className="flex items-center gap-3 px-4 py-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-500">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-ink/5 text-ink/55">
                 <Icon name="user" className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-bold">プロフィール</span>
-                <span className="mt-0.5 block text-xs text-stone-400">
+                <span className="mt-0.5 block text-xs text-ink/40">
                   {currentClient.ownerName}({currentClient.name})
                 </span>
               </span>
@@ -97,14 +97,14 @@ export default function ClientMenuPage() {
           <SectionTitle title="その他" />
           <Card>
             <ListRow href="/">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-500">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-ink/5 text-ink/55">
                 <Icon name="logout" className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-bold text-rose-600">
                   エントランスへ戻る
                 </span>
-                <span className="mt-0.5 block text-xs text-stone-400">
+                <span className="mt-0.5 block text-xs text-ink/40">
                   ロール選択画面 (プロトタイプ用)
                 </span>
               </span>
@@ -112,7 +112,7 @@ export default function ClientMenuPage() {
           </Card>
         </section>
 
-        <p className="pt-2 text-center text-[11px] leading-relaxed text-stone-400">
+        <p className="pt-2 text-center text-[11px] leading-relaxed text-ink/40">
           つながるクラフト プロトタイプ版
           <br />
           お困りのことは本部チャットからお気軽にどうぞ🌿

@@ -37,7 +37,7 @@ export function ProjectTabs() {
   return (
     <div className="space-y-4">
       {/* タブ */}
-      <div className="flex rounded-none border border-stone-200/70 bg-white p-1 shadow-sm">
+      <div className="flex rounded-none border border-ink/10 bg-white p-1 shadow-sm">
         {tabs.map((t) => {
           const count = projects.filter((p) => p.status === t).length;
           return (
@@ -46,8 +46,8 @@ export function ProjectTabs() {
               onClick={() => setTab(t)}
               className={`flex-1 rounded-sm py-2 text-xs font-bold transition-colors ${
                 tab === t
-                  ? "bg-indigo-500 text-white shadow-sm"
-                  : "text-stone-500 hover:text-stone-700"
+                  ? "bg-aqua text-white shadow-sm"
+                  : "text-ink/55 hover:text-ink/80"
               }`}
             >
               {PROJECT_STATUS_LABELS[t]} ({count})
@@ -82,11 +82,11 @@ export function ProjectTabs() {
                     )}
                   </div>
                   <h3 className="mt-2 font-bold leading-snug">{p.title}</h3>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
                     {p.description}
                   </p>
-                  <div className="mt-3 flex items-center gap-3 text-xs text-stone-500">
-                    <span className="text-sm font-bold text-stone-800">
+                  <div className="mt-3 flex items-center gap-3 text-xs text-ink/55">
+                    <span className="text-sm font-bold text-ink">
                       {formatYen(p.budget)}
                     </span>
                     <span className="flex items-center gap-1">
@@ -99,7 +99,7 @@ export function ProjectTabs() {
                     </span>
                   </div>
                   {assigned && (
-                    <p className="mt-2 rounded-sm bg-stone-50 px-3 py-1.5 text-xs text-stone-500">
+                    <p className="mt-2 rounded-sm bg-cream px-3 py-1.5 text-xs text-ink/55">
                       担当: {assigned.name} ({assigned.ownerName} 様)
                     </p>
                   )}

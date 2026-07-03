@@ -55,7 +55,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <div className="border-t border-ink/12 p-3">
           <Link
             href="/"
-            className="flex items-center gap-3 rounded-none px-3 py-2.5 text-sm font-bold text-stone-500 transition-colors hover:bg-brand-soft/50 hover:text-brand"
+            className="flex items-center gap-3 rounded-none px-3 py-2.5 text-sm font-bold text-ink/55 transition-colors hover:bg-brand-soft/50 hover:text-brand"
           >
             <Icon name="logout" className="h-5 w-5" />
             エントランスへ戻る

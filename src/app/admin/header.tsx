@@ -22,13 +22,13 @@ export function AdminHeader({
         {backHref && (
           <Link
             href={backHref}
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
             aria-label="戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
           </Link>
         )}
-        <h1 className="flex-1 truncate text-base font-black tracking-wide text-brand">
+        <h1 className="flex-1 truncate text-base font-bold tracking-wide text-brand">
           {title}
         </h1>
         {action}

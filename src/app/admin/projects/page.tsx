@@ -14,7 +14,7 @@ export default function AdminProjectsPage() {
         action={
           <Link
             href="/admin/projects/new"
-            className="flex items-center gap-1 rounded-full bg-indigo-500 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-indigo-600"
+            className="flex items-center gap-1 rounded-sm bg-aqua px-3.5 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#12a0bb]"
           >
             <Icon name="plus" className="h-3.5 w-3.5" />
             案件を作成

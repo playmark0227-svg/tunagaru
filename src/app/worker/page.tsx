@@ -55,11 +55,11 @@ export default function WorkerFeedPage() {
             alt="つながるCraft"
             className="h-6 w-auto"
           />
-          <span className="flex-1 text-sm font-bold text-stone-500">
+          <span className="flex-1 text-sm font-bold text-ink/55">
             案件フィード
           </span>
           <button
-            className="relative flex h-9 w-9 items-center justify-center rounded-full text-stone-600 hover:bg-stone-100"
+            className="relative flex h-9 w-9 items-center justify-center rounded-sm text-ink/70 hover:bg-ink/5"
             aria-label="通知"
           >
             <Icon name="bell" className="h-5 w-5" />
@@ -74,7 +74,7 @@ export default function WorkerFeedPage() {
               onClick={() => setCategory(cat)}
               className={`shrink-0 rounded-sm px-3.5 py-1.5 text-xs font-bold transition-colors ${
                 category === cat
-                  ? "border border-ink/12 bg-aqua glow-aqua font-black text-ink"
+                  ? "border border-aqua bg-aqua text-white"
                   : "border border-ink/15 bg-white text-ink/50"
               }`}
             >
@@ -85,7 +85,7 @@ export default function WorkerFeedPage() {
       </header>
 
       <main className="space-y-4 px-4 pb-24 pt-4">
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-ink/55">
           こんにちは、{currentWorker.name}さん👋 新着の募集をチェックしましょう
         </p>
 
@@ -100,7 +100,7 @@ export default function WorkerFeedPage() {
                 <Avatar name="繋がるクラフト" color="bg-brand" size="sm" />
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-bold">繋がるクラフト 本部</p>
-                  <p className="text-[10px] text-stone-400">{p.createdAt} 投稿</p>
+                  <p className="text-[10px] text-ink/40">{p.createdAt} 投稿</p>
                 </div>
                 <Badge tone="brand">{p.category}</Badge>
               </div>
@@ -124,8 +124,8 @@ export default function WorkerFeedPage() {
                     setLikes((prev) => ({ ...prev, [p.id]: !liked }))
                   }
                   aria-label="いいね"
-                  className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-                    liked ? "text-rose-500" : "text-stone-400 hover:text-rose-400"
+                  className={`flex h-9 w-9 items-center justify-center rounded-sm transition-colors ${
+                    liked ? "text-rose-500" : "text-ink/40 hover:text-rose-400"
                   }`}
                 >
                   <Icon
@@ -133,7 +133,7 @@ export default function WorkerFeedPage() {
                     className={`h-5.5 w-5.5 ${liked ? "fill-rose-500" : ""}`}
                   />
                 </button>
-                <span className="-ml-1 text-xs font-semibold text-stone-500">
+                <span className="-ml-1 text-xs font-semibold text-ink/55">
                   {likeCount}
                 </span>
                 <button
@@ -141,8 +141,8 @@ export default function WorkerFeedPage() {
                     setSaved((prev) => ({ ...prev, [p.id]: !(saved[p.id] ?? false) }))
                   }
                   aria-label="保存"
-                  className={`ml-1 flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-                    saved[p.id] ? "text-brand" : "text-stone-400 hover:text-brand"
+                  className={`ml-1 flex h-9 w-9 items-center justify-center rounded-sm transition-colors ${
+                    saved[p.id] ? "text-brand" : "text-ink/40 hover:text-brand"
                   }`}
                 >
                   <Icon
@@ -162,10 +162,10 @@ export default function WorkerFeedPage() {
               {/* Caption */}
               <div className="px-4 pb-4 pt-1.5">
                 <p className="text-sm font-bold leading-snug">{p.title}</p>
-                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
                   {p.description}
                 </p>
-                <p className="mt-2 flex items-center gap-3 text-[11px] text-stone-400">
+                <p className="mt-2 flex items-center gap-3 text-[11px] text-ink/40">
                   <span className="flex items-center gap-1">
                     <Icon name="calendar" className="h-3.5 w-3.5" />
                     締切 {p.deadline}
@@ -181,12 +181,12 @@ export default function WorkerFeedPage() {
         })}
 
         {feed.length === 0 && (
-          <p className="py-16 text-center text-sm text-stone-400">
+          <p className="py-16 text-center text-sm text-ink/40">
             このカテゴリの募集は現在ありません
           </p>
         )}
 
-        <p className="pt-2 text-center text-[10px] leading-relaxed text-stone-400">
+        <p className="pt-2 text-center text-[10px] leading-relaxed text-ink/40">
           新しい案件が投稿されるとプッシュ通知でお知らせします🔔
         </p>
       </main>

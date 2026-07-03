@@ -47,7 +47,7 @@ export function VisualEditor() {
         <SectionTitle title="ノーコード編集" />
         <Card className="space-y-4 p-5">
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               ヒーロー見出し
             </label>
             <input
@@ -57,12 +57,12 @@ export function VisualEditor() {
                 setHeroTitle(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               ヒーローサブテキスト
             </label>
             <input
@@ -72,12 +72,12 @@ export function VisualEditor() {
                 setHeroSubtitle(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               キャンペーンバナー
             </label>
             <input
@@ -87,15 +87,15 @@ export function VisualEditor() {
                 setCampaignBanner(e.target.value);
                 setPhase("editing");
               }}
-              className="w-full rounded-sm border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+              className="w-full rounded-sm border border-ink/12 bg-cream px-3.5 py-2.5 text-sm outline-none focus:border-indigo-400 focus:bg-white"
             />
-            <p className="mt-1 text-[11px] text-stone-400">
+            <p className="mt-1 text-[11px] text-ink/40">
               空欄にするとバナーは表示されません
             </p>
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-bold text-stone-600">
+            <label className="mb-1 block text-xs font-bold text-ink/70">
               ブランドカラー
             </label>
             <div className="flex items-center gap-3">
@@ -106,7 +106,7 @@ export function VisualEditor() {
                   setBrandColor(e.target.value);
                   setPhase("editing");
                 }}
-                className="h-10 w-14 cursor-pointer rounded-lg border border-stone-200 bg-white p-1"
+                className="h-10 w-14 cursor-pointer rounded-sm border border-ink/12 bg-white p-1"
                 aria-label="ブランドカラーを選択"
               />
               <input
@@ -116,13 +116,13 @@ export function VisualEditor() {
                   setBrandColor(e.target.value);
                   setPhase("editing");
                 }}
-                className="w-28 rounded-sm border border-stone-200 bg-stone-50 px-3 py-2 text-sm outline-none focus:border-indigo-400 focus:bg-white"
+                className="w-28 rounded-sm border border-ink/12 bg-cream px-3 py-2 text-sm outline-none focus:border-indigo-400 focus:bg-white"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-xs font-bold text-stone-600">
+            <label className="mb-1.5 block text-xs font-bold text-ink/70">
               おすすめ商品 ({featuredIds.length}件 選択中)
             </label>
             <div className="space-y-2">
@@ -135,8 +135,8 @@ export function VisualEditor() {
                     onClick={() => toggleFeatured(p.id)}
                     className={`flex w-full items-center gap-3 rounded-sm border p-2.5 text-left transition-colors ${
                       checked
-                        ? "border-indigo-400 bg-indigo-50/60"
-                        : "border-stone-200 bg-white hover:bg-stone-50"
+                        ? "border-indigo-400 bg-aqua-soft/60"
+                        : "border-ink/12 bg-white hover:bg-cream"
                     }`}
                   >
                     <ProductThumb
@@ -148,15 +148,15 @@ export function VisualEditor() {
                       <span className="block truncate text-sm font-semibold">
                         {p.name}
                       </span>
-                      <span className="block text-xs text-stone-400">
+                      <span className="block text-xs text-ink/40">
                         {formatYen(p.price)}
                       </span>
                     </span>
                     <span
                       className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
                         checked
-                          ? "bg-indigo-500 text-white"
-                          : "border border-stone-300 text-transparent"
+                          ? "bg-aqua text-white"
+                          : "border border-ink/20 text-transparent"
                       }`}
                     >
                       <Icon name="check" className="h-3.5 w-3.5" />
@@ -173,7 +173,7 @@ export function VisualEditor() {
             className={`flex w-full items-center justify-center gap-2 rounded-none px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors ${
               phase === "saving"
                 ? "cursor-wait bg-indigo-300"
-                : "bg-indigo-500 hover:bg-indigo-600"
+                : "bg-aqua hover:bg-indigo-600"
             }`}
           >
             {phase === "saving" ? (
@@ -200,10 +200,10 @@ export function VisualEditor() {
       {/* スマホ風ライブプレビュー */}
       <section className="md:sticky md:top-20">
         <SectionTitle title="ライブプレビュー (エンドユーザーのホーム)" />
-        <div className="mx-auto w-[290px] overflow-hidden rounded-[2.2rem] border-[6px] border-stone-800 bg-white shadow-xl">
+        <div className="mx-auto w-[290px] overflow-hidden rounded-[2.2rem] border-[6px] border-ink bg-white shadow-xl">
           <div className="h-[560px] overflow-y-auto bg-cream">
             {/* 擬似ステータスバー */}
-            <div className="flex items-center justify-between bg-white px-4 py-1.5 text-[9px] font-semibold text-stone-500">
+            <div className="flex items-center justify-between bg-white px-4 py-1.5 text-[9px] font-semibold text-ink/55">
               <span>9:41</span>
               <span>●●●</span>
             </div>
@@ -233,11 +233,11 @@ export function VisualEditor() {
 
             {/* おすすめ商品 */}
             <div className="px-3 py-3">
-              <p className="text-[11px] font-bold text-stone-700">
+              <p className="text-[11px] font-bold text-ink/80">
                 おすすめ商品
               </p>
               {featured.length === 0 ? (
-                <p className="mt-2 rounded-sm bg-white px-3 py-4 text-center text-[10px] text-stone-400">
+                <p className="mt-2 rounded-sm bg-white px-3 py-4 text-center text-[10px] text-ink/40">
                   おすすめ商品が未選択です
                 </p>
               ) : (
@@ -245,7 +245,7 @@ export function VisualEditor() {
                   {featured.map((p) => (
                     <div
                       key={p.id}
-                      className="flex items-center gap-2.5 rounded-sm border border-stone-200/70 bg-white p-2 shadow-sm"
+                      className="flex items-center gap-2.5 rounded-sm border border-ink/10 bg-white p-2 shadow-sm"
                     >
                       <ProductThumb
                         emoji={p.emoji}
@@ -264,7 +264,7 @@ export function VisualEditor() {
                         </p>
                       </div>
                       <span
-                        className="shrink-0 rounded-full px-2 py-1 text-[9px] font-bold text-white"
+                        className="shrink-0 rounded-sm px-2 py-1 text-[9px] font-bold text-white"
                         style={{ backgroundColor: brandColor }}
                       >
                         見る
@@ -276,23 +276,23 @@ export function VisualEditor() {
 
               {/* 体験レッスンバナー */}
               <div className="mt-3 rounded-sm bg-gradient-to-br from-orange-100 to-rose-100 px-3 py-3">
-                <p className="text-[10px] font-bold text-stone-700">
+                <p className="text-[10px] font-bold text-ink/80">
                   🌸 体験レッスン受付中
                 </p>
-                <p className="mt-0.5 text-[9px] text-stone-500">
+                <p className="mt-0.5 text-[9px] text-ink/55">
                   お近くの教室をさがしてみましょう
                 </p>
               </div>
             </div>
 
             {/* 擬似ボトムナビ */}
-            <div className="sticky bottom-0 flex justify-around border-t border-stone-200 bg-white px-2 py-2">
+            <div className="sticky bottom-0 flex justify-around border-t border-ink/12 bg-white px-2 py-2">
               {(["home", "store", "package", "chat", "user"] as const).map(
                 (name, i) => (
                   <span
                     key={name}
                     style={i === 0 ? { color: brandColor } : undefined}
-                    className={i === 0 ? "" : "text-stone-300"}
+                    className={i === 0 ? "" : "text-ink/25"}
                   >
                     <Icon name={name} className="h-4 w-4" />
                   </span>
@@ -301,7 +301,7 @@ export function VisualEditor() {
             </div>
           </div>
         </div>
-        <p className="mt-3 text-center text-[11px] text-stone-400">
+        <p className="mt-3 text-center text-[11px] text-ink/40">
           入力内容がそのままプレビューに反映されます
         </p>
       </section>

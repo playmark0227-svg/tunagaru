@@ -68,11 +68,11 @@ export default function ClientShopPage() {
         <PageHeader title="仕入れ(卸)" />
         <main className="space-y-4 px-4 pb-24 pt-8">
           <div className="flex flex-col items-center gap-3">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+            <span className="flex h-16 w-16 items-center justify-center rounded-sm bg-emerald-50 text-emerald-600">
               <Icon name="check" className="h-8 w-8" />
             </span>
             <h2 className="text-lg font-bold">本部へ発注しました🎉</h2>
-            <p className="text-center text-xs leading-relaxed text-stone-500">
+            <p className="text-center text-xs leading-relaxed text-ink/55">
               注文番号: {result.orderId}
               <br />
               在庫確保のうえ、3〜5営業日でお届けします。
@@ -80,7 +80,7 @@ export default function ClientShopPage() {
           </div>
 
           <Card className="p-4">
-            <p className="text-xs font-bold text-stone-500">発注内容</p>
+            <p className="text-xs font-bold text-ink/55">発注内容</p>
             <ul className="mt-2 space-y-1.5">
               {result.items.map((item) => (
                 <li
@@ -89,17 +89,17 @@ export default function ClientShopPage() {
                 >
                   <span className="min-w-0 truncate">
                     {item.productName}
-                    <span className="ml-1 text-xs text-stone-400">
+                    <span className="ml-1 text-xs text-ink/40">
                       ×{item.quantity}
                     </span>
                   </span>
-                  <span className="shrink-0 text-stone-600">
+                  <span className="shrink-0 text-ink/70">
                     {formatYen(item.unitPrice * item.quantity)}
                   </span>
                 </li>
               ))}
             </ul>
-            <div className="mt-3 flex items-center justify-between border-t border-stone-100 pt-3">
+            <div className="mt-3 flex items-center justify-between border-t border-ink/8 pt-3">
               <span className="text-sm font-semibold">合計 (卸価格)</span>
               <span className="text-lg font-bold text-brand">
                 {formatYen(result.total)}
@@ -109,7 +109,7 @@ export default function ClientShopPage() {
 
           <Card className="flex gap-3 p-4">
             <Icon name="truck" className="h-5 w-5 shrink-0 text-brand" />
-            <p className="text-xs leading-relaxed text-stone-500">
+            <p className="text-xs leading-relaxed text-ink/55">
               発送状況はプッシュ通知でお知らせします。お支払いは月末締めの請求書払いです。
             </p>
           </Card>
@@ -117,13 +117,13 @@ export default function ClientShopPage() {
           <div className="space-y-2 pt-2">
             <button
               onClick={reset}
-              className="w-full rounded-full bg-brand py-3.5 text-sm font-bold text-white transition-colors active:bg-brand-dark"
+              className="w-full rounded-sm bg-brand py-3.5 text-sm font-bold text-white transition-colors active:bg-brand-dark"
             >
               続けて仕入れる
             </button>
             <Link
               href="/client"
-              className="block w-full rounded-full border border-stone-300 py-3.5 text-center text-sm font-bold text-stone-600"
+              className="block w-full rounded-sm border border-ink/20 py-3.5 text-center text-sm font-bold text-ink/70"
             >
               ホームへ戻る
             </Link>
@@ -140,7 +140,7 @@ export default function ClientShopPage() {
       <main className="space-y-3 px-4 pb-44 pt-4">
         <Card className="flex gap-3 border-brand/20 bg-brand-soft/60 p-4">
           <span className="text-xl">🏷️</span>
-          <p className="text-xs leading-relaxed text-stone-600">
+          <p className="text-xs leading-relaxed text-ink/70">
             クライアント様は<span className="font-bold">卸価格 (約30%オフ)</span>
             で仕入れできます。参考小売価格との差額がそのまま教室の利益になります。
           </p>
@@ -162,7 +162,7 @@ export default function ClientShopPage() {
                   <p className="mt-1 text-sm font-bold leading-snug">
                     {p.name}
                   </p>
-                  <p className="mt-0.5 text-[10px] text-stone-400">
+                  <p className="mt-0.5 text-[10px] text-ink/40">
                     在庫 {p.stock}点
                   </p>
                 </div>
@@ -170,39 +170,39 @@ export default function ClientShopPage() {
 
               <div className="mt-3 flex items-end justify-between gap-2">
                 <div>
-                  <p className="text-[10px] text-stone-400">
+                  <p className="text-[10px] text-ink/40">
                     卸価格 (税込)
                   </p>
                   <p className="text-lg font-bold text-brand">
                     {formatYen(p.wholesalePrice)}
                   </p>
-                  <p className="text-[10px] text-stone-400">
+                  <p className="text-[10px] text-ink/40">
                     参考小売価格 {formatYen(p.price)}
                   </p>
                 </div>
                 <div className="text-right">
                   <Badge tone="green">利益率 {profitRate}%</Badge>
-                  <p className="mt-1 text-[10px] text-stone-400">
+                  <p className="mt-1 text-[10px] text-ink/40">
                     1点あたり +{formatYen(profit)}
                   </p>
                 </div>
               </div>
 
               {/* 数量ステッパー */}
-              <div className="mt-3 flex items-center justify-between border-t border-stone-100 pt-3">
-                <span className="text-xs text-stone-500">発注数量</span>
+              <div className="mt-3 flex items-center justify-between border-t border-ink/8 pt-3">
+                <span className="text-xs text-ink/55">発注数量</span>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => changeQty(p.id, -1)}
                     disabled={qty === 0}
                     aria-label={`${p.name}を1点減らす`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-stone-300 text-lg font-bold text-stone-500 transition-colors active:bg-stone-100 disabled:opacity-30"
+                    className="flex h-9 w-9 items-center justify-center rounded-sm border border-ink/20 text-lg font-bold text-ink/55 transition-colors active:bg-ink/5 disabled:opacity-30"
                   >
                     −
                   </button>
                   <span
                     className={`w-8 text-center text-base font-bold ${
-                      qty > 0 ? "text-brand-dark" : "text-stone-300"
+                      qty > 0 ? "text-brand-dark" : "text-ink/25"
                     }`}
                   >
                     {qty}
@@ -210,7 +210,7 @@ export default function ClientShopPage() {
                   <button
                     onClick={() => changeQty(p.id, 1)}
                     aria-label={`${p.name}を1点増やす`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-brand bg-brand-soft text-lg font-bold text-brand transition-colors active:bg-brand active:text-white"
+                    className="flex h-9 w-9 items-center justify-center rounded-sm border border-brand bg-brand-soft text-lg font-bold text-brand transition-colors active:bg-brand active:text-white"
                   >
                     +
                   </button>
@@ -224,9 +224,9 @@ export default function ClientShopPage() {
       {/* 発注バー (BottomNavの上に固定表示) */}
       {totalQty > 0 && (
         <div className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-20 px-4 pb-2">
-          <div className="mx-auto flex max-w-md items-center gap-3 rounded-none border border-stone-200 bg-white p-3 shadow-lg">
+          <div className="mx-auto flex max-w-md items-center gap-3 rounded-none border border-ink/12 bg-white p-3 shadow-lg">
             <div className="flex-1">
-              <p className="text-[11px] text-stone-500">{totalQty}点の商品</p>
+              <p className="text-[11px] text-ink/55">{totalQty}点の商品</p>
               <p className="text-lg font-bold text-brand">
                 {formatYen(totalPrice)}
               </p>
@@ -234,7 +234,7 @@ export default function ClientShopPage() {
             <button
               onClick={submitOrder}
               disabled={phase === "sending"}
-              className="flex items-center gap-1.5 rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-60"
+              className="flex items-center gap-1.5 rounded-sm bg-brand px-6 py-3 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-60"
             >
               {phase === "sending" ? (
                 <>

@@ -22,24 +22,24 @@ export default function MyPage() {
             />
             <div className="min-w-0 flex-1">
               <p className="text-lg font-bold">{currentEndUser.name}</p>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-ink/55">
                 {currentClient.name} の生徒
               </p>
-              <p className="mt-0.5 text-[11px] text-stone-400">
+              <p className="mt-0.5 text-[11px] text-ink/40">
                 {currentEndUser.joinedAt} 登録
               </p>
             </div>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 border-t border-stone-100 pt-3">
+          <div className="mt-3 grid grid-cols-2 gap-2 border-t border-ink/8 pt-3">
             <div className="text-center">
-              <p className="text-[10px] text-stone-400">累計購入額</p>
+              <p className="text-[10px] text-ink/40">累計購入額</p>
               <p className="text-base font-bold text-brand">
                 {formatYen(currentEndUser.totalSpent)}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-[10px] text-stone-400">最終注文</p>
-              <p className="text-base font-bold text-stone-700">
+              <p className="text-[10px] text-ink/40">最終注文</p>
+              <p className="text-base font-bold text-ink/80">
                 {currentEndUser.lastOrderAt ?? "―"}
               </p>
             </div>
@@ -59,7 +59,7 @@ export default function MyPage() {
             <p className="text-sm font-bold text-brand-dark">
               ホーム画面に追加すると便利です
             </p>
-            <p className="mt-1 text-xs leading-relaxed text-stone-600">
+            <p className="mt-1 text-xs leading-relaxed text-ink/70">
               ブラウザの「共有」→「ホーム画面に追加」で、アプリのように
               ワンタップで開けます。
             </p>
@@ -73,28 +73,28 @@ export default function MyPage() {
         </section>
 
         {/* その他 */}
-        <Card className="divide-y divide-stone-100">
+        <Card className="divide-y divide-ink/8">
           <Link
             href="/user/orders"
-            className="flex items-center gap-3 px-4 py-3.5 active:bg-stone-50"
+            className="flex items-center gap-3 px-4 py-3.5 active:bg-cream"
           >
-            <Icon name="package" className="h-5 w-5 text-stone-400" />
+            <Icon name="package" className="h-5 w-5 text-ink/40" />
             <span className="flex-1 text-sm font-semibold">注文履歴</span>
-            <Icon name="chevron-right" className="h-4 w-4 text-stone-300" />
+            <Icon name="chevron-right" className="h-4 w-4 text-ink/25" />
           </Link>
           <Link
             href="/"
-            className="flex items-center gap-3 px-4 py-3.5 active:bg-stone-50"
+            className="flex items-center gap-3 px-4 py-3.5 active:bg-cream"
           >
-            <Icon name="logout" className="h-5 w-5 text-stone-400" />
-            <span className="flex-1 text-sm font-semibold text-stone-600">
+            <Icon name="logout" className="h-5 w-5 text-ink/40" />
+            <span className="flex-1 text-sm font-semibold text-ink/70">
               エントランスへ戻る
             </span>
-            <Icon name="chevron-right" className="h-4 w-4 text-stone-300" />
+            <Icon name="chevron-right" className="h-4 w-4 text-ink/25" />
           </Link>
         </Card>
 
-        <p className="pt-2 text-center text-[10px] text-stone-400">
+        <p className="pt-2 text-center text-[10px] text-ink/40">
           つながるクラフト プロトタイプ版
         </p>
       </main>

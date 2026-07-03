@@ -33,19 +33,19 @@ function TaskRow({ task }: { task: Task }) {
         <div className="min-w-0 flex-1">
           <p
             className={`text-sm font-semibold leading-snug ${
-              task.status === "done" ? "text-stone-400 line-through" : ""
+              task.status === "done" ? "text-ink/40 line-through" : ""
             }`}
           >
             {task.title}
           </p>
-          <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-stone-400">
+          <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-ink/40">
             <span className="flex items-center gap-1">
               <Icon name="calendar" className="h-3.5 w-3.5" />
               {task.dueDate} まで
             </span>
             {task.source && task.source !== "manual" && (
               <span
-                className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
+                className={`rounded-sm px-1.5 py-0.5 text-[10px] font-bold ${
                   task.source === "ai"
                     ? "bg-violet-50 text-violet-600"
                     : task.source === "chat"
@@ -59,7 +59,7 @@ function TaskRow({ task }: { task: Task }) {
             )}
           </p>
           {task.note && (
-            <p className="mt-1 text-[11px] leading-relaxed text-stone-500">
+            <p className="mt-1 text-[11px] leading-relaxed text-ink/55">
               {task.note}
             </p>
           )}
@@ -82,7 +82,7 @@ export default function WorkerTasksPage() {
     <>
       <PageHeader title="担当タスク" />
       <main className="space-y-4 px-4 pb-24 pt-4">
-        <p className="text-xs leading-relaxed text-stone-500">
+        <p className="text-xs leading-relaxed text-ink/55">
           担当中の案件ごとにタスクを整理しています。チャットの依頼は
           <span className="font-bold text-brand">📋タスク化ボタン</span>
           でそのままここに追加されます。
@@ -111,10 +111,10 @@ export default function WorkerTasksPage() {
               {/* 案件ヘッダー */}
               <Link
                 href={`/worker/projects/${pid}`}
-                className="flex items-center gap-3 border-b border-stone-100 bg-stone-50/60 px-4 py-3 active:bg-stone-100"
+                className="flex items-center gap-3 border-b border-ink/8 bg-cream/70 px-4 py-3 active:bg-ink/5"
               >
                 <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-xl ${project.gradient}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-gradient-to-br text-xl ${project.gradient}`}
                 >
                   {project.emoji}
                 </span>
@@ -122,17 +122,17 @@ export default function WorkerTasksPage() {
                   <p className="truncate text-sm font-bold">{project.title}</p>
                   <div className="mt-0.5 flex items-center gap-1.5">
                     <Badge tone="brand">{project.category}</Badge>
-                    <span className="text-[10px] text-stone-400">
+                    <span className="text-[10px] text-ink/40">
                       {doneCount}/{list.length} 完了
                     </span>
                   </div>
                 </div>
                 <Icon
                   name="chevron-right"
-                  className="h-4 w-4 shrink-0 text-stone-300"
+                  className="h-4 w-4 shrink-0 text-ink/25"
                 />
               </Link>
-              <ul className="divide-y divide-stone-100">
+              <ul className="divide-y divide-ink/8">
                 {list.map((t) => (
                   <TaskRow key={t.id} task={t} />
                 ))}
@@ -141,10 +141,10 @@ export default function WorkerTasksPage() {
           );
         })}
 
-        <Card className="flex gap-3 border-violet-200 bg-violet-50/60 p-4">
+        <Card className="sticker-glow flex gap-3 p-4">
           <span className="text-xl">🤖</span>
-          <p className="text-xs leading-relaxed text-stone-600">
-            <span className="font-bold text-violet-700">AIアシスタント (Phase 3)</span>
+          <p className="text-xs leading-relaxed text-ink/70">
+            <span className="font-bold text-aqua">AIアシスタント (Phase 3)</span>
             : チャットの会話からタスク候補を自動抽出し、毎朝「未完了事項レポート」をお届けする予定です。
           </p>
         </Card>

@@ -80,11 +80,11 @@ export default function CartPage() {
         <PageHeader title="ご注文完了" />
         <main className="space-y-4 px-4 pb-24 pt-10">
           <div className="flex flex-col items-center gap-3">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+            <span className="flex h-16 w-16 items-center justify-center rounded-sm bg-emerald-50 text-emerald-600">
               <Icon name="check" className="h-8 w-8" />
             </span>
             <h2 className="text-lg font-bold">ご注文ありがとうございます🎉</h2>
-            <p className="text-center text-xs leading-relaxed text-stone-500">
+            <p className="text-center text-xs leading-relaxed text-ink/55">
               注文番号: {orderId}
               <br />
               {currentClient.ownerName}先生の教室を通じて本部から発送されます。
@@ -92,11 +92,11 @@ export default function CartPage() {
           </div>
 
           <Card className="p-4">
-            <p className="text-xs font-bold text-stone-500">お支払い金額</p>
+            <p className="text-xs font-bold text-ink/55">お支払い金額</p>
             <p className="mt-1 text-2xl font-bold text-brand">
               {formatYen(total)}
             </p>
-            <p className="mt-1 text-[10px] text-stone-400">
+            <p className="mt-1 text-[10px] text-ink/40">
               クレジットカード決済 (Stripe) ※プロトタイプのため実際の請求は発生しません
             </p>
           </Card>
@@ -104,13 +104,13 @@ export default function CartPage() {
           <div className="space-y-2 pt-2">
             <Link
               href="/user/orders"
-              className="block w-full rounded-full bg-brand py-3.5 text-center text-sm font-bold text-white active:bg-brand-dark"
+              className="block w-full rounded-sm bg-brand py-3.5 text-center text-sm font-bold text-white active:bg-brand-dark"
             >
               注文状況を見る
             </Link>
             <Link
               href="/user/shop"
-              className="block w-full rounded-full border border-stone-300 py-3.5 text-center text-sm font-bold text-stone-600"
+              className="block w-full rounded-sm border border-ink/20 py-3.5 text-center text-sm font-bold text-ink/70"
             >
               買い物を続ける
             </Link>
@@ -127,15 +127,15 @@ export default function CartPage() {
         <PageHeader title="カート" backHref="/user/shop" />
         <main className="px-4 pb-24 pt-4">
           <div className="flex flex-col items-center gap-3 py-16 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-400">
+            <span className="flex h-14 w-14 items-center justify-center rounded-sm bg-ink/5 text-ink/40">
               <Icon name="cart" className="h-7 w-7" />
             </span>
-            <p className="text-sm font-semibold text-stone-600">
+            <p className="text-sm font-semibold text-ink/70">
               カートは空です
             </p>
             <Link
               href="/user/shop"
-              className="mt-2 rounded-full bg-brand px-6 py-2.5 text-sm font-bold text-white"
+              className="mt-2 rounded-sm bg-brand px-6 py-2.5 text-sm font-bold text-white"
             >
               商品を探す
             </Link>
@@ -169,7 +169,7 @@ export default function CartPage() {
                   <button
                     onClick={() => changeQty(l.productId, -1)}
                     aria-label="1点減らす"
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300 text-sm font-bold text-stone-500 active:bg-stone-100"
+                    className="flex h-7 w-7 items-center justify-center rounded-sm border border-ink/20 text-sm font-bold text-ink/55 active:bg-ink/5"
                   >
                     −
                   </button>
@@ -179,14 +179,14 @@ export default function CartPage() {
                   <button
                     onClick={() => changeQty(l.productId, 1)}
                     aria-label="1点増やす"
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-brand bg-brand-soft text-sm font-bold text-brand active:bg-brand active:text-white"
+                    className="flex h-7 w-7 items-center justify-center rounded-sm border border-brand bg-brand-soft text-sm font-bold text-brand active:bg-brand active:text-white"
                   >
                     +
                   </button>
                 </div>
                 <button
                   onClick={() => removeLine(l.productId)}
-                  className="text-xs text-stone-400 underline"
+                  className="text-xs text-ink/40 underline"
                 >
                   削除
                 </button>
@@ -197,7 +197,7 @@ export default function CartPage() {
 
         <Card className="flex gap-3 p-4">
           <Icon name="truck" className="h-5 w-5 shrink-0 text-brand" />
-          <p className="text-xs leading-relaxed text-stone-500">
+          <p className="text-xs leading-relaxed text-ink/55">
             ご注文は{currentClient.ownerName}先生の教室を通じて本部から発送されます。
             送料は税込価格に含まれています。
           </p>
@@ -208,13 +208,13 @@ export default function CartPage() {
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-ink/12 bg-white p-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
         <div className="mx-auto flex max-w-md items-center gap-3">
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500">合計 (税込)</p>
+            <p className="text-[11px] text-ink/55">合計 (税込)</p>
             <p className="text-lg font-bold text-brand">{formatYen(total)}</p>
           </div>
           <button
             onClick={checkout}
             disabled={phase === "paying"}
-            className="flex items-center gap-1.5 rounded-full bg-brand px-7 py-3 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-60"
+            className="flex items-center gap-1.5 rounded-sm bg-brand px-7 py-3 text-sm font-bold text-white transition-colors active:bg-brand-dark disabled:opacity-60"
           >
             {phase === "paying" ? (
               <>

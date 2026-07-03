@@ -33,7 +33,7 @@ export default async function UserChatPage({
         <div className="mx-auto flex h-12 max-w-md items-center gap-2 px-4">
           <Link
             href="/user/messages"
-            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-100"
+            className="-ml-1 flex h-8 w-8 items-center justify-center rounded-sm text-ink/55 hover:bg-ink/5"
             aria-label="メッセージ一覧へ戻る"
           >
             <Icon name="arrow-left" className="h-5 w-5" />
@@ -42,7 +42,7 @@ export default async function UserChatPage({
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-bold">{thread.title}</p>
             {thread.kind === "group" && thread.memberCount && (
-              <p className="text-[10px] text-stone-400">
+              <p className="text-[10px] text-ink/40">
                 メンバー {thread.memberCount}人
               </p>
             )}

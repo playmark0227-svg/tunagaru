@@ -68,11 +68,11 @@ export default function AdminPaymentsPage() {
 
         {/* Stripe手数料の説明 */}
         <Card className="flex items-start gap-3 p-4">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-aqua-soft text-aqua">
             <Icon name="credit-card" className="h-5 w-5" />
           </span>
-          <p className="text-xs leading-relaxed text-stone-500">
-            <span className="font-bold text-stone-700">
+          <p className="text-xs leading-relaxed text-ink/55">
+            <span className="font-bold text-ink/80">
               決済手数料について
             </span>
             <br />
@@ -98,7 +98,7 @@ export default function AdminPaymentsPage() {
                           <p className="text-sm font-bold leading-snug">
                             {p.projectTitle}
                           </p>
-                          <p className="mt-0.5 text-xs text-stone-400">
+                          <p className="mt-0.5 text-xs text-ink/40">
                             {p.clientName} 様
                           </p>
                         </div>
@@ -106,26 +106,26 @@ export default function AdminPaymentsPage() {
                           {PAYOUT_STATUS_LABELS[p.status]}
                         </Badge>
                       </div>
-                      <div className="mt-3 space-y-1 rounded-xl bg-stone-50 px-3 py-2.5 text-xs">
+                      <div className="mt-3 space-y-1 rounded-sm bg-cream px-3 py-2.5 text-xs">
                         <div className="flex items-center justify-between">
-                          <span className="text-stone-500">報酬額</span>
-                          <span className="font-semibold text-stone-700">
+                          <span className="text-ink/55">報酬額</span>
+                          <span className="font-semibold text-ink/80">
                             {formatYen(p.amount)}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-stone-500">
+                          <span className="text-ink/55">
                             Stripe手数料 (3.6%)
                           </span>
                           <span className="font-semibold text-rose-500">
                             −{formatYen(fee)}
                           </span>
                         </div>
-                        <div className="flex items-center justify-between border-t border-stone-200/70 pt-1.5">
-                          <span className="font-bold text-stone-700">
+                        <div className="flex items-center justify-between border-t border-ink/10 pt-1.5">
+                          <span className="font-bold text-ink/80">
                             振込額
                           </span>
-                          <span className="text-sm font-bold text-indigo-600">
+                          <span className="text-sm font-bold text-aqua">
                             {formatYen(net)}
                           </span>
                         </div>

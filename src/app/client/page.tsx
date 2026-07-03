@@ -66,7 +66,7 @@ export default function ClientHomePage() {
     <main className="pb-24">
       {/* あいさつ */}
       <header className="px-5 pb-2 pt-8">
-        <p className="text-xs font-medium text-stone-400">
+        <p className="text-xs font-medium text-ink/40">
           {currentClient.name}|{currentClient.category}
         </p>
         <h1 className="mt-1 text-xl font-bold tracking-tight">
@@ -81,13 +81,13 @@ export default function ClientHomePage() {
             <Link
               key={action.href}
               href={action.href}
-              className="flex flex-col items-center gap-1.5 rounded-none border border-stone-200/70 bg-white p-3 shadow-sm transition-colors active:bg-stone-50"
+              className="flex flex-col items-center gap-1.5 rounded-none border border-ink/10 bg-white p-3 shadow-sm transition-colors active:bg-cream"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-none bg-brand-soft text-brand">
                 <Icon name={action.icon} className="h-5 w-5" />
               </span>
               <span className="text-xs font-bold">{action.label}</span>
-              <span className="text-[10px] text-stone-400">{action.sub}</span>
+              <span className="text-[10px] text-ink/40">{action.sub}</span>
             </Link>
           ))}
         </div>
@@ -103,10 +103,10 @@ export default function ClientHomePage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-bold leading-snug">{a.title}</p>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-stone-500">
+                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
                     {a.body}
                   </p>
-                  <p className="mt-1.5 text-[10px] text-stone-400">
+                  <p className="mt-1.5 text-[10px] text-ink/40">
                     {shortDate(a.sentAt)} 配信
                   </p>
                 </div>
@@ -121,12 +121,12 @@ export default function ClientHomePage() {
             title="期限が近いタスク"
             action={{ href: "/client/tasks", label: "すべて見る" }}
           />
-          <Card className="divide-y divide-stone-100">
+          <Card className="divide-y divide-ink/8">
             {upcomingTasks.map((t) => (
               <Link
                 key={t.id}
                 href="/client/tasks"
-                className="flex items-center gap-3 px-4 py-3 transition-colors active:bg-stone-50"
+                className="flex items-center gap-3 px-4 py-3 transition-colors active:bg-cream"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
@@ -140,11 +140,11 @@ export default function ClientHomePage() {
                   <p className="text-xs font-bold text-brand-dark">
                     {shortDate(t.dueDate)}
                   </p>
-                  <p className="text-[10px] text-stone-400">期限</p>
+                  <p className="text-[10px] text-ink/40">期限</p>
                 </div>
                 <Icon
                   name="chevron-right"
-                  className="h-4 w-4 shrink-0 text-stone-300"
+                  className="h-4 w-4 shrink-0 text-ink/25"
                 />
               </Link>
             ))}
@@ -163,20 +163,20 @@ export default function ClientHomePage() {
                 <Card key={app.id}>
                   <Link
                     href={`/client/projects/${project.id}`}
-                    className="block p-4 transition-colors active:bg-stone-50"
+                    className="block p-4 transition-colors active:bg-cream"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <Badge tone={APP_TONES[app.status]}>
                         {APPLICATION_STATUS_LABELS[app.status]}
                       </Badge>
-                      <span className="text-[10px] text-stone-400">
+                      <span className="text-[10px] text-ink/40">
                         {shortDate(app.appliedAt)} 応募
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-bold leading-snug">
                       {project.title}
                     </p>
-                    <p className="mt-1 text-xs text-stone-500">
+                    <p className="mt-1 text-xs text-ink/55">
                       報酬{" "}
                       <span className="font-bold text-brand">
                         {formatYen(project.budget)}

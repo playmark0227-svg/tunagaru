@@ -58,18 +58,18 @@ function TaskCard({ task }: { task: Task }) {
       </div>
       <p className="mt-2 text-sm font-bold leading-snug">{task.title}</p>
       {task.note && (
-        <p className="mt-1 text-xs leading-relaxed text-stone-500">
+        <p className="mt-1 text-xs leading-relaxed text-ink/55">
           {task.note}
         </p>
       )}
-      <div className="mt-2 flex items-center gap-2 text-[10px] text-stone-400">
+      <div className="mt-2 flex items-center gap-2 text-[10px] text-ink/40">
         <span>担当: {task.assignee}</span>
         {project && <span className="truncate">案件: {project.title}</span>}
       </div>
       {task.kind === "Zoom予約" && task.status !== "done" && (
         <Link
           href="/client/booking"
-          className="mt-3 flex items-center justify-center gap-1.5 rounded-xl bg-brand-soft py-2.5 text-xs font-bold text-brand-dark transition-colors active:bg-brand-soft/70"
+          className="mt-3 flex items-center justify-center gap-1.5 rounded-sm bg-brand-soft py-2.5 text-xs font-bold text-brand-dark transition-colors active:bg-brand-soft/70"
         >
           <Icon name="video" className="h-4 w-4" />
           空き枠からZoomを予約する
@@ -93,12 +93,12 @@ export default function ClientTasksPage() {
             <Card key={status} className="p-2 text-center">
               <p
                 className={`text-lg font-bold ${
-                  status === "done" ? "text-emerald-600" : "text-stone-700"
+                  status === "done" ? "text-emerald-600" : "text-ink/80"
                 }`}
               >
                 {myTasks.filter((t) => t.status === status).length}
               </p>
-              <p className="text-[10px] text-stone-500">
+              <p className="text-[10px] text-ink/55">
                 {TASK_STATUS_LABELS[status]}
               </p>
             </Card>
@@ -134,17 +134,17 @@ export default function ClientTasksPage() {
                   {project ? (
                     <div className="mb-2 flex items-center gap-2">
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br text-base ${project.gradient}`}
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-gradient-to-br text-base ${project.gradient}`}
                       >
                         {project.emoji}
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-bold text-stone-700">
+                        <p className="truncate text-sm font-bold text-ink/80">
                           {project.title}
                         </p>
                       </div>
                       <Badge tone="brand">{project.category}</Badge>
-                      <span className="shrink-0 text-[10px] text-stone-400">
+                      <span className="shrink-0 text-[10px] text-ink/40">
                         {doneCount}/{items.length}
                       </span>
                     </div>
@@ -162,9 +162,9 @@ export default function ClientTasksPage() {
           })()
         )}
 
-        <Card className="flex gap-3 border-sky-200 bg-sky-50/60 p-4">
+        <Card className="sticker-glow flex gap-3 p-4">
           <span className="text-xl">📋</span>
-          <p className="text-xs leading-relaxed text-stone-600">
+          <p className="text-xs leading-relaxed text-ink/70">
             チャットで届いた依頼は、メッセージ横の
             <span className="font-bold text-brand">タスク化ボタン</span>
             でそのままここに追加できます。転記忘れがなくなります。
