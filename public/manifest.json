@@ -1,12 +1,12 @@
 {
-  "name": "つながるクラフト",
+  "name": "つながるCraft",
   "short_name": "つながる",
   "description": "顧客管理・メッセージ・案件管理・物販をひとつに集約したプラットフォーム",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
   "background_color": "#faf7f2",
-  "theme_color": "#d9634a",
+  "theme_color": "#282f5a",
   "lang": "ja",
   "icons": [
     {

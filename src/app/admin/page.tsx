@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   adminStats,
+  aiMorningDigest,
   bookingSlots,
   hqThreads,
   orders,
@@ -111,6 +112,51 @@ export default function AdminDashboardPage() {
             一斉通知を送る
           </Link>
         </div>
+
+        {/* AIアシスタント: 朝のダイジェスト (Phase 3 プレビュー) */}
+        <section>
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="flex items-center gap-1.5 text-sm font-bold text-stone-700">
+              <span>🤖</span> AIアシスタント — 朝のダイジェスト
+            </h2>
+            <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-bold text-violet-700">
+              Phase 3 プレビュー
+            </span>
+          </div>
+          <Card className="divide-y divide-stone-100 border-violet-200">
+            {aiMorningDigest.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href ?? "/admin"}
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-stone-50"
+              >
+                <span
+                  className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                    item.kind === "期限超過"
+                      ? "bg-rose-50 text-rose-600"
+                      : item.kind === "返信待ち"
+                        ? "bg-amber-50 text-amber-600"
+                        : item.kind === "タスク候補"
+                          ? "bg-violet-50 text-violet-600"
+                          : "bg-sky-50 text-sky-600"
+                  }`}
+                >
+                  {item.kind}
+                </span>
+                <span className="min-w-0 flex-1 truncate text-sm">
+                  {item.text}
+                </span>
+                <Icon
+                  name="chevron-right"
+                  className="h-4 w-4 shrink-0 text-stone-300"
+                />
+              </Link>
+            ))}
+            <p className="px-4 py-2.5 text-[11px] leading-relaxed text-stone-400">
+              全チャット・タスクをAIが毎朝チェックし、見落としをレポートします (デモ表示)
+            </p>
+          </Card>
+        </section>
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* 対応が必要なこと */}

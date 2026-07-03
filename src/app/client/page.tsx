@@ -39,6 +39,7 @@ const KIND_TONES: Record<Task["kind"], BadgeTone> = {
   Zoom予約: "blue",
   素材提出: "violet",
   確認: "amber",
+  発送: "green",
   その他: "gray",
 };
 

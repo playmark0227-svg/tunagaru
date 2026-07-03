@@ -37,6 +37,7 @@ const KIND_TONES: Record<Task["kind"], BadgeTone> = {
   Zoom予約: "blue",
   素材提出: "violet",
   確認: "amber",
+  発送: "green",
   その他: "gray",
 };
 
@@ -111,23 +112,64 @@ export default function ClientTasksPage() {
             description="案件が始まると、ここで進捗を共有できます"
           />
         ) : (
-          STATUS_ORDER.map((status) => {
-            const items = myTasks.filter((t) => t.status === status);
-            if (items.length === 0) return null;
-            return (
-              <section key={status}>
-                <SectionTitle
-                  title={`${TASK_STATUS_LABELS[status]} (${items.length})`}
-                />
-                <div className="space-y-2">
-                  {items.map((t) => (
-                    <TaskCard key={t.id} task={t} />
-                  ))}
-                </div>
-              </section>
+          /* 案件ごとにタスクを整理 (種別はカテゴリバッジで明示) */
+          (() => {
+            const projectIds = Array.from(
+              new Set(myTasks.map((t) => t.projectId ?? "none")),
             );
-          })
+            return projectIds.map((pid) => {
+              const project = projects.find((p) => p.id === pid);
+              const items = myTasks
+                .filter((t) => (t.projectId ?? "none") === pid)
+                .sort(
+                  (a, b) =>
+                    STATUS_ORDER.indexOf(a.status) -
+                    STATUS_ORDER.indexOf(b.status),
+                );
+              const doneCount = items.filter(
+                (t) => t.status === "done",
+              ).length;
+              return (
+                <section key={pid}>
+                  {project ? (
+                    <div className="mb-2 flex items-center gap-2">
+                      <span
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br text-base ${project.gradient}`}
+                      >
+                        {project.emoji}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-bold text-stone-700">
+                          {project.title}
+                        </p>
+                      </div>
+                      <Badge tone="brand">{project.category}</Badge>
+                      <span className="shrink-0 text-[10px] text-stone-400">
+                        {doneCount}/{items.length}
+                      </span>
+                    </div>
+                  ) : (
+                    <SectionTitle title={`その他 (${items.length})`} />
+                  )}
+                  <div className="space-y-2">
+                    {items.map((t) => (
+                      <TaskCard key={t.id} task={t} />
+                    ))}
+                  </div>
+                </section>
+              );
+            });
+          })()
         )}
+
+        <Card className="flex gap-3 border-sky-200 bg-sky-50/60 p-4">
+          <span className="text-xl">📋</span>
+          <p className="text-xs leading-relaxed text-stone-600">
+            チャットで届いた依頼は、メッセージ横の
+            <span className="font-bold text-brand">タスク化ボタン</span>
+            でそのままここに追加できます。転記忘れがなくなります。
+          </p>
+        </Card>
       </main>
     </>
   );

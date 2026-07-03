@@ -7,6 +7,9 @@ import { Icon, type IconName } from "@/components/icons";
  * カスタムクレームのロールに応じて自動で各ホームへ振り分ける。
  */
 
+// 静的エクスポート + サブパス配信のため <img> には basePath を手動付与
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const roles: {
   href: string;
   icon: IconName;
@@ -20,23 +23,31 @@ const roles: {
     icon: "chart",
     title: "マスター管理者",
     who: "本部(繋がるクラフト)",
-    description: "全クライアント管理・案件発行・一斉通知・売上管理",
-    accent: "bg-indigo-500",
+    description: "全クライアント・作業者を俯瞰管理/案件発行/一斉通知/売上管理",
+    accent: "bg-brand",
+  },
+  {
+    href: "/worker",
+    icon: "sparkles",
+    title: "作業者(クリエイター)",
+    who: "スタッフ・映像/Web/デザインの作り手",
+    description: "案件フィードで新規案件を発見・応募/担当タスクの確認",
+    accent: "bg-violet-500",
   },
   {
     href: "/client",
     icon: "store",
-    title: "管理者(クライアント)",
+    title: "クライアント",
     who: "インストラクター・教室運営者",
-    description: "生徒への発信・案件応募・本部への相談・商品仕入れ",
-    accent: "bg-brand",
+    description: "本部/作業者とのチャット/案件の進捗確認/物販の注文",
+    accent: "bg-amber-500",
   },
   {
     href: "/user",
     icon: "user",
     title: "エンドユーザー",
     who: "生徒・一般のお客様",
-    description: "先生の情報チェック・商品の購入・お問い合わせ",
+    description: "先生の情報チェック/商品の購入/お問い合わせ",
     accent: "bg-emerald-500",
   },
 ];
@@ -45,25 +56,17 @@ export default function EntrancePage() {
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col px-6 py-10">
       {/* ロゴ */}
-      <div className="flex flex-col items-center gap-3 pt-6">
-        <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-brand shadow-lg shadow-brand/30">
-          <svg viewBox="0 0 512 512" className="h-9 w-9">
-            <g
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="40"
-              strokeLinecap="round"
-            >
-              <circle cx="196" cy="256" r="110" />
-              <circle cx="316" cy="256" r="110" />
-            </g>
-          </svg>
-        </div>
-        <h1 className="text-2xl font-bold tracking-tight">つながるクラフト</h1>
+      <div className="flex flex-col items-center gap-4 pt-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${basePath}/logo.png`}
+          alt="つながるCraft"
+          className="h-14 w-auto"
+        />
         <p className="text-center text-sm leading-relaxed text-stone-500">
           顧客管理・メッセージ・案件・物販をひとつに。
           <br />
-          手しごとの教室とお客様をつなぐプラットフォーム
+          あなたの<span className="font-bold text-brand">デジタル系 総合相談窓口</span>
         </p>
       </div>
 

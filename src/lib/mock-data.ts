@@ -4,12 +4,14 @@
  * 画面側は型 (src/lib/types.ts) にのみ依存しているため、差し替えは容易。
  */
 import type {
+  AiDigestItem,
   Announcement,
   Application,
   BookingSlot,
   ChatMessage,
   ChatThread,
   Client,
+  EcNotification,
   EndUser,
   NewsPost,
   Order,
@@ -17,6 +19,7 @@ import type {
   Product,
   Project,
   Task,
+  Worker,
 } from "./types";
 
 /* ------------------------------------------------------------------ */
@@ -166,6 +169,9 @@ export const projects: Project[] = [
       "教室・サロンの魅力を60秒で伝える紹介ムービーを特別価格で制作します。撮影素材(スマホ動画・写真)をご提供いただくだけでOK。InstagramリールとHP埋め込み用の2サイズを納品します。先着5教室限定。",
     applicantIds: ["c2", "c4"],
     createdAt: "2026-06-25",
+    emoji: "🎬",
+    gradient: "from-violet-100 to-fuchsia-100",
+    likes: 24,
   },
   {
     id: "p2",
@@ -178,6 +184,9 @@ export const projects: Project[] = [
       "スマホ最適化・予約導線の改善・SEO対策を含むフルリニューアル。現行サイトの内容を活かしつつ、体験レッスンの申込率アップを狙った構成に刷新します。月2教室まで。",
     applicantIds: ["c1"],
     createdAt: "2026-06-20",
+    emoji: "🖥️",
+    gradient: "from-sky-100 to-indigo-100",
+    likes: 18,
   },
   {
     id: "p3",
@@ -191,6 +200,9 @@ export const projects: Project[] = [
     applicantIds: ["c1", "c2", "c5"],
     assignedClientId: "c1",
     createdAt: "2026-06-10",
+    emoji: "🍂",
+    gradient: "from-amber-100 to-orange-100",
+    likes: 31,
   },
   {
     id: "p4",
@@ -203,6 +215,9 @@ export const projects: Project[] = [
       "月4本のリール企画・編集を3ヶ月間サポート。教室の日常や作品紹介を素材に、フォロワー増加と体験申込につなげます。",
     applicantIds: [],
     createdAt: "2026-07-01",
+    emoji: "📱",
+    gradient: "from-pink-100 to-rose-100",
+    likes: 12,
   },
   {
     id: "p5",
@@ -216,6 +231,9 @@ export const projects: Project[] = [
     applicantIds: ["c5"],
     assignedClientId: "c5",
     createdAt: "2026-04-01",
+    emoji: "🛒",
+    gradient: "from-emerald-100 to-teal-100",
+    likes: 9,
   },
   {
     id: "p6",
@@ -229,6 +247,157 @@ export const projects: Project[] = [
     applicantIds: ["c4"],
     assignedClientId: "c4",
     createdAt: "2026-02-15",
+    emoji: "💌",
+    gradient: "from-stone-100 to-amber-50",
+    likes: 7,
+  },
+  /* --- 作業者(クリエイター)向け募集 — 案件フィードに表示 --- */
+  {
+    id: "p7",
+    title: "【モニター募集】教室紹介ムービーの編集スタッフ",
+    category: "動画制作",
+    status: "open",
+    budget: 30000,
+    deadline: "2026-07-12",
+    description:
+      "教室紹介ムービー(60秒×2本)の編集を担当いただけるクリエイターを募集します。素材と構成案は本部から支給。CapCut / Premiere いずれでもOK。初回はモニター価格ですが、継続案件につながります🎬",
+    applicantIds: [],
+    applicantWorkerIds: ["w2"],
+    createdAt: "2026-07-02",
+    emoji: "🎬",
+    gradient: "from-violet-100 to-purple-100",
+    likes: 42,
+    forWorkers: true,
+  },
+  {
+    id: "p8",
+    title: "秋キャンペーンLPのコーディング担当募集",
+    category: "HP制作",
+    status: "open",
+    budget: 45000,
+    deadline: "2026-07-10",
+    description:
+      "デザインカンプ(Figma)からのコーディング1本。レスポンシブ対応必須、アニメーションは軽めです。納期は着手から10日間。Next.js経験者歓迎🖥️",
+    applicantIds: [],
+    applicantWorkerIds: ["w1", "w3"],
+    createdAt: "2026-06-30",
+    emoji: "⌨️",
+    gradient: "from-sky-100 to-cyan-100",
+    likes: 27,
+    forWorkers: true,
+  },
+  {
+    id: "p9",
+    title: "教室向けパンフレットのデザイナー募集",
+    category: "デザイン",
+    status: "open",
+    budget: 38000,
+    deadline: "2026-07-25",
+    description:
+      "A4三つ折りパンフレット(表裏)のデザイン。教室の世界観に合わせた温かみのあるトーンが得意な方。写真素材・原稿は支給します📐",
+    applicantIds: [],
+    applicantWorkerIds: [],
+    createdAt: "2026-07-03",
+    emoji: "📐",
+    gradient: "from-rose-100 to-orange-100",
+    likes: 15,
+    forWorkers: true,
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* 作業者 (スタッフ/クリエイター)                                        */
+/* ------------------------------------------------------------------ */
+export const workers: Worker[] = [
+  {
+    id: "w1",
+    name: "田村 健太",
+    specialties: ["動画編集", "モーショングラフィックス"],
+    completedCount: 12,
+    joinedAt: "2025-04-01",
+    avatarColor: "bg-violet-500",
+  },
+  {
+    id: "w2",
+    name: "森本 さやか",
+    specialties: ["Webデザイン", "コーディング"],
+    completedCount: 8,
+    joinedAt: "2025-08-15",
+    avatarColor: "bg-cyan-500",
+  },
+  {
+    id: "w3",
+    name: "青木 蓮",
+    specialties: ["グラフィックデザイン", "DTP"],
+    completedCount: 21,
+    joinedAt: "2024-11-20",
+    avatarColor: "bg-teal-500",
+  },
+];
+
+/** プロトタイプで「ログイン中」とみなす作業者 */
+export const currentWorker = workers[0]; // 田村健太
+
+/** 作業者 (田村) の担当タスク — 案件ごとに整理して表示する */
+export const workerTasks: Task[] = [
+  {
+    id: "wt1",
+    title: "Luce様 紹介ムービーの粗編集 (60秒版)",
+    kind: "その他",
+    status: "in_progress",
+    assignee: "田村 健太",
+    dueDate: "2026-07-07",
+    projectId: "p1",
+    workerId: "w1",
+    source: "manual",
+    note: "素材は共有ドライブの「luce_raw」フォルダ。テロップは仮でOK。",
+  },
+  {
+    id: "wt2",
+    title: "BGM候補を3曲ピックアップして本部へ共有",
+    kind: "確認",
+    status: "todo",
+    assignee: "田村 健太",
+    dueDate: "2026-07-05",
+    projectId: "p1",
+    workerId: "w1",
+    source: "chat",
+    note: "チャットの依頼からタスク化されました。",
+  },
+  {
+    id: "wt3",
+    title: "リールサイズ (9:16) への書き出し設定確認",
+    kind: "確認",
+    status: "todo",
+    assignee: "田村 健太",
+    dueDate: "2026-07-09",
+    projectId: "p1",
+    workerId: "w1",
+    source: "ai",
+    note: "AIが会話から抽出したタスク候補です (Phase 3 デモ)。",
+  },
+  {
+    id: "wt4",
+    title: "LPヒーロー動画の圧縮・書き出し",
+    kind: "素材提出",
+    status: "review",
+    assignee: "田村 健太",
+    dueDate: "2026-07-04",
+    projectId: "p3",
+    workerId: "w1",
+    source: "manual",
+    note: "本部にて確認中です。",
+  },
+  {
+    id: "wt5",
+    title: "修正版ムービーの最終納品",
+    kind: "素材提出",
+    status: "done",
+    assignee: "田村 健太",
+    dueDate: "2026-06-28",
+    projectId: "p3",
+    workerId: "w1",
+    source: "manual",
   },
 ];
 
@@ -521,12 +690,26 @@ export const hqThreads: ChatThread[] = [
   {
     id: "th6",
     kind: "group",
-    title: "秋キャンペーン参加教室グループ",
+    title: "秋の体験レッスンLP 進行グループ",
     lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
     lastMessageAt: "昨日",
     unreadCount: 0,
-    avatarColor: "bg-brand",
+    avatarColor: "bg-amber-400",
+    memberCount: 5,
+    category: "キャンペーン",
+    projectId: "p3",
+  },
+  {
+    id: "th10",
+    kind: "group",
+    title: "教室紹介ムービー 制作グループ",
+    lastMessage: "田村: BGM候補、明日までに共有します!",
+    lastMessageAt: "11:02",
+    unreadCount: 1,
+    avatarColor: "bg-violet-400",
     memberCount: 4,
+    category: "動画制作",
+    projectId: "p1",
   },
   {
     id: "th7",
@@ -571,12 +754,14 @@ export const clientThreads: ChatThread[] = [
   {
     id: "th6",
     kind: "group",
-    title: "秋キャンペーン参加教室グループ",
+    title: "秋の体験レッスンLP 進行グループ",
     lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
     lastMessageAt: "昨日",
     unreadCount: 0,
-    avatarColor: "bg-brand",
-    memberCount: 4,
+    avatarColor: "bg-amber-400",
+    memberCount: 5,
+    category: "キャンペーン",
+    projectId: "p3",
   },
   {
     id: "th8",
@@ -587,6 +772,43 @@ export const clientThreads: ChatThread[] = [
     unreadCount: 0,
     avatarColor: "bg-rose-400",
     memberCount: 33,
+  },
+];
+
+/** 作業者(田村)から見たスレッド一覧 */
+export const workerThreads: ChatThread[] = [
+  {
+    id: "wth1",
+    kind: "hq_client",
+    title: "繋がるクラフト 本部",
+    lastMessage: "粗編集の進捗いかがでしょうか?急ぎではないです🙏",
+    lastMessageAt: "10:48",
+    unreadCount: 1,
+    avatarColor: "bg-brand",
+  },
+  {
+    id: "th10",
+    kind: "group",
+    title: "教室紹介ムービー 制作グループ",
+    lastMessage: "あなた: BGM候補、明日までに共有します!",
+    lastMessageAt: "11:02",
+    unreadCount: 0,
+    avatarColor: "bg-violet-400",
+    memberCount: 4,
+    category: "動画制作",
+    projectId: "p1",
+  },
+  {
+    id: "th6",
+    kind: "group",
+    title: "秋の体験レッスンLP 進行グループ",
+    lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
+    lastMessageAt: "昨日",
+    unreadCount: 0,
+    avatarColor: "bg-amber-400",
+    memberCount: 5,
+    category: "キャンペーン",
+    projectId: "p3",
   },
 ];
 
@@ -731,6 +953,70 @@ export const messagesByThread: Record<string, ChatMessage[]> = {
       dateLabel: "今日",
     },
   ],
+  // 本部 ⇄ 作業者 田村 (isMe は田村視点)
+  wth1: [
+    {
+      id: "m13",
+      threadId: "wth1",
+      senderName: "繋がるクラフト 本部",
+      isMe: false,
+      body: "田村さん、Luce様の紹介ムービーの件です。素材一式を共有ドライブに置きました。まずは60秒版の粗編集からお願いします🎬",
+      sentAt: "9:15",
+      dateLabel: "今日",
+    },
+    {
+      id: "m14",
+      threadId: "wth1",
+      senderName: "田村 健太",
+      isMe: true,
+      body: "確認しました!今日から着手します。BGMの方向性だけ先にすり合わせたいです。",
+      sentAt: "9:40",
+    },
+    {
+      id: "m15",
+      threadId: "wth1",
+      senderName: "繋がるクラフト 本部",
+      isMe: false,
+      body: "ありがとうございます。候補を3曲ほどピックアップして共有いただけますか?→ このメッセージは右のボタンからそのままタスク化できます📋",
+      sentAt: "9:42",
+    },
+    {
+      id: "m16",
+      threadId: "wth1",
+      senderName: "繋がるクラフト 本部",
+      isMe: false,
+      body: "粗編集の進捗いかがでしょうか?急ぎではないです🙏",
+      sentAt: "10:48",
+    },
+  ],
+  // 案件グループ: 教室紹介ムービー (本部 + 作業者 + クライアント)
+  th10: [
+    {
+      id: "m17",
+      threadId: "th10",
+      senderName: "繋がるクラフト 本部",
+      isMe: false,
+      body: "このグループは【動画制作】教室紹介ムービー案件の専用スレッドです。関連のやり取りはこちらに集約してください。",
+      sentAt: "9:00",
+      dateLabel: "今日",
+    },
+    {
+      id: "m18",
+      threadId: "th10",
+      senderName: "高橋 瑠奈",
+      isMe: false,
+      body: "楽しみにしています!ロゴデータもアップしておきました✨",
+      sentAt: "10:20",
+    },
+    {
+      id: "m19",
+      threadId: "th10",
+      senderName: "田村 健太",
+      isMe: false,
+      body: "BGM候補、明日までに共有します!",
+      sentAt: "11:02",
+    },
+  ],
 };
 
 /* ------------------------------------------------------------------ */
@@ -863,6 +1149,69 @@ export const adminStats = {
   unreadMessages: hqThreads.reduce((sum, t) => sum + t.unreadCount, 0),
   pendingOrders: orders.filter((o) => o.status === "received").length,
 };
+
+/* ------------------------------------------------------------------ */
+/* 外部EC (BASE等) 売上通知 — webhook で受信する想定のモック (Phase 3)   */
+/* ------------------------------------------------------------------ */
+export const ecNotifications: EcNotification[] = [
+  {
+    id: "ec1",
+    source: "BASE",
+    productName: "モイストリペアセラム 30mL",
+    quantity: 1,
+    amount: 4950,
+    receivedAt: "今日 8:24",
+    taskCreated: false,
+  },
+  {
+    id: "ec2",
+    source: "BASE",
+    productName: "ポーセラーツ転写紙 花柄セット",
+    quantity: 2,
+    amount: 6600,
+    receivedAt: "今日 7:02",
+    taskCreated: false,
+  },
+  {
+    id: "ec3",
+    source: "BASE",
+    productName: "シルクハンドクリーム 50g",
+    quantity: 1,
+    amount: 1980,
+    receivedAt: "昨日 21:40",
+    taskCreated: true,
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* AIアシスタント: 朝のダイジェスト (Phase 3 プレビュー用モック)          */
+/* ------------------------------------------------------------------ */
+export const aiMorningDigest: AiDigestItem[] = [
+  {
+    id: "ai1",
+    kind: "期限超過",
+    text: "「トップページのキャッチコピー修正」が期限を過ぎています (7/4締切・進行中)",
+    href: "/admin/projects/p3",
+  },
+  {
+    id: "ai2",
+    kind: "返信待ち",
+    text: "Nail Salon Luce様のメッセージに18時間返信がありません",
+    href: "/admin/messages/th2",
+  },
+  {
+    id: "ai3",
+    kind: "タスク候補",
+    text: "昨日の会話から「バナー画像のBパターン反映」をタスク化しますか?",
+    href: "/admin/messages/th1",
+  },
+  {
+    id: "ai4",
+    kind: "未完了タスク",
+    text: "未完了タスクが5件あります (うち今日締切2件)",
+    href: "/admin/projects",
+  },
+];
 
 /** ビジュアル管理 (ノーコード編集対象の設定値) */
 export const visualSettings = {

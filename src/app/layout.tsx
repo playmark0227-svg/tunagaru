@@ -8,8 +8,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   title: {
-    default: "つながるクラフト",
-    template: "%s | つながるクラフト",
+    default: "つながるCraft",
+    template: "%s | つながるCraft",
   },
   description:
     "顧客管理・メッセージ・案件管理・物販をひとつに。繋がるクラフトのデジタル総合相談窓口プラットフォーム",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "つながるクラフト",
+    title: "つながるCraft",
   },
   icons: {
     icon: `${basePath}/icon.svg`,
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#d9634a",
+  themeColor: "#282f5a",
 };
 
 export default function RootLayout({

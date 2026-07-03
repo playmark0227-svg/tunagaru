@@ -90,7 +90,10 @@ export function ProjectTabs() {
     (a) => a.clientId === currentClient.id,
   );
   const appliedProjectIds = new Set(myApplications.map((a) => a.projectId));
-  const openProjects = projects.filter((p) => p.status === "open");
+  // 作業者(クリエイター)向け募集はクライアントには表示しない
+  const openProjects = projects.filter(
+    (p) => p.status === "open" && !p.forWorkers,
+  );
 
   return (
     <div>

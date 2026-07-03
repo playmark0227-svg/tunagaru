@@ -34,9 +34,12 @@ function ThreadRow({
             </span>
           )}
         </div>
-        <p className="mt-0.5 truncate text-xs text-stone-500">
-          {thread.lastMessage}
-        </p>
+        <div className="mt-0.5 flex items-center gap-1.5">
+          {thread.category && <Badge tone="violet">{thread.category}</Badge>}
+          <p className="min-w-0 truncate text-xs text-stone-500">
+            {thread.lastMessage}
+          </p>
+        </div>
       </div>
       <div className="flex shrink-0 flex-col items-end gap-1">
         <span className="text-[10px] text-stone-400">
@@ -56,7 +59,13 @@ function ThreadRow({
 
 export default function ClientMessagesPage() {
   const hqThread = clientThreads.find((t) => t.id === "th1");
-  const otherThreads = clientThreads.filter((t) => t.id !== "th1");
+  // 案件ごとの専用グループ (カテゴリで種別を明示し、話題が混ざらないようにする)
+  const projectGroups = clientThreads.filter(
+    (t) => t.kind === "group" && t.projectId,
+  );
+  const otherThreads = clientThreads.filter(
+    (t) => t.id !== "th1" && !(t.kind === "group" && t.projectId),
+  );
 
   return (
     <>
@@ -69,9 +78,24 @@ export default function ClientMessagesPage() {
           </Card>
         )}
 
-        {/* 生徒・グループのトーク */}
+        {/* 案件ごとの専用グループ */}
+        {projectGroups.length > 0 && (
+          <section>
+            <SectionTitle title="案件グループ" />
+            <Card className="divide-y divide-stone-100">
+              {projectGroups.map((t) => (
+                <ThreadRow key={t.id} thread={t} />
+              ))}
+            </Card>
+            <p className="mt-2 px-2 text-[11px] leading-relaxed text-stone-400">
+              「HP修正」「動画制作」など案件ごとにグループが分かれているので、話題が混ざりません🗂️
+            </p>
+          </section>
+        )}
+
+        {/* 生徒とのトーク */}
         <section>
-          <SectionTitle title="トーク" />
+          <SectionTitle title="生徒とのトーク" />
           <Card className="divide-y divide-stone-100">
             {otherThreads.map((t) => (
               <ThreadRow key={t.id} thread={t} />

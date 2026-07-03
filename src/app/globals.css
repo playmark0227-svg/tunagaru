@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* ブランドカラー: 温かみのあるテラコッタ (クラフト・手仕事の世界観) */
-  --color-brand: #d9634a;
-  --color-brand-dark: #b84a33;
-  --color-brand-soft: #fdf0ec;
+  /* ブランドカラー: ロゴ (public/logo.png) のネイビー */
+  --color-brand: #282f5a;
+  --color-brand-dark: #1d2342;
+  --color-brand-soft: #eef0f8;
   --color-cream: #faf7f2;
   --color-ink: #292524;
 

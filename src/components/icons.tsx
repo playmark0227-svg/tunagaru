@@ -32,6 +32,8 @@ export type IconName =
   | "pencil"
   | "truck"
   | "video"
+  | "heart"
+  | "bookmark"
   | "logout";
 
 const paths: Record<IconName, ReactNode> = {
@@ -168,6 +170,10 @@ const paths: Record<IconName, ReactNode> = {
       <path d="m16 10.5 6-3.5v10l-6-3.5" />
     </>
   ),
+  heart: (
+    <path d="M12 20.5S4 15.5 4 9.8C4 6.9 6.2 5 8.5 5c1.5 0 2.8.8 3.5 2 .7-1.2 2-2 3.5-2C17.8 5 20 6.9 20 9.8c0 5.7-8 10.7-8 10.7Z" />
+  ),
+  bookmark: <path d="M6 4h12v17l-6-4.5L6 21V4Z" />,
   logout: (
     <>
       <path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4" />

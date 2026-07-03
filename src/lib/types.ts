@@ -4,14 +4,27 @@
  * (docs/architecture.md のデータモデル参照)
  */
 
-/** ユーザー種別 (3階層) */
-export type Role = "master" | "client" | "endUser";
+/** ユーザー種別 (本部・作業者・クライアントの3階層 + 物販向けエンドユーザー) */
+export type Role = "master" | "worker" | "client" | "endUser";
 
 export const ROLE_LABELS: Record<Role, string> = {
   master: "マスター管理者(本部)",
-  client: "管理者(クライアント)",
+  worker: "作業者(クリエイター)",
+  client: "クライアント",
   endUser: "エンドユーザー",
 };
+
+/** 作業者 (スタッフ/クリエイター) */
+export interface Worker {
+  id: string;
+  name: string;
+  /** 得意分野 例: ["動画編集", "モーショングラフィックス"] */
+  specialties: string[];
+  /** 完了した案件数 */
+  completedCount: number;
+  joinedAt: string;
+  avatarColor: string;
+}
 
 /** クライアント(インストラクター等)のステータス */
 export type ClientStatus = "active" | "trial" | "suspended";
@@ -84,6 +97,17 @@ export interface Project {
   /** 採用されたクライアントID */
   assignedClientId?: string;
   createdAt: string;
+  /* --- 案件募集フィード (Instagram風) 用のビジュアル要素 --- */
+  /** カバー用の絵文字 */
+  emoji: string;
+  /** カバー用のグラデーション 例: "from-sky-100 to-indigo-100" */
+  gradient: string;
+  /** いいね数 (フィードのソーシャル要素) */
+  likes: number;
+  /** 作業者(クリエイター)向け募集か (falseならクライアント向け) */
+  forWorkers?: boolean;
+  /** 応募した作業者ID (作業者向け案件の場合) */
+  applicantWorkerIds?: string[];
 }
 
 /** 応募ステータス */
@@ -114,16 +138,34 @@ export const TASK_STATUS_LABELS: Record<TaskStatus, string> = {
   done: "完了",
 };
 
+/**
+ * タスクの発生源。
+ * chat = チャットからワンタップでタスク化 / ai = AIが会話から自動抽出 /
+ * ec = 外部EC(BASE等)の売上通知から生成 / manual = 手動作成
+ */
+export type TaskSource = "manual" | "chat" | "ai" | "ec";
+
+export const TASK_SOURCE_LABELS: Record<TaskSource, string> = {
+  manual: "手動",
+  chat: "チャットから",
+  ai: "AI抽出",
+  ec: "EC連携",
+};
+
 export interface Task {
   id: string;
   title: string;
-  kind: "修正依頼" | "Zoom予約" | "素材提出" | "確認" | "その他";
+  kind: "修正依頼" | "Zoom予約" | "素材提出" | "確認" | "発送" | "その他";
   status: TaskStatus;
-  /** 担当: "本部" またはクライアント名 */
+  /** 担当: "本部" / クライアント名 / 作業者名 */
   assignee: string;
   dueDate: string;
   projectId?: string;
   clientId?: string;
+  /** 担当作業者 (クリエイター) */
+  workerId?: string;
+  /** タスクの発生源 (AI導入・EC連携を見据えたフィールド) */
+  source?: TaskSource;
   note?: string;
 }
 
@@ -200,6 +242,13 @@ export interface ChatThread {
   avatarColor: string;
   /** グループの場合の参加者数 */
   memberCount?: number;
+  /**
+   * 案件グループの場合の案件カテゴリ。
+   * 「HP修正」「動画制作」等で会話が混ざらないよう分離するためのキー。
+   */
+  category?: ProjectCategory;
+  /** 紐づく案件ID (案件グループチャットの場合) */
+  projectId?: string;
 }
 
 export interface ChatMessage {
@@ -250,6 +299,33 @@ export interface NewsPost {
   body: string;
   postedAt: string;
   emoji: string;
+}
+
+/**
+ * 外部EC (BASE / STORES 等) からの売上通知。
+ * webhook で受信し、在庫管理・発送タスクへつなげる (Phase 3)。
+ */
+export interface EcNotification {
+  id: string;
+  source: "BASE" | "STORES";
+  productName: string;
+  quantity: number;
+  amount: number;
+  receivedAt: string;
+  /** 発送タスクを作成済みか */
+  taskCreated: boolean;
+}
+
+/**
+ * AIアシスタントの朝のダイジェスト項目 (Phase 3)。
+ * 全チャット・タスクを走査し、未処理事項を毎朝レポートする。
+ */
+export interface AiDigestItem {
+  id: string;
+  kind: "未完了タスク" | "返信待ち" | "期限超過" | "タスク候補";
+  text: string;
+  /** 該当画面へのリンク */
+  href?: string;
 }
 
 /** 予約枠 (Google Calendar 連携) */
