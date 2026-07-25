@@ -13,6 +13,13 @@ const menuItems: {
   description: string;
 }[] = [
   {
+    href: "/admin/staff",
+    icon: "user",
+    iconClass: "bg-violet-50 text-violet-500",
+    label: "担当一覧",
+    description: "作業者ごとの担当タスク・案件アサイン状況",
+  },
+  {
     href: "/admin/orders",
     icon: "package",
     iconClass: "bg-amber-50 text-amber-600",

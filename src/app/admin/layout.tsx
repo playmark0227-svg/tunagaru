@@ -16,6 +16,7 @@ const sidebarItems: NavItem[] = [
   { href: "/admin", label: "ダッシュボード", icon: "chart" },
   { href: "/admin/clients", label: "顧客一覧", icon: "users" },
   { href: "/admin/projects", label: "案件管理", icon: "briefcase" },
+  { href: "/admin/staff", label: "担当一覧", icon: "user" },
   { href: "/admin/messages", label: "チャット", icon: "chat" },
   { href: "/admin/orders", label: "受注・発注", icon: "package" },
   { href: "/admin/payments", label: "報酬・支払", icon: "credit-card" },
