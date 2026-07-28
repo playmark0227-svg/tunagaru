@@ -85,7 +85,7 @@ export default async function AdminProjectDetailPage({
           </div>
         </Card>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 [&>*]:min-w-0">
           {/* 応募クライアント */}
           <section>
             <SectionTitle title={`応募クライアント (${applicants.length})`} />

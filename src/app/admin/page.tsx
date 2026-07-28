@@ -152,7 +152,9 @@ export default function AdminDashboardPage() {
           </Card>
         </section>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        {/* グリッド項目は min-width:auto が既定のため、[&>*]:min-w-0 が無いと
+            中の truncate が効かず長いテキストで横スクロールが発生する */}
+        <div className="grid gap-6 md:grid-cols-2 [&>*]:min-w-0">
           {/* 対応が必要なこと */}
           <section>
             <SectionTitle title={`対応が必要なこと (${needsAction})`} />

@@ -77,7 +77,7 @@ export function ClientList() {
           description="検索条件を変えてお試しください"
         />
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2 [&>*]:min-w-0">
           {filtered.map((c) => (
             <Link key={c.id} href={`/admin/clients/${c.id}`} className="block">
               <Card className="p-4 transition-shadow hover:shadow-md">

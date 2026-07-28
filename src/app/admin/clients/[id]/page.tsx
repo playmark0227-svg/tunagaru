@@ -80,7 +80,7 @@ export default async function AdminClientDetailPage({
           </Link>
         </Card>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 [&>*]:min-w-0">
           {/* 契約情報 */}
           <section>
             <SectionTitle title="契約情報" />

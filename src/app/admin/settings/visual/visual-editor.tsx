@@ -41,7 +41,7 @@ export function VisualEditor() {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 md:items-start">
+    <div className="grid gap-6 md:grid-cols-2 md:items-start [&>*]:min-w-0">
       {/* 編集フォーム */}
       <section>
         <SectionTitle title="ノーコード編集" />

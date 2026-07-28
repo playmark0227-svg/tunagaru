@@ -46,7 +46,7 @@ export function ProjectTabs() {
           description="「案件を作成」から新しい案件を発行できます"
         />
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2 [&>*]:min-w-0">
           {filtered.map((p) => {
             const assigned = clients.find((c) => c.id === p.assignedClientId);
             return (

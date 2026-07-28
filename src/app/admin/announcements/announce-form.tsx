@@ -53,7 +53,7 @@ export function AnnounceForm() {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 md:items-start">
+    <div className="grid gap-6 md:grid-cols-2 md:items-start [&>*]:min-w-0">
       {/* 配信フォーム */}
       <section>
         <SectionTitle title="新しいお知らせを配信" />
