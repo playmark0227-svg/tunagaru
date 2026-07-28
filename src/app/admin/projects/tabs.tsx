@@ -4,23 +4,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { clients, projects } from "@/lib/mock-data";
-import {
-  PROJECT_STATUS_LABELS,
-  type ProjectCategory,
-  type ProjectStatus,
-} from "@/lib/types";
+import { PROJECT_STATUS_LABELS, type ProjectStatus } from "@/lib/types";
 import { formatYen, formatMd } from "@/lib/format";
-import { Badge, Card, EmptyState, type BadgeTone } from "@/components/ui";
+import { Badge, Card, EmptyState } from "@/components/ui";
 import { Icon } from "@/components/icons";
-
-const categoryTone: Record<ProjectCategory, BadgeTone> = {
-  HP制作: "blue",
-  動画制作: "violet",
-  キャンペーン: "brand",
-  SNS運用: "amber",
-  EC構築: "green",
-  デザイン: "gray",
-};
+import { CATEGORY_TONES } from "@/lib/tones";
 
 const tabs: ProjectStatus[] = ["open", "in_progress", "done"];
 
@@ -65,7 +53,7 @@ export function ProjectTabs() {
               <Link key={p.id} href={`/admin/projects/${p.id}`} className="block">
                 <Card className="p-4 transition-shadow hover:shadow-md">
                   <div className="flex flex-wrap items-center gap-1.5">
-                    <Badge tone={categoryTone[p.category]}>{p.category}</Badge>
+                    <Badge tone={CATEGORY_TONES[p.category]}>{p.category}</Badge>
                     {p.status === "open" && p.applicantIds.length > 0 && (
                       <Badge tone="red">応募 {p.applicantIds.length}件</Badge>
                     )}

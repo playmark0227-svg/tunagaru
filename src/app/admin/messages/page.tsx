@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { hqThreads } from "@/lib/mock-data";
 import type { ChatThread } from "@/lib/types";
-import { Avatar, Badge, Card, SectionTitle } from "@/components/ui";
+import { Avatar, Badge, Card, SectionTitle, UnreadBadge } from "@/components/ui";
 import { AdminHeader } from "../header";
 
 export const metadata: Metadata = { title: "チャット" };
@@ -38,13 +38,7 @@ function ThreadRow({ t }: { t: ChatThread }) {
       </span>
       <span className="flex shrink-0 flex-col items-end gap-1">
         <span className="text-[10px] text-ink/40">{t.lastMessageAt}</span>
-        {t.unreadCount > 0 ? (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-aqua px-1.5 text-[10px] font-bold text-white">
-            {t.unreadCount}
-          </span>
-        ) : (
-          <span className="h-5" />
-        )}
+        {t.unreadCount > 0 ? <UnreadBadge count={t.unreadCount} /> : <span className="h-5" />}
       </span>
     </Link>
   );

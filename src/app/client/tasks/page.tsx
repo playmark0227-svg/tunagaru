@@ -1,40 +1,14 @@
 import Link from "next/link";
 import { formatMd } from "@/lib/format";
 import { Icon } from "@/components/icons";
-import {
-  Badge,
-  Card,
-  EmptyState,
-  PageHeader,
-  SectionTitle,
-  type BadgeTone,
-} from "@/components/ui";
+import { Badge, Card, EmptyState, PageHeader, SectionTitle } from "@/components/ui";
 import { currentClient, projects, tasks } from "@/lib/mock-data";
-import {
-  TASK_STATUS_LABELS,
-  type Task,
-  type TaskStatus,
-} from "@/lib/types";
+import { TASK_STATUS_LABELS, type Task, type TaskStatus } from "@/lib/types";
+import { TASK_KIND_TONES, TASK_STATUS_TONES } from "@/lib/tones";
 
 export const metadata = { title: "タスク管理" };
 
 const STATUS_ORDER: TaskStatus[] = ["todo", "in_progress", "review", "done"];
-
-const STATUS_TONES: Record<TaskStatus, BadgeTone> = {
-  todo: "gray",
-  in_progress: "blue",
-  review: "amber",
-  done: "green",
-};
-
-const KIND_TONES: Record<Task["kind"], BadgeTone> = {
-  修正依頼: "red",
-  Zoom予約: "blue",
-  素材提出: "violet",
-  確認: "amber",
-  発送: "green",
-  その他: "gray",
-};
 
 function TaskCard({ task }: { task: Task }) {
   const project = task.projectId
@@ -43,8 +17,8 @@ function TaskCard({ task }: { task: Task }) {
   return (
     <Card className={`p-4 ${task.status === "done" ? "opacity-70" : ""}`}>
       <div className="flex flex-wrap items-center gap-1.5">
-        <Badge tone={KIND_TONES[task.kind]}>{task.kind}</Badge>
-        <Badge tone={STATUS_TONES[task.status]}>
+        <Badge tone={TASK_KIND_TONES[task.kind]}>{task.kind}</Badge>
+        <Badge tone={TASK_STATUS_TONES[task.status]}>
           {TASK_STATUS_LABELS[task.status]}
         </Badge>
         <span className="ml-auto text-xs font-bold text-brand-dark">

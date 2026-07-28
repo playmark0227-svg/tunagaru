@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  Avatar,
-  Badge,
-  Card,
-  PageHeader,
-  SectionTitle,
-} from "@/components/ui";
+import { Avatar, Badge, Card, PageHeader, SectionTitle, UnreadBadge } from "@/components/ui";
 import { clientThreads } from "@/lib/mock-data";
 import type { ChatThread } from "@/lib/types";
 
@@ -45,13 +39,7 @@ function ThreadRow({
         <span className="text-[10px] text-ink/40">
           {thread.lastMessageAt}
         </span>
-        {thread.unreadCount > 0 ? (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-brand px-1.5 text-[10px] font-bold text-white">
-            {thread.unreadCount}
-          </span>
-        ) : (
-          <span className="h-5" />
-        )}
+        {thread.unreadCount > 0 ? <UnreadBadge count={thread.unreadCount} /> : <span className="h-5" />}
       </div>
     </Link>
   );

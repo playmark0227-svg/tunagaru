@@ -9,7 +9,7 @@ import {
   tasks,
 } from "@/lib/mock-data";
 import { formatYen, formatMd } from "@/lib/format";
-import { Avatar, Card, SectionTitle } from "@/components/ui";
+import { Avatar, Card, SectionTitle, UnreadBadge } from "@/components/ui";
 import { StatCard } from "@/components/ui";
 import { Icon } from "@/components/icons";
 import { AdminHeader } from "./header";
@@ -257,11 +257,7 @@ export default function AdminDashboardPage() {
                     <span className="text-[10px] text-ink/40">
                       {t.lastMessageAt}
                     </span>
-                    {t.unreadCount > 0 && (
-                      <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-aqua px-1.5 text-[10px] font-bold text-white">
-                        {t.unreadCount}
-                      </span>
-                    )}
+                    <UnreadBadge count={t.unreadCount} />
                   </span>
                 </Link>
               ))}

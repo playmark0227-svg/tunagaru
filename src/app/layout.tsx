@@ -1,6 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Space_Grotesk, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import { RegisterServiceWorker } from "@/components/register-sw";
+
+/**
+ * フォントは next/font でセルフホストする。
+ * ビルド時に取得して自前配信するため、外部への render-blocking な
+ * リクエストが無くなり、PWA をオフラインで開いても書体が崩れない。
+ */
+const zenKaku = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  display: "swap",
+  variable: "--font-zen",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-grotesk",
+});
 
 // GitHub Pages (サブパス配信) 対応: metadata の URL には basePath が
 // 自動付与されないため、明示的に付ける
@@ -36,19 +56,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja">
+    <html
+      lang="ja"
+      className={`${zenKaku.variable} ${spaceGrotesk.variable}`}
+    >
       <body className="antialiased">
-        {/* 角ゴシック + ディスプレイ数字書体。React 19 が <head> へ自動ホイストする */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
-        />
         <RegisterServiceWorker />
         {children}
       </body>

@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
 import { adminStats, payouts } from "@/lib/mock-data";
-import { PAYOUT_STATUS_LABELS, type PayoutStatus } from "@/lib/types";
+import { PAYOUT_STATUS_LABELS } from "@/lib/types";
 import { formatYen } from "@/lib/format";
-import { Badge, Card, SectionTitle, StatCard, type BadgeTone } from "@/components/ui";
+import { Badge, Card, SectionTitle, StatCard } from "@/components/ui";
 import { Icon } from "@/components/icons";
 import { AdminHeader } from "../header";
+import { PAYOUT_TONES } from "@/lib/tones";
 
 export const metadata: Metadata = { title: "報酬・支払管理" };
 
 const STRIPE_FEE_RATE = 0.036;
 const THIS_MONTH = "2026-07";
-
-const statusTone: Record<PayoutStatus, BadgeTone> = {
-  pending: "amber",
-  invoiced: "blue",
-  paid: "green",
-};
 
 /** "2026-07" → "2026年7月" */
 function monthLabel(month: string): string {
@@ -102,7 +97,7 @@ export default function AdminPaymentsPage() {
                             {p.clientName} 様
                           </p>
                         </div>
-                        <Badge tone={statusTone[p.status]}>
+                        <Badge tone={PAYOUT_TONES[p.status]}>
                           {PAYOUT_STATUS_LABELS[p.status]}
                         </Badge>
                       </div>

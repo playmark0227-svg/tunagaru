@@ -1,47 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  applications,
-  clients,
-  projects,
-  tasks,
-} from "@/lib/mock-data";
-import {
-  PROJECT_STATUS_LABELS,
-  TASK_STATUS_LABELS,
-  type ProjectStatus,
-  type TaskStatus,
-} from "@/lib/types";
+import { applications, clients, projects, tasks } from "@/lib/mock-data";
+import { PROJECT_STATUS_LABELS, TASK_STATUS_LABELS } from "@/lib/types";
 import { formatYen, formatDate } from "@/lib/format";
-import {
-  Badge,
-  Card,
-  EmptyState,
-  SectionTitle,
-  type BadgeTone,
-} from "@/components/ui";
+import { Badge, Card, EmptyState, SectionTitle } from "@/components/ui";
 import { Icon } from "@/components/icons";
 import { AdminHeader } from "../../header";
 import { Applicants, type ApplicantInfo } from "./applicants";
+import { PROJECT_STATUS_TONES, TASK_STATUS_TONES } from "@/lib/tones";
 
 export const metadata: Metadata = { title: "案件詳細" };
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
 }
-
-const statusTone: Record<ProjectStatus, BadgeTone> = {
-  open: "brand",
-  in_progress: "blue",
-  done: "green",
-};
-
-const taskTone: Record<TaskStatus, BadgeTone> = {
-  todo: "gray",
-  in_progress: "blue",
-  review: "amber",
-  done: "green",
-};
 
 /** "2026-07-20" → "2026/7/20" */
 export default async function AdminProjectDetailPage({
@@ -84,7 +56,7 @@ export default async function AdminProjectDetailPage({
         {/* 案件情報 */}
         <Card className="p-5">
           <div className="flex flex-wrap items-center gap-1.5">
-            <Badge tone={statusTone[project.status]}>
+            <Badge tone={PROJECT_STATUS_TONES[project.status]}>
               {PROJECT_STATUS_LABELS[project.status]}
             </Badge>
             <Badge tone="violet">{project.category}</Badge>
@@ -172,7 +144,7 @@ export default async function AdminProjectDetailPage({
                         </p>
                       )}
                     </div>
-                    <Badge tone={taskTone[t.status]}>
+                    <Badge tone={TASK_STATUS_TONES[t.status]}>
                       {TASK_STATUS_LABELS[t.status]}
                     </Badge>
                   </div>

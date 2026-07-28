@@ -7,21 +7,11 @@
  */
 import { useState } from "react";
 import { orders } from "@/lib/mock-data";
-import {
-  ORDER_PIPELINE,
-  ORDER_STATUS_LABELS,
-  type OrderStatus,
-} from "@/lib/types";
+import { ORDER_PIPELINE, ORDER_STATUS_LABELS, type OrderStatus } from "@/lib/types";
 import { formatYen, formatMd } from "@/lib/format";
-import { Badge, Card, ProgressSteps, type BadgeTone } from "@/components/ui";
+import { Badge, Card, ProgressSteps } from "@/components/ui";
 import { Icon, type IconName } from "@/components/icons";
-
-const statusTone: Record<OrderStatus, BadgeTone> = {
-  received: "amber",
-  ordered_to_hq: "blue",
-  shipped: "violet",
-  completed: "green",
-};
+import { ORDER_TONES } from "@/lib/tones";
 
 const nextAction: Record<
   Exclude<OrderStatus, "completed">,
@@ -92,7 +82,7 @@ export function OrdersBoard() {
                   {formatMd(o.orderedAt)} 受付
                 </span>
                 <span className="ml-auto">
-                  <Badge tone={statusTone[status]}>
+                  <Badge tone={ORDER_TONES[status]}>
                     {ORDER_STATUS_LABELS[status]}
                   </Badge>
                 </span>

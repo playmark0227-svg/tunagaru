@@ -1,37 +1,16 @@
 import { notFound } from "next/navigation";
-import {
-  Badge,
-  Card,
-  PageHeader,
-  ProgressSteps,
-  SectionTitle,
-  type BadgeTone,
-} from "@/components/ui";
+import { Badge, Card, PageHeader, ProgressSteps, SectionTitle } from "@/components/ui";
 import { formatYen, formatMd, daysUntil } from "@/lib/format";
 import { applications, currentClient, projects } from "@/lib/mock-data";
-import { PROJECT_STATUS_LABELS, type Project } from "@/lib/types";
+import { PROJECT_STATUS_LABELS } from "@/lib/types";
 import { ApplyButton } from "./apply-button";
+import { CATEGORY_TONES, PROJECT_STATUS_TONES } from "@/lib/tones";
 
 export const metadata = { title: "案件詳細" };
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
 }
-
-const CATEGORY_TONES: Record<Project["category"], BadgeTone> = {
-  HP制作: "blue",
-  動画制作: "violet",
-  キャンペーン: "brand",
-  SNS運用: "green",
-  EC構築: "amber",
-  デザイン: "red",
-};
-
-const STATUS_TONES: Record<Project["status"], BadgeTone> = {
-  open: "green",
-  in_progress: "blue",
-  done: "gray",
-};
 
 export default async function ClientProjectDetailPage({
   params,
@@ -63,7 +42,7 @@ export default async function ClientProjectDetailPage({
             <Badge tone={CATEGORY_TONES[project.category]}>
               {project.category}
             </Badge>
-            <Badge tone={STATUS_TONES[project.status]}>
+            <Badge tone={PROJECT_STATUS_TONES[project.status]}>
               {PROJECT_STATUS_LABELS[project.status]}
             </Badge>
           </div>

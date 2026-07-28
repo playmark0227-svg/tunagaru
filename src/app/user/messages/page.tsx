@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Avatar, Card, PageHeader } from "@/components/ui";
+import { Avatar, Card, PageHeader, UnreadBadge } from "@/components/ui";
 import { endUserThreads } from "@/lib/mock-data";
 
 export const metadata = { title: "メッセージ" };
@@ -34,13 +34,7 @@ export default function UserMessagesPage() {
                 <span className="text-[10px] text-ink/40">
                   {thread.lastMessageAt}
                 </span>
-                {thread.unreadCount > 0 ? (
-                  <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-brand px-1.5 text-[10px] font-bold text-white">
-                    {thread.unreadCount}
-                  </span>
-                ) : (
-                  <span className="h-5" />
-                )}
+                {thread.unreadCount > 0 ? <UnreadBadge count={thread.unreadCount} /> : <span className="h-5" />}
               </div>
             </Link>
           ))}

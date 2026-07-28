@@ -1,18 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icons";
-import {
-  Avatar,
-  Badge,
-  Card,
-  EmptyState,
-  PageHeader,
-  SectionTitle,
-  type BadgeTone,
-} from "@/components/ui";
+import { Avatar, Badge, Card, EmptyState, PageHeader, SectionTitle } from "@/components/ui";
 import { formatYen } from "@/lib/format";
 import { endUsers, orders } from "@/lib/mock-data";
-import { ORDER_STATUS_LABELS, type OrderStatus } from "@/lib/types";
+import { ORDER_STATUS_LABELS } from "@/lib/types";
+import { ORDER_TONES } from "@/lib/tones";
 
 export const metadata = { title: "生徒詳細" };
 
@@ -25,13 +18,6 @@ function longDate(value: string): string {
   const [y, m, d] = value.split("-");
   return `${y}/${Number(m)}/${Number(d)}`;
 }
-
-const ORDER_TONES: Record<OrderStatus, BadgeTone> = {
-  received: "amber",
-  ordered_to_hq: "blue",
-  shipped: "violet",
-  completed: "green",
-};
 
 /** 生徒との個別スレッド (存在する場合のみ) */
 const THREAD_BY_USER: Record<string, string> = {

@@ -2,38 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { formatMd } from "@/lib/format";
 import { projects, workers, workerTasks } from "@/lib/mock-data";
-import {
-  Avatar,
-  Badge,
-  Card,
-  EmptyState,
-  SectionTitle,
-  StatCard,
-  type BadgeTone,
-} from "@/components/ui";
+import { Avatar, Badge, Card, EmptyState, SectionTitle, StatCard } from "@/components/ui";
 import { Icon } from "@/components/icons";
-import {
-  PROJECT_STATUS_LABELS,
-  TASK_STATUS_LABELS,
-  type ProjectStatus,
-  type TaskStatus,
-} from "@/lib/types";
+import { PROJECT_STATUS_LABELS, TASK_STATUS_LABELS } from "@/lib/types";
 import { AdminHeader } from "../header";
+import { PROJECT_STATUS_TONES, TASK_STATUS_TONES } from "@/lib/tones";
 
 export const metadata: Metadata = { title: "担当一覧" };
-
-const TASK_STATUS_TONES: Record<TaskStatus, BadgeTone> = {
-  todo: "gray",
-  in_progress: "blue",
-  review: "amber",
-  done: "green",
-};
-
-const PROJECT_STATUS_TONES: Record<ProjectStatus, BadgeTone> = {
-  open: "brand",
-  in_progress: "blue",
-  done: "green",
-};
 
 export default function AdminStaffPage() {
   // 完了を除く稼働中タスク

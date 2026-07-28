@@ -1,19 +1,10 @@
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
-import { Badge, Card, SectionTitle, type BadgeTone } from "@/components/ui";
+import { Badge, Card, SectionTitle } from "@/components/ui";
 import { formatYen, formatMd } from "@/lib/format";
-import {
-  announcements,
-  applications,
-  currentClient,
-  projects,
-  tasks,
-} from "@/lib/mock-data";
-import {
-  APPLICATION_STATUS_LABELS,
-  type ApplicationStatus,
-  type Task,
-} from "@/lib/types";
+import { announcements, applications, currentClient, projects, tasks } from "@/lib/mock-data";
+import { APPLICATION_STATUS_LABELS } from "@/lib/types";
+import { APPLICATION_TONES, TASK_KIND_TONES } from "@/lib/tones";
 
 export const metadata = { title: "ホーム" };
 
@@ -27,21 +18,6 @@ const quickActions: {
   { href: "/client/messages/th1", icon: "chat", label: "本部に相談", sub: "チャットで気軽に" },
   { href: "/client/shop", icon: "store", label: "仕入れ", sub: "卸価格カタログ" },
 ];
-
-const KIND_TONES: Record<Task["kind"], BadgeTone> = {
-  修正依頼: "red",
-  Zoom予約: "blue",
-  素材提出: "violet",
-  確認: "amber",
-  発送: "green",
-  その他: "gray",
-};
-
-const APP_TONES: Record<ApplicationStatus, BadgeTone> = {
-  applied: "blue",
-  accepted: "green",
-  rejected: "gray",
-};
 
 export default function ClientHomePage() {
   const upcomingTasks = tasks
@@ -124,7 +100,7 @@ export default function ClientHomePage() {
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
-                    <Badge tone={KIND_TONES[t.kind]}>{t.kind}</Badge>
+                    <Badge tone={TASK_KIND_TONES[t.kind]}>{t.kind}</Badge>
                   </div>
                   <p className="mt-1 truncate text-sm font-semibold">
                     {t.title}
@@ -160,7 +136,7 @@ export default function ClientHomePage() {
                     className="block p-4 transition-colors active:bg-cream"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <Badge tone={APP_TONES[app.status]}>
+                      <Badge tone={APPLICATION_TONES[app.status]}>
                         {APPLICATION_STATUS_LABELS[app.status]}
                       </Badge>
                       <span className="text-[10px] text-ink/40">

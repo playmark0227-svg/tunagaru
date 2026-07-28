@@ -1,56 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  applications,
-  clients,
-  orders,
-  projects,
-} from "@/lib/mock-data";
-import {
-  APPLICATION_STATUS_LABELS,
-  CLIENT_STATUS_LABELS,
-  ORDER_STATUS_LABELS,
-  type ApplicationStatus,
-  type ClientStatus,
-  type OrderStatus,
-} from "@/lib/types";
+import { applications, clients, orders, projects } from "@/lib/mock-data";
+import { APPLICATION_STATUS_LABELS, CLIENT_STATUS_LABELS, ORDER_STATUS_LABELS } from "@/lib/types";
 import { formatYen } from "@/lib/format";
-import {
-  Avatar,
-  Badge,
-  Card,
-  EmptyState,
-  SectionTitle,
-  type BadgeTone,
-} from "@/components/ui";
+import { Avatar, Badge, Card, EmptyState, SectionTitle } from "@/components/ui";
 import { Icon } from "@/components/icons";
 import { AdminHeader } from "../../header";
+import { APPLICATION_TONES, CLIENT_STATUS_TONES, ORDER_TONES } from "@/lib/tones";
 
 export const metadata: Metadata = { title: "顧客詳細" };
 
 export function generateStaticParams() {
   return clients.map((c) => ({ id: c.id }));
 }
-
-const statusTone: Record<ClientStatus, BadgeTone> = {
-  active: "green",
-  trial: "amber",
-  suspended: "gray",
-};
-
-const appTone: Record<ApplicationStatus, BadgeTone> = {
-  applied: "blue",
-  accepted: "green",
-  rejected: "gray",
-};
-
-const orderTone: Record<OrderStatus, BadgeTone> = {
-  received: "amber",
-  ordered_to_hq: "blue",
-  shipped: "violet",
-  completed: "green",
-};
 
 /** クライアント → 本部チャットスレッドの対応 (モック) */
 const threadByClient: Record<string, string> = {
@@ -99,7 +62,7 @@ export default async function AdminClientDetailPage({
                 {client.ownerName} 様・{client.category}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                <Badge tone={statusTone[client.status]}>
+                <Badge tone={CLIENT_STATUS_TONES[client.status]}>
                   {CLIENT_STATUS_LABELS[client.status]}
                 </Badge>
                 <Badge tone="violet">{client.plan}プラン</Badge>
@@ -128,7 +91,7 @@ export default async function AdminClientDetailPage({
               </div>
               <div className="flex items-center justify-between px-4 py-3">
                 <span className="text-ink/55">契約状態</span>
-                <Badge tone={statusTone[client.status]}>
+                <Badge tone={CLIENT_STATUS_TONES[client.status]}>
                   {CLIENT_STATUS_LABELS[client.status]}
                 </Badge>
               </div>
@@ -183,7 +146,7 @@ export default async function AdminClientDetailPage({
                         {a.note ? `・${a.note}` : ""}
                       </span>
                     </span>
-                    <Badge tone={appTone[a.status]}>
+                    <Badge tone={APPLICATION_TONES[a.status]}>
                       {APPLICATION_STATUS_LABELS[a.status]}
                     </Badge>
                     <Icon
@@ -228,7 +191,7 @@ export default async function AdminClientDetailPage({
                       {formatYen(o.total)}
                     </span>
                   </span>
-                  <Badge tone={orderTone[o.status]}>
+                  <Badge tone={ORDER_TONES[o.status]}>
                     {ORDER_STATUS_LABELS[o.status]}
                   </Badge>
                 </Link>

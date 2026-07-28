@@ -2,29 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Badge, Card, EmptyState, type BadgeTone } from "@/components/ui";
+import { Badge, Card, EmptyState } from "@/components/ui";
 import { formatYen, formatMd, daysUntil } from "@/lib/format";
 import { applications, currentClient, projects } from "@/lib/mock-data";
-import {
-  APPLICATION_STATUS_LABELS,
-  type ApplicationStatus,
-  type Project,
-} from "@/lib/types";
-
-const CATEGORY_TONES: Record<Project["category"], BadgeTone> = {
-  HP制作: "blue",
-  動画制作: "violet",
-  キャンペーン: "brand",
-  SNS運用: "green",
-  EC構築: "amber",
-  デザイン: "red",
-};
-
-const APP_TONES: Record<ApplicationStatus, BadgeTone> = {
-  applied: "blue",
-  accepted: "green",
-  rejected: "gray",
-};
+import { APPLICATION_STATUS_LABELS, type Project } from "@/lib/types";
+import { APPLICATION_TONES, CATEGORY_TONES } from "@/lib/tones";
 
 function ProjectCard({
   project,
@@ -149,7 +131,7 @@ export function ProjectTabs() {
                   key={app.id}
                   project={project}
                   footer={
-                    <Badge tone={APP_TONES[app.status]}>
+                    <Badge tone={APPLICATION_TONES[app.status]}>
                       {APPLICATION_STATUS_LABELS[app.status]}
                     </Badge>
                   }

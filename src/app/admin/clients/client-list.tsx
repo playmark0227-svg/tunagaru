@@ -4,18 +4,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { clients } from "@/lib/mock-data";
-import {
-  CLIENT_STATUS_LABELS,
-  type ClientStatus,
-} from "@/lib/types";
-import { Avatar, Badge, Card, EmptyState, type BadgeTone } from "@/components/ui";
+import { CLIENT_STATUS_LABELS, type ClientStatus } from "@/lib/types";
+import { Avatar, Badge, Card, EmptyState } from "@/components/ui";
 import { Icon } from "@/components/icons";
-
-const statusTone: Record<ClientStatus, BadgeTone> = {
-  active: "green",
-  trial: "amber",
-  suspended: "gray",
-};
+import { CLIENT_STATUS_TONES } from "@/lib/tones";
 
 const filters: { value: ClientStatus | "all"; label: string }[] = [
   { value: "all", label: "すべて" },
@@ -103,7 +95,7 @@ export function ClientList() {
                   />
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                  <Badge tone={statusTone[c.status]}>
+                  <Badge tone={CLIENT_STATUS_TONES[c.status]}>
                     {CLIENT_STATUS_LABELS[c.status]}
                   </Badge>
                   <Badge tone="violet">{c.plan}プラン</Badge>
