@@ -43,6 +43,7 @@ export function BottomNav({
             <Link
               key={item.href}
               href={item.href}
+              aria-current={active ? "page" : undefined}
               className={`relative flex flex-1 flex-col items-center gap-1 py-2.5 text-[10px] transition-colors ${
                 active
                   ? "font-bold text-aqua"
@@ -82,6 +83,7 @@ export function SidebarNav({
           <Link
             key={item.href}
             href={item.href}
+            aria-current={active ? "page" : undefined}
             className={`flex items-center gap-3 rounded-sm border-l-2 px-3 py-2.5 text-[13px] transition-all ${
               active
                 ? "border-aqua bg-aqua-soft/60 font-bold text-ink"
