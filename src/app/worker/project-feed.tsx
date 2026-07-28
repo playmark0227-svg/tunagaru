@@ -19,7 +19,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Icon } from "@/components/icons";
 import { Avatar, Badge, Card } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd, formatDeadline } from "@/lib/format";
 import { currentWorker, projects } from "@/lib/mock-data";
 import type { ProjectCategory } from "@/lib/types";
 
@@ -104,7 +104,7 @@ export function ProjectFeed() {
                 <Avatar name="繋がるクラフト" color="bg-brand" size="sm" />
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-bold">繋がるクラフト 本部</p>
-                  <p className="text-[10px] text-ink/40">{p.createdAt} 投稿</p>
+                  <p className="text-[10px] text-ink/40">{formatMd(p.createdAt)} 投稿</p>
                 </div>
                 <Badge tone="brand">{p.category}</Badge>
               </div>
@@ -172,7 +172,7 @@ export function ProjectFeed() {
                 <p className="mt-2 flex items-center gap-3 text-[11px] text-ink/40">
                   <span className="flex items-center gap-1">
                     <Icon name="calendar" className="h-3.5 w-3.5" />
-                    締切 {p.deadline}
+                    締切 {formatMd(p.deadline)} ({formatDeadline(p.deadline)})
                   </span>
                   <span className="flex items-center gap-1">
                     <Icon name="users" className="h-3.5 w-3.5" />

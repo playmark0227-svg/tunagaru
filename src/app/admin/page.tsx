@@ -8,19 +8,13 @@ import {
   orders,
   tasks,
 } from "@/lib/mock-data";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import { Avatar, Card, SectionTitle } from "@/components/ui";
 import { StatCard } from "@/components/ui";
 import { Icon } from "@/components/icons";
 import { AdminHeader } from "./header";
 
 export const metadata: Metadata = { title: "本部ダッシュボード" };
-
-/** "2026-07-04" → "7/4" */
-function md(date: string): string {
-  const [, m, d] = date.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 export default function AdminDashboardPage() {
   const pendingOrders = orders.filter((o) => o.status === "received");
@@ -178,7 +172,7 @@ export default function AdminDashboardPage() {
                     </span>
                     <span className="block text-xs text-ink/40">
                       {o.endUserName ?? o.clientName} 様・{formatYen(o.total)}・
-                      {md(o.orderedAt)} 受付
+                      {formatMd(o.orderedAt)} 受付
                     </span>
                   </span>
                   <Icon
@@ -201,7 +195,7 @@ export default function AdminDashboardPage() {
                       確認待ち: {t.title}
                     </span>
                     <span className="block text-xs text-ink/40">
-                      {t.assignee} 様より提出・期限 {md(t.dueDate)}
+                      {t.assignee} 様より提出・期限 {formatMd(t.dueDate)}
                     </span>
                   </span>
                   <Icon
@@ -224,7 +218,7 @@ export default function AdminDashboardPage() {
                       本部タスク: {t.title}
                     </span>
                     <span className="block text-xs text-ink/40">
-                      期限 {md(t.dueDate)}
+                      期限 {formatMd(t.dueDate)}
                       {t.note ? `・${t.note}` : ""}
                     </span>
                   </span>

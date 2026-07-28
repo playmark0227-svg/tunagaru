@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { formatMd } from "@/lib/format";
 import { projects, workers, workerTasks } from "@/lib/mock-data";
 import {
   Avatar,
@@ -20,12 +21,6 @@ import {
 import { AdminHeader } from "../header";
 
 export const metadata: Metadata = { title: "担当一覧" };
-
-/** "2026-07-04" → "7/4" */
-function md(date: string): string {
-  const [, m, d] = date.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 const TASK_STATUS_TONES: Record<TaskStatus, BadgeTone> = {
   todo: "gray",
@@ -165,7 +160,7 @@ export default function AdminStaffPage() {
                                 </span>
                                 <span className="block truncate text-[10px] text-ink/45">
                                   {proj ? `${proj.title}・` : ""}期限{" "}
-                                  {md(t.dueDate)}
+                                  {formatMd(t.dueDate)}
                                 </span>
                               </span>
                             </li>

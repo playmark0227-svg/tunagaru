@@ -1,6 +1,7 @@
 "use client";
 
 /** 応募クライアント一覧: 採用 / 見送り をローカルstateで操作できる */
+import { formatMd } from "@/lib/format";
 import { useState } from "react";
 import {
   APPLICATION_STATUS_LABELS,
@@ -18,12 +19,6 @@ export interface ApplicantInfo {
   status: ApplicationStatus;
   appliedAt: string;
   note?: string;
-}
-
-/** "2026-06-27" → "6/27" */
-function md(date: string): string {
-  const [, m, d] = date.split("-");
-  return `${Number(m)}/${Number(d)}`;
 }
 
 export function Applicants({ initial }: { initial: ApplicantInfo[] }) {
@@ -46,7 +41,7 @@ export function Applicants({ initial }: { initial: ApplicantInfo[] }) {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold">{a.name}</p>
                 <p className="truncate text-xs text-ink/40">
-                  {a.ownerName} 様・{md(a.appliedAt)} 応募
+                  {a.ownerName} 様・{formatMd(a.appliedAt)} 応募
                 </p>
               </div>
               <Badge

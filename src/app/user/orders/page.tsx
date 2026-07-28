@@ -1,5 +1,5 @@
 import { Card, EmptyState, PageHeader, ProgressSteps } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatDate } from "@/lib/format";
 import { currentEndUser, orders } from "@/lib/mock-data";
 import { ORDER_PIPELINE, ORDER_STATUS_LABELS } from "@/lib/types";
 
@@ -31,7 +31,7 @@ export default function UserOrdersPage() {
                     <p className="text-[11px] text-ink/40">
                       注文番号 {order.id}
                     </p>
-                    <p className="text-xs text-ink/55">{order.orderedAt}</p>
+                    <p className="text-xs text-ink/55">{formatDate(order.orderedAt)}</p>
                   </div>
                   <span className="rounded-sm bg-brand-soft px-2.5 py-1 text-[11px] font-bold text-brand-dark">
                     {ORDER_STATUS_LABELS[order.status]}

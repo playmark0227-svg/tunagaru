@@ -7,6 +7,7 @@ import { demoSendAnnouncement } from "@/lib/demo";
 import type { Announcement } from "@/lib/types";
 import { Badge, Card, SectionTitle } from "@/components/ui";
 import { Icon } from "@/components/icons";
+import { formatMd } from "@/lib/format";
 
 const targets = [
   "全クライアント",
@@ -178,7 +179,7 @@ export function AnnounceForm() {
                   <Badge tone="gray">アプリ内のみ</Badge>
                 )}
                 <span className="ml-auto shrink-0 text-[10px] text-ink/40">
-                  {a.sentAt}
+                  {formatMd(a.sentAt)}
                 </span>
               </div>
               <p className="mt-2 text-sm font-bold leading-snug">{a.title}</p>

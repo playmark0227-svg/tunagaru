@@ -12,7 +12,7 @@ import {
   type ProjectStatus,
   type TaskStatus,
 } from "@/lib/types";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatDate } from "@/lib/format";
 import {
   Badge,
   Card,
@@ -44,11 +44,6 @@ const taskTone: Record<TaskStatus, BadgeTone> = {
 };
 
 /** "2026-07-20" → "2026/7/20" */
-function ymd(date: string): string {
-  const [y, m, d] = date.split("-");
-  return `${y}/${Number(m)}/${Number(d)}`;
-}
-
 export default async function AdminProjectDetailPage({
   params,
 }: {
@@ -109,11 +104,11 @@ export default async function AdminProjectDetailPage({
             </div>
             <div className="rounded-sm bg-cream px-2 py-2.5">
               <p className="text-[10px] font-medium text-ink/40">応募締切</p>
-              <p className="mt-0.5 text-sm font-bold">{ymd(project.deadline)}</p>
+              <p className="mt-0.5 text-sm font-bold">{formatDate(project.deadline)}</p>
             </div>
             <div className="rounded-sm bg-cream px-2 py-2.5">
               <p className="text-[10px] font-medium text-ink/40">公開日</p>
-              <p className="mt-0.5 text-sm font-bold">{ymd(project.createdAt)}</p>
+              <p className="mt-0.5 text-sm font-bold">{formatDate(project.createdAt)}</p>
             </div>
           </div>
         </Card>
@@ -169,7 +164,7 @@ export default async function AdminProjectDetailPage({
                         {t.title}
                       </p>
                       <p className="mt-0.5 text-xs text-ink/40">
-                        {t.kind}・担当: {t.assignee}・期限 {ymd(t.dueDate)}
+                        {t.kind}・担当: {t.assignee}・期限 {formatDate(t.dueDate)}
                       </p>
                       {t.note && (
                         <p className="mt-1 rounded-sm bg-cream px-2.5 py-1.5 text-xs leading-relaxed text-ink/55">

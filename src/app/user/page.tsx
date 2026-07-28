@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { Avatar, Card, ProductThumb, SectionTitle } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import {
   currentClient,
   newsPosts,
@@ -84,7 +84,7 @@ export default function UserHomePage() {
                   {post.body}
                 </p>
                 <p className="mt-1.5 text-[10px] text-ink/40">
-                  {post.postedAt}
+                  {formatMd(post.postedAt)} 投稿
                 </p>
               </div>
             </Card>

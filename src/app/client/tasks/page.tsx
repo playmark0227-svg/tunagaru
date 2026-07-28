@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatMd } from "@/lib/format";
 import { Icon } from "@/components/icons";
 import {
   Badge,
@@ -16,12 +17,6 @@ import {
 } from "@/lib/types";
 
 export const metadata = { title: "タスク管理" };
-
-/** "2026-07-04" → "7/4" */
-function shortDate(value: string): string {
-  const [, m, d] = value.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 const STATUS_ORDER: TaskStatus[] = ["todo", "in_progress", "review", "done"];
 
@@ -53,7 +48,7 @@ function TaskCard({ task }: { task: Task }) {
           {TASK_STATUS_LABELS[task.status]}
         </Badge>
         <span className="ml-auto text-xs font-bold text-brand-dark">
-          期限 {shortDate(task.dueDate)}
+          期限 {formatMd(task.dueDate)}
         </span>
       </div>
       <p className="mt-2 text-sm font-bold leading-snug">{task.title}</p>

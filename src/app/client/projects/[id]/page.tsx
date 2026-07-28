@@ -7,7 +7,7 @@ import {
   SectionTitle,
   type BadgeTone,
 } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd, daysUntil } from "@/lib/format";
 import { applications, currentClient, projects } from "@/lib/mock-data";
 import { PROJECT_STATUS_LABELS, type Project } from "@/lib/types";
 import { ApplyButton } from "./apply-button";
@@ -16,19 +16,6 @@ export const metadata = { title: "案件詳細" };
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
-}
-
-/** "2026-07-20" → "7/20" */
-function shortDate(value: string): string {
-  const [, m, d] = value.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
-
-/** モックの「今日」(2026-07-03) からの残り日数 */
-function daysUntil(dateStr: string): number {
-  const today = new Date("2026-07-03T00:00:00+09:00").getTime();
-  const target = new Date(`${dateStr}T00:00:00+09:00`).getTime();
-  return Math.round((target - today) / 86400000);
 }
 
 const CATEGORY_TONES: Record<Project["category"], BadgeTone> = {
@@ -99,7 +86,7 @@ export default async function ClientProjectDetailPage({
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-xs text-ink/55">応募締切</span>
             <span className="text-sm font-semibold">
-              {shortDate(project.deadline)}
+              {formatMd(project.deadline)}
               {project.status === "open" &&
                 daysUntil(project.deadline) >= 0 && (
                   <span className="ml-1.5 text-xs font-bold text-brand-dark">
@@ -117,7 +104,7 @@ export default async function ClientProjectDetailPage({
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-xs text-ink/55">掲載日</span>
             <span className="text-sm font-semibold">
-              {shortDate(project.createdAt)}
+              {formatMd(project.createdAt)}
             </span>
           </div>
         </Card>

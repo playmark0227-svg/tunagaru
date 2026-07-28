@@ -9,7 +9,7 @@ import {
   type ProjectCategory,
   type ProjectStatus,
 } from "@/lib/types";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import { Badge, Card, EmptyState, type BadgeTone } from "@/components/ui";
 import { Icon } from "@/components/icons";
 
@@ -23,12 +23,6 @@ const categoryTone: Record<ProjectCategory, BadgeTone> = {
 };
 
 const tabs: ProjectStatus[] = ["open", "in_progress", "done"];
-
-/** "2026-07-20" → "7/20" */
-function md(date: string): string {
-  const [, m, d] = date.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 export function ProjectTabs() {
   const [tab, setTab] = useState<ProjectStatus>("open");
@@ -91,7 +85,7 @@ export function ProjectTabs() {
                     </span>
                     <span className="flex items-center gap-1">
                       <Icon name="calendar" className="h-3.5 w-3.5" />
-                      締切 {md(p.deadline)}
+                      締切 {formatMd(p.deadline)}
                     </span>
                     <span className="ml-auto flex items-center gap-1">
                       <Icon name="users" className="h-3.5 w-3.5" />

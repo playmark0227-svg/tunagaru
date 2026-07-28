@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icons";
 import { Avatar, Badge, Card, PageHeader } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd, formatDate } from "@/lib/format";
 import { currentWorker, projects, workerTasks } from "@/lib/mock-data";
 import { PROJECT_STATUS_LABELS, TASK_STATUS_LABELS } from "@/lib/types";
 import { WorkerApplyButton } from "./apply-button";
@@ -63,7 +63,7 @@ export default async function WorkerProjectDetailPage({
             <div className="flex-1">
               <p className="text-xs font-bold">繋がるクラフト 本部</p>
               <p className="text-[10px] text-ink/40">
-                {project.createdAt} 投稿
+                {formatMd(project.createdAt)} 投稿
               </p>
             </div>
           </Card>
@@ -83,7 +83,7 @@ export default async function WorkerProjectDetailPage({
               <div>
                 <p className="text-[10px] text-ink/40">応募締切</p>
                 <p className="text-base font-bold text-ink/80">
-                  {project.deadline}
+                  {formatDate(project.deadline)}
                 </p>
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Icon } from "@/components/icons";
 import { Avatar, Card, PageHeader, SectionTitle } from "@/components/ui";
 import { currentWorker, workerTasks } from "@/lib/mock-data";
 import { WorkerPushToggle } from "./push-toggle";
+import { formatDate } from "@/lib/format";
 
 export const metadata = { title: "マイページ" };
 
@@ -24,7 +25,7 @@ export default function WorkerMyPage() {
             <div className="min-w-0 flex-1">
               <p className="text-lg font-bold">{currentWorker.name}</p>
               <p className="text-xs text-ink/55">
-                作業者(クリエイター) / {currentWorker.joinedAt} 登録
+                作業者(クリエイター) / {formatDate(currentWorker.joinedAt)} 登録
               </p>
               <div className="mt-1.5 flex flex-wrap gap-1">
                 {currentWorker.specialties.map((s) => (

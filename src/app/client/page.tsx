@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { Badge, Card, SectionTitle, type BadgeTone } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import {
   announcements,
   applications,
@@ -16,12 +16,6 @@ import {
 } from "@/lib/types";
 
 export const metadata = { title: "ホーム" };
-
-/** "2026-07-01 10:00" / "2026-07-04" → "7/1" */
-function shortDate(value: string): string {
-  const [, m, d] = value.split(" ")[0].split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 const quickActions: {
   href: string;
@@ -107,7 +101,7 @@ export default function ClientHomePage() {
                     {a.body}
                   </p>
                   <p className="mt-1.5 text-[10px] text-ink/40">
-                    {shortDate(a.sentAt)} 配信
+                    {formatMd(a.sentAt)} 配信
                   </p>
                 </div>
               </Card>
@@ -138,7 +132,7 @@ export default function ClientHomePage() {
                 </div>
                 <div className="shrink-0 text-right">
                   <p className="text-xs font-bold text-brand-dark">
-                    {shortDate(t.dueDate)}
+                    {formatMd(t.dueDate)}
                   </p>
                   <p className="text-[10px] text-ink/40">期限</p>
                 </div>
@@ -170,7 +164,7 @@ export default function ClientHomePage() {
                         {APPLICATION_STATUS_LABELS[app.status]}
                       </Badge>
                       <span className="text-[10px] text-ink/40">
-                        {shortDate(app.appliedAt)} 応募
+                        {formatMd(app.appliedAt)} 応募
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-bold leading-snug">

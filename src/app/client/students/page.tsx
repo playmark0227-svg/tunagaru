@@ -8,16 +8,10 @@ import {
   SectionTitle,
   StatCard,
 } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import { currentClient, endUsers } from "@/lib/mock-data";
 
 export const metadata = { title: "生徒管理" };
-
-/** "2026-06-28" → "6/28" */
-function shortDate(value: string): string {
-  const [, m, d] = value.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 export default function ClientStudentsPage() {
   const totalSpent = endUsers.reduce((sum, u) => sum + u.totalSpent, 0);
@@ -73,7 +67,7 @@ export default function ClientStudentsPage() {
                   <p className="truncate text-sm font-bold">{u.name}</p>
                   <p className="mt-0.5 text-xs text-ink/55">
                     最終注文{" "}
-                    {u.lastOrderAt ? shortDate(u.lastOrderAt) : "まだなし"}
+                    {u.lastOrderAt ? formatMd(u.lastOrderAt) : "まだなし"}
                   </p>
                 </div>
                 <div className="shrink-0 text-right">

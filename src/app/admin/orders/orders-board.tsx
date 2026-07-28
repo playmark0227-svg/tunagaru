@@ -12,7 +12,7 @@ import {
   ORDER_STATUS_LABELS,
   type OrderStatus,
 } from "@/lib/types";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd } from "@/lib/format";
 import { Badge, Card, ProgressSteps, type BadgeTone } from "@/components/ui";
 import { Icon, type IconName } from "@/components/icons";
 
@@ -31,12 +31,6 @@ const nextAction: Record<
   ordered_to_hq: { label: "発送済みにする", icon: "truck" },
   shipped: { label: "完了にする", icon: "check" },
 };
-
-/** "2026-07-02" → "7/2" */
-function md(date: string): string {
-  const [, m, d] = date.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
 
 export function OrdersBoard() {
   const [statuses, setStatuses] = useState<Record<string, OrderStatus>>(() =>
@@ -95,7 +89,7 @@ export function OrdersBoard() {
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold">#{o.id}</span>
                 <span className="text-xs text-ink/40">
-                  {md(o.orderedAt)} 受付
+                  {formatMd(o.orderedAt)} 受付
                 </span>
                 <span className="ml-auto">
                   <Badge tone={statusTone[status]}>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { Badge, Card, EmptyState, PageHeader } from "@/components/ui";
 import { projects, workerTasks } from "@/lib/mock-data";
+import { formatMd } from "@/lib/format";
 import {
   TASK_SOURCE_LABELS,
   TASK_STATUS_LABELS,
@@ -41,7 +42,7 @@ function TaskRow({ task }: { task: Task }) {
           <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-ink/40">
             <span className="flex items-center gap-1">
               <Icon name="calendar" className="h-3.5 w-3.5" />
-              {task.dueDate} まで
+              {formatMd(task.dueDate)} まで
             </span>
             {task.source && task.source !== "manual" && (
               <span

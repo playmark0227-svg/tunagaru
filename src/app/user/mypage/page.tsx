@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { Avatar, Card, PageHeader, SectionTitle } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd, formatDate } from "@/lib/format";
 import { currentClient, currentEndUser } from "@/lib/mock-data";
 import { FaqAccordion, PushToggle } from "./mypage-client";
 
@@ -26,7 +26,7 @@ export default function MyPage() {
                 {currentClient.name} の生徒
               </p>
               <p className="mt-0.5 text-[11px] text-ink/40">
-                {currentEndUser.joinedAt} 登録
+                {formatDate(currentEndUser.joinedAt)} 登録
               </p>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function MyPage() {
             <div className="text-center">
               <p className="text-[10px] text-ink/40">最終注文</p>
               <p className="text-base font-bold text-ink/80">
-                {currentEndUser.lastOrderAt ?? "―"}
+                {currentEndUser.lastOrderAt ? formatMd(currentEndUser.lastOrderAt) : "―"}
               </p>
             </div>
           </div>

@@ -3,26 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Badge, Card, EmptyState, type BadgeTone } from "@/components/ui";
-import { formatYen } from "@/lib/format";
+import { formatYen, formatMd, daysUntil } from "@/lib/format";
 import { applications, currentClient, projects } from "@/lib/mock-data";
 import {
   APPLICATION_STATUS_LABELS,
   type ApplicationStatus,
   type Project,
 } from "@/lib/types";
-
-/** "2026-07-20" → "7/20" */
-function shortDate(value: string): string {
-  const [, m, d] = value.split("-");
-  return `${Number(m)}/${Number(d)}`;
-}
-
-/** モックの「今日」(2026-07-03) からの残り日数 */
-function daysUntil(dateStr: string): number {
-  const today = new Date("2026-07-03T00:00:00+09:00").getTime();
-  const target = new Date(`${dateStr}T00:00:00+09:00`).getTime();
-  return Math.round((target - today) / 86400000);
-}
 
 const CATEGORY_TONES: Record<Project["category"], BadgeTone> = {
   HP制作: "blue",
@@ -70,7 +57,7 @@ function ProjectCard({
             </p>
           </div>
           <p className="text-xs text-ink/55">
-            締切 {shortDate(project.deadline)}
+            締切 {formatMd(project.deadline)}
             {daysUntil(project.deadline) >= 0 && (
               <span className="ml-1 font-semibold text-brand-dark">
                 あと{daysUntil(project.deadline)}日
