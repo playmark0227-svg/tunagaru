@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#282f5a"/>
+  <!-- ロゴマークの意匠: 「て」+ 放射 (サンバースト) + ステッチ -->
+  <g stroke="#ffffff" stroke-width="26" stroke-linecap="round" fill="none">
+    <!-- サンバースト -->
+    <path d="M208 96v-34M252 104l14-32M164 104l-14-32M290 128l26-24M126 128l-26-24"/>
+    <!-- て -->
+    <path d="M120 190h240"/>
+    <path d="M252 190c-30 60-56 118-40 160 14 38 74 46 118 18"/>
+  </g>
+  <!-- ステッチ (破線) -->
+  <line x1="96" y1="428" x2="416" y2="428" stroke="#ffffff" stroke-width="18" stroke-dasharray="26 22" stroke-linecap="round"/>
+</svg>
