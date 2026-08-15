@@ -14,8 +14,10 @@ export default function AdminStaffPage() {
   // 完了を除く稼働中タスク
   const activeTasks = workerTasks.filter((t) => t.status !== "done");
 
-  // 作業者向け募集案件 (案件 × 担当マッピング用)
-  const workerProjects = projects.filter((p) => p.forWorkers);
+  // 案件 × 担当のマッピング用。
+  // 顧客と作業者を統合したため「作業者向け案件」の区別は無くなり、
+  // すべての案件がスタッフ募集の対象になる。
+  const workerProjects = projects;
 
   // 応募受付中の作業者数 (延べ)
   const totalApplicants = workerProjects.reduce(
@@ -90,7 +92,7 @@ export default function AdminStaffPage() {
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-bold">{w.name}</p>
                       <div className="mt-1 flex flex-wrap gap-1">
-                        {w.specialties.map((s) => (
+                        {(w.specialties ?? []).map((s) => (
                           <Badge key={s} tone="violet">
                             {s}
                           </Badge>

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { applications, clients, projects, tasks } from "@/lib/mock-data";
-import { PROJECT_STATUS_LABELS, TASK_STATUS_LABELS } from "@/lib/types";
+import { PROJECT_STATUS_LABELS, TASK_STATUS_LABELS,
+  projectMargin,
+  projectMarginRate,
+} from "@/lib/types";
 import { formatYen, formatDate } from "@/lib/format";
 import { Badge, Card, EmptyState, SectionTitle } from "@/components/ui";
 import { Icon } from "@/components/icons";
@@ -67,13 +70,35 @@ export default async function AdminProjectDetailPage({
           <p className="mt-2 text-sm leading-relaxed text-ink/70">
             {project.description}
           </p>
+          {/* 本部だけが両方の金額とマージンを見られる。
+              作業者側 (/member/projects) には workerPrice しか渡していない。 */}
           <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-            <div className="rounded-sm bg-cream px-2 py-2.5">
-              <p className="text-[10px] font-medium text-ink/40">報酬・費用</p>
+            <div className="rounded-sm border border-ink/10 bg-white px-2 py-2.5">
+              <p className="text-[10px] font-medium text-ink/40">顧客への提示額</p>
               <p className="mt-0.5 text-sm font-bold">
-                {formatYen(project.budget)}
+                {formatYen(project.clientPrice)}
               </p>
             </div>
+            <div className="rounded-sm border border-ink/10 bg-white px-2 py-2.5">
+              <p className="text-[10px] font-medium text-ink/40">作業者への支払</p>
+              <p className="mt-0.5 text-sm font-bold text-ink/70">
+                {formatYen(project.workerPrice)}
+              </p>
+            </div>
+            <div className="rounded-sm border border-aqua/40 bg-aqua-soft px-2 py-2.5">
+              <p className="text-[10px] font-medium text-aqua">本部マージン</p>
+              <p className="mt-0.5 text-sm font-bold text-aqua">
+                {formatYen(projectMargin(project))}
+              </p>
+              <p className="text-[9px] text-ink/45">
+                {projectMarginRate(project)}%
+              </p>
+            </div>
+          </div>
+          <p className="mt-1.5 text-[10px] leading-relaxed text-ink/40">
+            ※ マージンは本部のみ表示。作業者の画面には支払額しか表示されません。
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 text-center">
             <div className="rounded-sm bg-cream px-2 py-2.5">
               <p className="text-[10px] font-medium text-ink/40">応募締切</p>
               <p className="mt-0.5 text-sm font-bold">{formatDate(project.deadline)}</p>

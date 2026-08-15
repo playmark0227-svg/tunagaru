@@ -3,11 +3,13 @@ import { Icon, type IconName } from "@/components/icons";
 
 /**
  * エントランス: ロール選択画面 (プロトタイプ用)
- * 本実装では Firebase Authentication のログイン画面になり、
- * カスタムクレームのロールに応じて自動で各ホームへ振り分ける。
+ *
+ * ▼ 2026-08 打ち合わせでの方針転換
+ * 以前は「クライアント」と「作業者」を別の入口にしていたが、実際には
+ * 顧客がそのままスタッフを兼ねているため、両者を「メンバー」に統合した。
+ * 本実装ではログイン後にロールで自動振り分けされ、この画面は無くなる。
  */
 
-// 静的エクスポート + サブパス配信のため <img> には basePath を手動付与
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const roles: {
@@ -20,29 +22,24 @@ const roles: {
   {
     href: "/admin",
     icon: "chart",
-    title: "マスター管理者",
-    who: "本部(繋がるクラフト)",
-    description: "全クライアント・作業者を俯瞰管理/案件発行/一斉通知/売上管理",
+    title: "本部",
+    who: "繋がるクラフト",
+    description:
+      "顧客ごとのチャットを一元管理/案件の発注と担当割り/マージン管理/全体配信",
   },
   {
-    href: "/worker",
-    icon: "sparkles",
-    title: "作業者(クリエイター)",
-    who: "スタッフ・映像/Web/デザインの作り手",
-    description: "案件フィードで新規案件を発見・応募/担当タスクの確認",
-  },
-  {
-    href: "/client",
-    icon: "store",
-    title: "クライアント",
-    who: "インストラクター・教室運営者",
-    description: "本部/作業者とのチャット/案件の進捗確認/物販の注文",
+    href: "/member",
+    icon: "users",
+    title: "メンバー",
+    who: "顧客 兼 スタッフ",
+    description:
+      "本部とのやりとり/自分の案件の進捗確認/スタッフとして案件に応募",
   },
   {
     href: "/user",
     icon: "user",
     title: "エンドユーザー",
-    who: "生徒・一般のお客様",
+    who: "メンバーの先にいるお客様",
     description: "先生の情報チェック/商品の購入/お問い合わせ",
   },
 ];
@@ -60,7 +57,7 @@ export default function EntrancePage() {
         />
         <div className="h-px w-16 bg-aqua" />
         <p className="text-center text-[13px] leading-relaxed text-ink/60">
-          顧客管理・メッセージ・案件・物販をひとつに。
+          バラバラのやりとりを、ひとつに。
           <br />
           あなたの
           <span className="font-bold text-aqua">デジタル系 総合相談窓口</span>
@@ -71,7 +68,7 @@ export default function EntrancePage() {
       <div className="mt-8">
         <p className="mb-3 flex items-center gap-2 text-[11px] font-medium tracking-[0.2em] text-ink/40">
           <span className="h-px w-4 bg-ink/25" />
-          SELECT ROLE — 体験するユーザー
+          SELECT ROLE — 体験する立場
         </p>
         <div className="stagger space-y-2.5">
           {roles.map((role) => (
@@ -101,6 +98,16 @@ export default function EntrancePage() {
             </Link>
           ))}
         </div>
+      </div>
+
+      {/* 統合についての補足 */}
+      <div className="mt-6 border border-aqua/40 bg-aqua-soft px-4 py-3">
+        <p className="text-[11px] leading-relaxed text-ink/70">
+          <span className="font-bold">「メンバー」について:</span>{" "}
+          つながるCraftでは<strong>お客様がそのままスタッフを兼ねる</strong>
+          ため、顧客用と作業者用の入口を分けず1つにまとめています。
+          スタッフ権限のある方だけ「案件」タブが表示されます。
+        </p>
       </div>
 
       <footer className="mt-auto pt-10">

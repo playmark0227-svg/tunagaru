@@ -41,7 +41,7 @@ export default async function UserChatPage({
           <Avatar name={thread.title} color={thread.avatarColor} size="sm" />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-bold">{thread.title}</p>
-            {thread.kind === "group" && thread.memberCount && (
+            {thread.kind === "customer" && thread.memberCount && (
               <p className="text-[10px] text-ink/40">
                 メンバー {thread.memberCount}人
               </p>

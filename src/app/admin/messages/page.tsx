@@ -4,6 +4,7 @@ import { hqThreads } from "@/lib/mock-data";
 import type { ChatThread } from "@/lib/types";
 import { Avatar, Badge, Card, SectionTitle, UnreadBadge } from "@/components/ui";
 import { AdminHeader } from "../header";
+import { THREAD_KIND_LABELS } from "@/lib/types";
 
 export const metadata: Metadata = { title: "チャット" };
 
@@ -17,14 +18,18 @@ function ThreadRow({ t }: { t: ChatThread }) {
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-1.5">
           <span className="truncate text-sm font-bold">{t.title}</span>
-          {t.kind === "group" && (
+          {t.kind === "customer" && (
             <span className="shrink-0 rounded-sm bg-ink/5 px-1.5 py-0.5 text-[10px] font-semibold text-ink/55">
               {t.memberCount}名
             </span>
           )}
         </span>
         <span className="mt-0.5 flex items-center gap-1.5">
-          {t.category && <Badge tone="violet">{t.category}</Badge>}
+          {t.kind !== "customer" && (
+            <Badge tone={t.kind === "dm" ? "amber" : "violet"}>
+              {THREAD_KIND_LABELS[t.kind]}
+            </Badge>
+          )}
           <span
             className={`min-w-0 truncate text-xs ${
               t.unreadCount > 0
@@ -48,10 +53,10 @@ export default function AdminMessagesPage() {
   const unreadTotal = hqThreads.reduce((sum, t) => sum + t.unreadCount, 0);
   // 案件ごとの専用グループと、クライアント個別スレッドを分離して表示
   const projectGroups = hqThreads.filter(
-    (t) => t.kind === "group" && t.projectId,
+    (t) => t.kind === "customer" && t.projectIds?.[0],
   );
   const clientThreadList = hqThreads.filter(
-    (t) => !(t.kind === "group" && t.projectId),
+    (t) => !(t.kind === "customer" && t.projectIds?.[0]),
   );
 
   return (

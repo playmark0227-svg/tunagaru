@@ -12,8 +12,7 @@ export const metadata: Metadata = { title: "ページが見つかりません" }
 
 const shortcuts: { href: string; label: string; who: string }[] = [
   { href: "/admin", label: "本部管理", who: "マスター管理者" },
-  { href: "/worker", label: "案件フィード", who: "作業者" },
-  { href: "/client", label: "マイページ", who: "クライアント" },
+  { href: "/member", label: "メンバー", who: "顧客 兼 スタッフ" },
   { href: "/user", label: "ホーム", who: "エンドユーザー" },
 ];
 

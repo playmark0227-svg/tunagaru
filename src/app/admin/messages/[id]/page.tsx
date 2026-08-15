@@ -47,7 +47,7 @@ export default async function AdminChatPage({
               {thread.title}
             </h1>
             <p className="text-[10px] text-ink/40">
-              {thread.kind === "group"
+              {thread.kind === "customer"
                 ? `グループ・${thread.memberCount}名`
                 : "クライアント"}
             </p>

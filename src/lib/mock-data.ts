@@ -10,7 +10,7 @@ import type {
   BookingSlot,
   ChatMessage,
   ChatThread,
-  Client,
+  Member,
   EcNotification,
   EndUser,
   NewsPost,
@@ -19,13 +19,16 @@ import type {
   Product,
   Project,
   Task,
-  Worker,
+  TimelinePost,
 } from "./types";
 
 /* ------------------------------------------------------------------ */
-/* クライアント (インストラクター等)                                     */
+/* メンバー (顧客。うち isStaff の人はスタッフを兼ねる)                    */
+/*                                                                      */
+/* 2026-08 打ち合わせ: 「うちのお客さんをスタッフにしてる」ため、          */
+/* 顧客と作業者を別リストで持たず1つに統合した。                          */
 /* ------------------------------------------------------------------ */
-export const clients: Client[] = [
+export const members: Member[] = [
   {
     id: "c1",
     name: "アトリエ彩花",
@@ -37,6 +40,9 @@ export const clients: Client[] = [
     joinedAt: "2023-04-10",
     siteUrl: "https://atelier-ayaka.example.com",
     avatarColor: "bg-rose-400",
+    isStaff: true,
+    specialties: ["ポーセラーツ", "撮影"],
+    completedCount: 3,
   },
   {
     id: "c2",
@@ -49,6 +55,9 @@ export const clients: Client[] = [
     joinedAt: "2023-09-01",
     siteUrl: "https://nail-luce.example.com",
     avatarColor: "bg-violet-400",
+    isStaff: true,
+    specialties: ["ネイルアート", "SNS運用"],
+    completedCount: 7,
   },
   {
     id: "c3",
@@ -60,6 +69,7 @@ export const clients: Client[] = [
     studentCount: 18,
     joinedAt: "2026-05-20",
     avatarColor: "bg-sky-400",
+    isStaff: false,
   },
   {
     id: "c4",
@@ -72,6 +82,9 @@ export const clients: Client[] = [
     joinedAt: "2024-01-15",
     siteUrl: "https://hana-candle.example.com",
     avatarColor: "bg-amber-400",
+    isStaff: true,
+    specialties: ["キャンドル製作", "ワークショップ"],
+    completedCount: 2,
   },
   {
     id: "c5",
@@ -84,6 +97,9 @@ export const clients: Client[] = [
     joinedAt: "2022-11-01",
     siteUrl: "https://blanche.example.com",
     avatarColor: "bg-emerald-400",
+    isStaff: true,
+    specialties: ["メイク", "美容ライティング"],
+    completedCount: 11,
   },
   {
     id: "c6",
@@ -95,11 +111,19 @@ export const clients: Client[] = [
     studentCount: 9,
     joinedAt: "2024-08-05",
     avatarColor: "bg-stone-400",
+    isStaff: false,
   },
 ];
 
-/** プロトタイプで「ログイン中」とみなすクライアント */
-export const currentClient = clients[0]; // アトリエ彩花・佐藤彩香
+/** プロトタイプで「ログイン中」とみなすメンバー (顧客かつスタッフ) */
+export const currentMember = members[0]; // アトリエ彩花・佐藤彩香
+
+/** スタッフを兼ねているメンバーだけを抜き出す */
+export const staffMembers = members.filter((m) => m.isStaff);
+
+/* 旧名との互換用エイリアス。新規コードでは members / currentMember を使う */
+export const clients = members;
+export const currentClient = currentMember;
 
 /* ------------------------------------------------------------------ */
 /* エンドユーザー (生徒・一般顧客) — currentClient に紐づく              */
@@ -163,7 +187,10 @@ export const projects: Project[] = [
     title: "教室紹介ムービー制作キャンペーン",
     category: "動画制作",
     status: "open",
-    budget: 55000,
+    /** 顧客への提示額 */
+    clientPrice: 55000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 30000,
     deadline: "2026-07-20",
     description:
       "教室・サロンの魅力を60秒で伝える紹介ムービーを特別価格で制作します。撮影素材(スマホ動画・写真)をご提供いただくだけでOK。InstagramリールとHP埋め込み用の2サイズを納品します。先着5教室限定。",
@@ -178,7 +205,10 @@ export const projects: Project[] = [
     title: "ホームページリニューアル(夏の特別枠)",
     category: "HP制作",
     status: "open",
-    budget: 220000,
+    /** 顧客への提示額 */
+    clientPrice: 220000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 121000,
     deadline: "2026-07-31",
     description:
       "スマホ最適化・予約導線の改善・SEO対策を含むフルリニューアル。現行サイトの内容を活かしつつ、体験レッスンの申込率アップを狙った構成に刷新します。月2教室まで。",
@@ -193,12 +223,15 @@ export const projects: Project[] = [
     title: "秋の体験レッスンLPキャンペーン",
     category: "キャンペーン",
     status: "in_progress",
-    budget: 88000,
+    /** 顧客への提示額 */
+    clientPrice: 88000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 48000,
     deadline: "2026-08-31",
     description:
       "秋の入会シーズンに向けた体験レッスン専用ランディングページの制作と、Instagram広告の出稿サポートのセットプランです。",
     applicantIds: ["c1", "c2", "c5"],
-    assignedClientId: "c1",
+    assignedMemberId: "c1",
     createdAt: "2026-06-10",
     emoji: "🍂",
     gradient: "from-amber-100 to-orange-100",
@@ -209,7 +242,10 @@ export const projects: Project[] = [
     title: "Instagramリール運用サポート(3ヶ月)",
     category: "SNS運用",
     status: "open",
-    budget: 33000,
+    /** 顧客への提示額 */
+    clientPrice: 33000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 18000,
     deadline: "2026-07-15",
     description:
       "月4本のリール企画・編集を3ヶ月間サポート。教室の日常や作品紹介を素材に、フォロワー増加と体験申込につなげます。",
@@ -224,12 +260,15 @@ export const projects: Project[] = [
     title: "オンラインショップ(EC)構築サポート",
     category: "EC構築",
     status: "done",
-    budget: 165000,
+    /** 顧客への提示額 */
+    clientPrice: 165000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 91000,
     deadline: "2026-05-31",
     description:
       "作品・キット販売用のオンラインショップを構築。決済・配送設定までフルサポートしました。",
     applicantIds: ["c5"],
-    assignedClientId: "c5",
+    assignedMemberId: "c5",
     createdAt: "2026-04-01",
     emoji: "🛒",
     gradient: "from-emerald-100 to-teal-100",
@@ -240,12 +279,15 @@ export const projects: Project[] = [
     title: "年間キャンペーンDMデザイン一式",
     category: "デザイン",
     status: "done",
-    budget: 44000,
+    /** 顧客への提示額 */
+    clientPrice: 44000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 24000,
     deadline: "2026-03-31",
     description:
       "季節ごとのキャンペーンDM(4種)のデザインと印刷手配を行いました。",
     applicantIds: ["c4"],
-    assignedClientId: "c4",
+    assignedMemberId: "c4",
     createdAt: "2026-02-15",
     emoji: "💌",
     gradient: "from-stone-100 to-amber-50",
@@ -257,41 +299,48 @@ export const projects: Project[] = [
     title: "【モニター募集】教室紹介ムービーの編集スタッフ",
     category: "動画制作",
     status: "open",
-    budget: 30000,
+    /** 顧客への提示額 */
+    clientPrice: 30000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 16000,
     deadline: "2026-07-12",
     description:
       "教室紹介ムービー(60秒×2本)の編集を担当いただけるクリエイターを募集します。素材と構成案は本部から支給。CapCut / Premiere いずれでもOK。初回はモニター価格ですが、継続案件につながります🎬",
     applicantIds: [],
-    applicantWorkerIds: ["w2"],
+    applicantWorkerIds: ["c2"],
     createdAt: "2026-07-02",
     emoji: "🎬",
     gradient: "from-violet-100 to-purple-100",
     likes: 42,
-    forWorkers: true,
   },
   {
     id: "p8",
     title: "秋キャンペーンLPのコーディング担当募集",
     category: "HP制作",
     status: "open",
-    budget: 45000,
+    /** 顧客への提示額 */
+    clientPrice: 45000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 25000,
     deadline: "2026-07-10",
     description:
       "デザインカンプ(Figma)からのコーディング1本。レスポンシブ対応必須、アニメーションは軽めです。納期は着手から10日間。Next.js経験者歓迎🖥️",
     applicantIds: [],
-    applicantWorkerIds: ["w1", "w3"],
+    applicantWorkerIds: ["c1", "c5"],
     createdAt: "2026-06-30",
     emoji: "⌨️",
     gradient: "from-sky-100 to-cyan-100",
     likes: 27,
-    forWorkers: true,
   },
   {
     id: "p9",
     title: "教室向けパンフレットのデザイナー募集",
     category: "デザイン",
     status: "open",
-    budget: 38000,
+    /** 顧客への提示額 */
+    clientPrice: 38000,
+    /** 作業者への支払額 (顧客には見せない) */
+    workerPrice: 21000,
     deadline: "2026-07-25",
     description:
       "A4三つ折りパンフレット(表裏)のデザイン。教室の世界観に合わせた温かみのあるトーンが得意な方。写真素材・原稿は支給します📐",
@@ -301,42 +350,19 @@ export const projects: Project[] = [
     emoji: "📐",
     gradient: "from-rose-100 to-orange-100",
     likes: 15,
-    forWorkers: true,
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* 作業者 (スタッフ/クリエイター)                                        */
+/* 作業者(スタッフ)                                                      */
+/*                                                                      */
+/* 2026-08 打ち合わせ: 顧客とスタッフは同一人物のため専用の配列は持たず、  */
+/* members のうち isStaff の人をスタッフとして扱う。                      */
 /* ------------------------------------------------------------------ */
-export const workers: Worker[] = [
-  {
-    id: "w1",
-    name: "田村 健太",
-    specialties: ["動画編集", "モーショングラフィックス"],
-    completedCount: 12,
-    joinedAt: "2025-04-01",
-    avatarColor: "bg-violet-500",
-  },
-  {
-    id: "w2",
-    name: "森本 さやか",
-    specialties: ["Webデザイン", "コーディング"],
-    completedCount: 8,
-    joinedAt: "2025-08-15",
-    avatarColor: "bg-cyan-500",
-  },
-  {
-    id: "w3",
-    name: "青木 蓮",
-    specialties: ["グラフィックデザイン", "DTP"],
-    completedCount: 21,
-    joinedAt: "2024-11-20",
-    avatarColor: "bg-teal-500",
-  },
-];
+export const workers = staffMembers;
 
-/** プロトタイプで「ログイン中」とみなす作業者 */
-export const currentWorker = workers[0]; // 田村健太
+/** プロトタイプで「ログイン中」とみなすスタッフ (= currentMember) */
+export const currentWorker = currentMember;
 
 /** 作業者 (田村) の担当タスク — 案件ごとに整理して表示する */
 export const workerTasks: Task[] = [
@@ -345,10 +371,10 @@ export const workerTasks: Task[] = [
     title: "Luce様 紹介ムービーの粗編集 (60秒版)",
     kind: "その他",
     status: "in_progress",
-    assignee: "田村 健太",
+    assignee: "佐藤 彩香",
     dueDate: "2026-07-07",
     projectId: "p1",
-    workerId: "w1",
+    workerId: "c1",
     source: "manual",
     note: "素材は共有ドライブの「luce_raw」フォルダ。テロップは仮でOK。",
   },
@@ -357,10 +383,10 @@ export const workerTasks: Task[] = [
     title: "BGM候補を3曲ピックアップして本部へ共有",
     kind: "確認",
     status: "todo",
-    assignee: "田村 健太",
+    assignee: "佐藤 彩香",
     dueDate: "2026-07-05",
     projectId: "p1",
-    workerId: "w1",
+    workerId: "c1",
     source: "chat",
     note: "チャットの依頼からタスク化されました。",
   },
@@ -369,10 +395,10 @@ export const workerTasks: Task[] = [
     title: "リールサイズ (9:16) への書き出し設定確認",
     kind: "確認",
     status: "todo",
-    assignee: "田村 健太",
+    assignee: "佐藤 彩香",
     dueDate: "2026-07-09",
     projectId: "p1",
-    workerId: "w1",
+    workerId: "c1",
     source: "ai",
     note: "AIが会話から抽出したタスク候補です (Phase 3 デモ)。",
   },
@@ -381,10 +407,10 @@ export const workerTasks: Task[] = [
     title: "LPヒーロー動画の圧縮・書き出し",
     kind: "素材提出",
     status: "review",
-    assignee: "田村 健太",
+    assignee: "佐藤 彩香",
     dueDate: "2026-07-04",
     projectId: "p3",
-    workerId: "w1",
+    workerId: "c1",
     source: "manual",
     note: "本部にて確認中です。",
   },
@@ -393,13 +419,16 @@ export const workerTasks: Task[] = [
     title: "修正版ムービーの最終納品",
     kind: "素材提出",
     status: "done",
-    assignee: "田村 健太",
+    assignee: "佐藤 彩香",
     dueDate: "2026-06-28",
     projectId: "p3",
-    workerId: "w1",
+    workerId: "c1",
     source: "manual",
   },
 ];
+
+/** メンバーが「スタッフとして」担当しているタスク */
+export const memberTasks = workerTasks;
 
 export const applications: Application[] = [
   {
@@ -658,157 +687,194 @@ export const orders: Order[] = [
 /* チャット                                                             */
 /* ------------------------------------------------------------------ */
 
-/** 本部から見たスレッド一覧 (対クライアント) */
+/*
+ * ▼ 2026-08 打ち合わせでの方針転換
+ * 主役は「案件ごとのグループ」ではなく「顧客ごとのグループ」。
+ * 顧客1人につき1つのグループがあり、そこに本部と担当スタッフが同席する。
+ * 案件はこのグループの中から生まれる。
+ * 単価の話など顧客に見せたくないやりとりは dm / staff で隔離する。
+ */
+
+/** 本部から見たスレッド一覧。顧客ごとのグループが一箇所に集まる */
 export const hqThreads: ChatThread[] = [
   {
     id: "th1",
-    kind: "hq_client",
+    kind: "customer",
     title: "アトリエ彩花 (佐藤様)",
     lastMessage: "バナー案ありがとうございます!Bパターンでお願いします🙏",
     lastMessageAt: "10:24",
     unreadCount: 2,
     avatarColor: "bg-rose-400",
+    memberCount: 4,
+    customerId: "c1",
+    projectIds: ["p3"],
+    visibleToCustomer: true,
   },
   {
     id: "th2",
-    kind: "hq_client",
+    kind: "customer",
     title: "Nail Salon Luce (高橋様)",
     lastMessage: "動画素材、共有ドライブにアップしました!",
     lastMessageAt: "9:02",
     unreadCount: 1,
     avatarColor: "bg-violet-400",
+    memberCount: 3,
+    customerId: "c2",
+    projectIds: ["p1"],
+    visibleToCustomer: true,
   },
   {
     id: "th3",
-    kind: "hq_client",
+    kind: "customer",
     title: "Studio Hana Candle (花村様)",
     lastMessage: "承知しました。来週の打ち合わせよろしくお願いします。",
     lastMessageAt: "昨日",
     unreadCount: 0,
     avatarColor: "bg-amber-400",
-  },
-  {
-    id: "th6",
-    kind: "group",
-    title: "秋の体験レッスンLP 進行グループ",
-    lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
-    lastMessageAt: "昨日",
-    unreadCount: 0,
-    avatarColor: "bg-amber-400",
-    memberCount: 5,
-    category: "キャンペーン",
-    projectId: "p3",
-  },
-  {
-    id: "th10",
-    kind: "group",
-    title: "教室紹介ムービー 制作グループ",
-    lastMessage: "田村: BGM候補、明日までに共有します!",
-    lastMessageAt: "11:02",
-    unreadCount: 1,
-    avatarColor: "bg-violet-400",
-    memberCount: 4,
-    category: "動画制作",
-    projectId: "p1",
+    memberCount: 3,
+    customerId: "c4",
+    visibleToCustomer: true,
   },
   {
     id: "th7",
-    kind: "hq_client",
+    kind: "customer",
     title: "ハーバリウム工房 みずいろ (雫石様)",
     lastMessage: "トライアルの使い方について質問があります。",
     lastMessageAt: "6/30",
     unreadCount: 0,
     avatarColor: "bg-sky-400",
+    memberCount: 2,
+    customerId: "c3",
+    visibleToCustomer: true,
+  },
+  {
+    id: "th11",
+    kind: "customer",
+    title: "コスメサロン Blanche (白井様)",
+    lastMessage: "商品ページの構成案、拝見しました。進めてください。",
+    lastMessageAt: "6/29",
+    unreadCount: 0,
+    avatarColor: "bg-emerald-400",
+    memberCount: 3,
+    customerId: "c5",
+    visibleToCustomer: true,
+  },
+  /* --- 顧客に見せないやりとり --- */
+  {
+    id: "wth1",
+    kind: "dm",
+    title: "佐藤 彩香さん (スタッフとして)",
+    lastMessage: "粗編集の進捗いかがでしょうか?急ぎではないです🙏",
+    lastMessageAt: "10:48",
+    unreadCount: 1,
+    avatarColor: "bg-rose-400",
+    visibleToCustomer: false,
+  },
+  {
+    id: "th12",
+    kind: "dm",
+    title: "白井 恵美さん (スタッフとして)",
+    lastMessage: "今回の単価、2.5万でお願いできますか?",
+    lastMessageAt: "昨日",
+    unreadCount: 1,
+    avatarColor: "bg-emerald-400",
+    visibleToCustomer: false,
+  },
+  {
+    id: "th13",
+    kind: "staff",
+    title: "スタッフ連絡",
+    lastMessage: "本部: 8月の稼働可否を今週中に教えてください",
+    lastMessageAt: "7/2",
+    unreadCount: 0,
+    avatarColor: "bg-ink/60",
+    memberCount: 4,
+    visibleToCustomer: false,
   },
 ];
 
-/** クライアント(アトリエ彩花)から見たスレッド一覧 */
-export const clientThreads: ChatThread[] = [
+/**
+ * メンバー(アトリエ彩花・佐藤さん)から見たスレッド一覧。
+ * 顧客としての窓口と、スタッフとして参加している他顧客のグループが同居する。
+ */
+export const memberThreads: ChatThread[] = [
   {
     id: "th1",
-    kind: "hq_client",
+    kind: "customer",
     title: "繋がるクラフト 本部",
     lastMessage: "バナーのBパターン、承知しました!本日中に反映します。",
     lastMessageAt: "10:31",
     unreadCount: 1,
     avatarColor: "bg-brand",
+    memberCount: 4,
+    customerId: "c1",
+    projectIds: ["p3"],
+    visibleToCustomer: true,
+  },
+  {
+    id: "wth1",
+    kind: "dm",
+    title: "本部 (個別)",
+    lastMessage: "粗編集の進捗いかがでしょうか?急ぎではないです🙏",
+    lastMessageAt: "10:48",
+    unreadCount: 1,
+    avatarColor: "bg-brand",
+    visibleToCustomer: false,
+  },
+  {
+    id: "th2",
+    kind: "customer",
+    title: "Nail Salon Luce (担当中)",
+    lastMessage: "動画素材、共有ドライブにアップしました!",
+    lastMessageAt: "9:02",
+    unreadCount: 0,
+    avatarColor: "bg-violet-400",
+    memberCount: 3,
+    customerId: "c2",
+    projectIds: ["p1"],
+    visibleToCustomer: true,
+  },
+  {
+    id: "th13",
+    kind: "staff",
+    title: "スタッフ連絡",
+    lastMessage: "本部: 8月の稼働可否を今週中に教えてください",
+    lastMessageAt: "7/2",
+    unreadCount: 0,
+    avatarColor: "bg-ink/60",
+    memberCount: 4,
+    visibleToCustomer: false,
   },
   {
     id: "th4",
-    kind: "client_user",
+    kind: "end_user",
     title: "山田 花子さん",
     lastMessage: "美容液、届くのが楽しみです♪",
     lastMessageAt: "9:45",
     unreadCount: 1,
     avatarColor: "bg-pink-400",
+    visibleToCustomer: true,
   },
   {
     id: "th5",
-    kind: "client_user",
+    kind: "end_user",
     title: "鈴木 美咲さん",
     lastMessage: "次回のレッスン、振替は可能でしょうか?",
     lastMessageAt: "昨日",
     unreadCount: 2,
     avatarColor: "bg-indigo-400",
-  },
-  {
-    id: "th6",
-    kind: "group",
-    title: "秋の体験レッスンLP 進行グループ",
-    lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
-    lastMessageAt: "昨日",
-    unreadCount: 0,
-    avatarColor: "bg-amber-400",
-    memberCount: 5,
-    category: "キャンペーン",
-    projectId: "p3",
+    visibleToCustomer: true,
   },
   {
     id: "th8",
-    kind: "group",
+    kind: "end_user",
     title: "アトリエ彩花 生徒のみなさま",
     lastMessage: "あなた: 7月のレッスンスケジュールを公開しました🌻",
     lastMessageAt: "7/1",
     unreadCount: 0,
     avatarColor: "bg-rose-400",
     memberCount: 33,
-  },
-];
-
-/** 作業者(田村)から見たスレッド一覧 */
-export const workerThreads: ChatThread[] = [
-  {
-    id: "wth1",
-    kind: "hq_client",
-    title: "繋がるクラフト 本部",
-    lastMessage: "粗編集の進捗いかがでしょうか?急ぎではないです🙏",
-    lastMessageAt: "10:48",
-    unreadCount: 1,
-    avatarColor: "bg-brand",
-  },
-  {
-    id: "th10",
-    kind: "group",
-    title: "教室紹介ムービー 制作グループ",
-    lastMessage: "あなた: BGM候補、明日までに共有します!",
-    lastMessageAt: "11:02",
-    unreadCount: 0,
-    avatarColor: "bg-violet-400",
-    memberCount: 4,
-    category: "動画制作",
-    projectId: "p1",
-  },
-  {
-    id: "th6",
-    kind: "group",
-    title: "秋の体験レッスンLP 進行グループ",
-    lastMessage: "本部: スケジュール表を更新しました。ご確認ください。",
-    lastMessageAt: "昨日",
-    unreadCount: 0,
-    avatarColor: "bg-amber-400",
-    memberCount: 5,
-    category: "キャンペーン",
-    projectId: "p3",
+    visibleToCustomer: true,
   },
 ];
 
@@ -816,22 +882,81 @@ export const workerThreads: ChatThread[] = [
 export const endUserThreads: ChatThread[] = [
   {
     id: "th4",
-    kind: "client_user",
+    kind: "end_user",
     title: "アトリエ彩花 佐藤先生",
     lastMessage: "ご注文ありがとうございます!発送までしばらくお待ちください。",
     lastMessageAt: "9:40",
     unreadCount: 1,
     avatarColor: "bg-rose-400",
+    visibleToCustomer: true,
   },
   {
     id: "th8",
-    kind: "group",
+    kind: "end_user",
     title: "アトリエ彩花 生徒のみなさま",
     lastMessage: "佐藤先生: 7月のレッスンスケジュールを公開しました🌻",
     lastMessageAt: "7/1",
     unreadCount: 0,
     avatarColor: "bg-rose-400",
     memberCount: 33,
+    visibleToCustomer: true,
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* 全体配信タイムライン                                                  */
+/*                                                                      */
+/* 2026-08 打ち合わせ: 「札幌でセミナーします、参加者募集」のような       */
+/* 一斉発信を、アプリを開いた最初の画面に流したい。                        */
+/* 個別チャットに貼って回る手間をなくすのが狙い。                          */
+/* ------------------------------------------------------------------ */
+export const timelinePosts: TimelinePost[] = [
+  {
+    id: "tl1",
+    author: "繋がるクラフト 本部",
+    kind: "イベント",
+    title: "【札幌】デジタル活用セミナー 参加者募集",
+    body: "8/28(金) 14:00〜 札幌市内にて、SNS集客とホームページ運用の実践セミナーを開催します。参加費無料・懇親会あり。人数に限りがありますのでお早めにどうぞ!",
+    postedAt: "2026-07-03",
+    emoji: "📣",
+    gradient: "from-aqua-soft to-sky-100",
+    reactions: 18,
+    ctaLabel: "参加する",
+  },
+  {
+    id: "tl2",
+    author: "繋がるクラフト 本部",
+    kind: "募集",
+    title: "動画編集のスタッフを募集しています",
+    body: "ショート動画の編集をお願いできる方を探しています。未経験の方も、こちらで編集の進め方をお伝えします。まずはお気軽にご相談ください。",
+    postedAt: "2026-07-02",
+    emoji: "🎬",
+    gradient: "from-violet-100 to-purple-100",
+    reactions: 24,
+    ctaLabel: "話を聞く",
+    staffOnly: false,
+  },
+  {
+    id: "tl3",
+    author: "繋がるクラフト 本部",
+    kind: "実績",
+    title: "アトリエ彩花様のHPリニューアルが公開されました",
+    body: "スマホ最適化と予約導線の改善で、体験レッスンの申込が先月比 1.6倍になりました。制作の裏側は近日公開します。",
+    postedAt: "2026-06-30",
+    emoji: "🎉",
+    gradient: "from-rose-100 to-orange-100",
+    reactions: 31,
+  },
+  {
+    id: "tl4",
+    author: "繋がるクラフト 本部",
+    kind: "お知らせ",
+    title: "夏季休業のお知らせ (8/13〜8/16)",
+    body: "期間中もチャットは受け付けておりますが、返信は8/17以降となります。お急ぎのご用件はお早めにご連絡ください。",
+    postedAt: "2026-06-28",
+    emoji: "🏖️",
+    gradient: "from-amber-100 to-yellow-100",
+    reactions: 7,
   },
 ];
 
@@ -967,7 +1092,7 @@ export const messagesByThread: Record<string, ChatMessage[]> = {
     {
       id: "m14",
       threadId: "wth1",
-      senderName: "田村 健太",
+      senderName: "佐藤 彩香",
       isMe: true,
       body: "確認しました!今日から着手します。BGMの方向性だけ先にすり合わせたいです。",
       sentAt: "9:40",
@@ -1011,7 +1136,7 @@ export const messagesByThread: Record<string, ChatMessage[]> = {
     {
       id: "m19",
       threadId: "th10",
-      senderName: "田村 健太",
+      senderName: "佐藤 彩香",
       isMe: false,
       body: "BGM候補、明日までに共有します!",
       sentAt: "11:02",
@@ -1139,8 +1264,8 @@ export const bookingSlots: BookingSlot[] = [
 /* ダッシュボード集計 (本部)                                             */
 /* ------------------------------------------------------------------ */
 export const adminStats = {
-  totalClients: clients.length,
-  activeClients: clients.filter((c) => c.status === "active").length,
+  totalClients: members.length,
+  activeClients: members.filter((m) => m.status === "active").length,
   totalEndUsers: 180,
   openProjects: projects.filter((p) => p.status === "open").length,
   inProgressProjects: projects.filter((p) => p.status === "in_progress").length,

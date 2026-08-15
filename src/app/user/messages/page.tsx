@@ -20,7 +20,7 @@ export default function UserMessagesPage() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
                   <p className="truncate text-sm font-bold">{thread.title}</p>
-                  {thread.kind === "group" && thread.memberCount && (
+                  {thread.kind === "customer" && thread.memberCount && (
                     <span className="shrink-0 text-[10px] text-ink/40">
                       ({thread.memberCount})
                     </span>

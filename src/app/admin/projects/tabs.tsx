@@ -48,7 +48,7 @@ export function ProjectTabs() {
       ) : (
         <div className="grid gap-3 md:grid-cols-2 [&>*]:min-w-0">
           {filtered.map((p) => {
-            const assigned = clients.find((c) => c.id === p.assignedClientId);
+            const assigned = clients.find((c) => c.id === p.assignedMemberId);
             return (
               <Link key={p.id} href={`/admin/projects/${p.id}`} className="block">
                 <Card className="p-4 transition-shadow hover:shadow-md">
@@ -69,7 +69,7 @@ export function ProjectTabs() {
                   </p>
                   <div className="mt-3 flex items-center gap-3 text-xs text-ink/55">
                     <span className="text-sm font-bold text-ink">
-                      {formatYen(p.budget)}
+                      {formatYen(p.clientPrice)}
                     </span>
                     <span className="flex items-center gap-1">
                       <Icon name="calendar" className="h-3.5 w-3.5" />
